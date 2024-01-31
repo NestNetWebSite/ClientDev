@@ -26,7 +26,7 @@ export default function Page() {
 
     const { data: originalData = {}, isLoading: isAlbumLoading, status } = useGetAlbum();
     const {
-        photoPostDto: postMetaData,
+        photoPostDto: metadata,
         fileDtoList: fileData,
         commentDtoList: commentData,
         memberLiked: isMemberLiked,
@@ -37,7 +37,7 @@ export default function Page() {
         if (status === 'success') {
             setSelectedPhoto(StringCombinator.getImageURL(fileData[0]));
         }
-    }, [status, fileData, postMetaData]);
+    }, [status, fileData, metadata]);
 
     return (
         <div className='AlbumWrapper max-w-screen bg-home-background pt-[6rem]'>
@@ -58,7 +58,7 @@ export default function Page() {
                             <PhotoAlbumMetadata
                                 isAlbumLoading={isAlbumLoading}
                                 isMetadataVisible={isMetadataVisible}
-                                postMetaData={postMetaData}
+                                metadata={metadata}
                                 comments={commentData}
                             />
                             <CommentPostForm isMetadataVisible={isMetadataVisible} />
@@ -68,9 +68,9 @@ export default function Page() {
                                 <div className='flex-start mt-8 flex h-full flex-col items-center pr-3'>
                                     <DownloadBtn selectedPhoto={selectedPhoto} />
                                     <MetadataBtn setIsMetadataVisible={setIsMetadataVisible} />
-                                    <LikeBtn isMemberLiked={isMemberLiked} likeCount={postMetaData?.likeCount} />
+                                    <LikeBtn isMemberLiked={isMemberLiked} likeCount={metadata?.likeCount} />
                                     {/* 권한자에게만 보이는 버튼 */}
-                                    {postMetaData?.memberWritten ? (
+                                    {metadata?.memberWritten ? (
                                         <>
                                             <ModifyBtn existingData={originalData} />
                                             <DeleteBtn />
