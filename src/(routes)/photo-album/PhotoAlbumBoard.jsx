@@ -7,7 +7,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
 import Skeleton from '@mui/material/Skeleton';
 import Box from '@mui/material/Box';
-import PhotoAlbumThumbnail from './PhotoAlbumThumbnail';
+import PhotoAlbumThumbnail from './_components/PhotoAlbumThumbnail';
 
 // Masonary 레이아웃 열 갯수 (반응형)
 const breakpointColumnsObj = {

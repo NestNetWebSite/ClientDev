@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { FaHeart, FaEye } from 'react-icons/fa';
-import { StringCombinator } from '../../_utils/StringCombinator';
+import { StringCombinator } from '../../../_utils/StringCombinator';
 
 /**
  * 사진첩 썸네일
