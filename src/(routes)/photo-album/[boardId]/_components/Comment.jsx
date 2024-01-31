@@ -151,7 +151,7 @@ function useDeleteComment() {
 
     return useMutation({
         mutationFn: async commentId => {
-            const commentDeletionURL = `${process.env.REACT_APP_SERVER}/comment/delete/${commentId}`;
+            const commentDeletionURL = `${import.meta.env.VITE_APP_SERVER}/comment/delete/${commentId}`;
             return await axios.delete(commentDeletionURL);
         },
 
