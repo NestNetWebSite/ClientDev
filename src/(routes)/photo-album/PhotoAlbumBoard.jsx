@@ -79,7 +79,7 @@ export default function PhotoAlbumBoard() {
                                             ref={observeBtmRef}
                                         >
                                             <Link to={`${photoAlbum.id}`}>
-                                                <PhotoAlbumThumbnail key={photoAlbum.postId} album={photoAlbum} />
+                                                <PhotoAlbumThumbnail key={photoAlbum.postId} item={photoAlbum} />
                                             </Link>
                                         </div>
                                     );
@@ -87,7 +87,7 @@ export default function PhotoAlbumBoard() {
                                     return (
                                         <div className='m-4 h-min min-w-[22.65rem] max-w-[22.65rem]'>
                                             <Link to={`${photoAlbum.id}`}>
-                                                <PhotoAlbumThumbnail key={photoAlbum.postId} album={photoAlbum} />
+                                                <PhotoAlbumThumbnail key={photoAlbum.postId} item={photoAlbum} />
                                             </Link>
                                         </div>
                                     );
@@ -104,7 +104,7 @@ export default function PhotoAlbumBoard() {
 
 // REST: 스크롤시 다음 페이지의 앨범데이터를 가져옴
 const getMorePhotoAlbums = async ({ pageParam }) => {
-    const photoAlbumsURL = `${import.meta.env.VITE_REACT_SERVER}/photo-post?page=${pageParam}`;
+    const photoAlbumsURL = `${import.meta.env.VITE_APP_SERVER}/photo-post?page=${pageParam}`;
     return await axios.get(photoAlbumsURL, { withCredentials: true }).then(res => {
         return res.data.response.dtoList;
     });
