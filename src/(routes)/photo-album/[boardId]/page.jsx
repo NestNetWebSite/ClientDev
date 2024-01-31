@@ -17,7 +17,7 @@ import MetadataBtn from './_components/MetadataBtn';
  * 앨범 페이지
  * @returns
  */
-export default function PhotoAlbum() {
+export default function Page() {
     // 선택된 사진의 url
     const [selectedPhoto, setSelectedPhoto] = useState('');
 

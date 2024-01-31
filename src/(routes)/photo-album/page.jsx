@@ -17,10 +17,10 @@ const breakpointColumnsObj = {
 };
 
 /**
- * 사진첩
+ * 사진게시판 페이지
  * @returns
  */
-export default function PhotoAlbumBoard() {
+export default function Page() {
     // 무한스크롤 api 호출 지점 옵저버
     const { ref: observeBtmRef, inView } = useInView();
 
