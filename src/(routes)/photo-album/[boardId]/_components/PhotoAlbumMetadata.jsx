@@ -28,13 +28,7 @@ export default memo(function PhotoAlbumMetadata({ isAlbumLoading, isMetadataVisi
                                 <>
                                     {comments.length ? (
                                         comments.map(comment => {
-                                            return (
-                                                <Comment
-                                                    key={comment.id}
-                                                    comment={comment}
-                                                    isAlbumLoading={isAlbumLoading}
-                                                />
-                                            );
+                                            return <Comment key={comment.id} comment={comment} />;
                                         })
                                     ) : (
                                         <p className='text-base text-gray-600'>
