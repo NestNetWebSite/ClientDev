@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Masonry } from 'react-masonry-css';
+import Masonry from 'react-masonry-css';
 import { Flex } from '@chakra-ui/react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
