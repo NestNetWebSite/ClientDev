@@ -15,6 +15,7 @@ import SearchPasswordPage from './(routes)/(searchAccount)/search_pw/page.tsx';
 
 // @ts-ignore
 import PhotoAlbumPage from './(routes)/photo-album/page.jsx';
+import PhotoAlbumPostPage from './(routes)/photo-album/post/page.jsx';
 
 import NoticeBoardListPage from './(routes)/notice/page.tsx';
 import NoticeBoardPage from './(routes)/notice/[boardId]/page.tsx';
@@ -76,6 +77,14 @@ const router = createBrowserRouter([
             {
                 path: '/notice/modify/:boardId',
                 element: <NoticeBoardModifyPage />,
+            },
+            {
+                path: '/photo_albums',
+                element: <PhotoAlbumPage />,
+            },
+            {
+                path: '/photo_albums/post',
+                element: <PhotoAlbumPostPage />,
             },
             {
                 path: '/about_me',
