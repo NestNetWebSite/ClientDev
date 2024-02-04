@@ -10,7 +10,7 @@ export default function ForbiddenErrorPage() {
             </span>
             <button
                 className={
-                    'rounded-xl border border-rose-800 px-4 py-3 font-bold text-rose-800 transition-all hover:bg-red-50'
+                    'rounded-xl border border-rose-700 px-4 py-3 font-bold text-rose-700 transition-all hover:bg-red-50'
                 }
                 onClick={() => {
                     navigate('/');
