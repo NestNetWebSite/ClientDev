@@ -105,7 +105,7 @@ function usePostPhoto() {
 
     return useMutation({
         mutationFn: async fileFormData => {
-            const photoZoneURL = `${import.meta.env.VITE_APP_SERVER}/life4cut/save`;
+            const photoZoneURL = `/api/life4cut/save`;
             return await axios.post(photoZoneURL, fileFormData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });

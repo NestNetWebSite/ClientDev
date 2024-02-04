@@ -126,7 +126,7 @@ function useUpdateComment() {
 
     return useMutation({
         mutationFn: async ({ commentId, updateValue }) => {
-            const commentUpdateURL = `${import.meta.env.VITE_APP_SERVER}/comment/modify/${commentId}`;
+            const commentUpdateURL = `/api/comment/modify/${commentId}`;
             return await axios.post(commentUpdateURL, {
                 content: updateValue,
             });
@@ -149,7 +149,7 @@ function useDeleteComment() {
 
     return useMutation({
         mutationFn: async commentId => {
-            const commentDeletionURL = `${import.meta.env.VITE_APP_SERVER}/comment/delete/${commentId}`;
+            const commentDeletionURL = `/api/comment/delete/${commentId}`;
             return await axios.delete(commentDeletionURL);
         },
 

@@ -37,7 +37,7 @@ const useDeleteAlbum = () => {
 
     return useMutation({
         mutationFn: async postId => {
-            const albumDeletionURL = `${import.meta.env.VITE_APP_SERVER}/post/delete?postId=${postId}`;
+            const albumDeletionURL = `/api/post/delete?postId=${postId}`;
 
             return await axios.delete(albumDeletionURL);
         },

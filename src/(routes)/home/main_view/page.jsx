@@ -84,7 +84,7 @@ const useGetNewPosts = () => {
     return useQuery({
         queryKey: ['recent-posts'],
         queryFn: async () => {
-            const recentPostsURL = `${import.meta.env.VITE_APP_SERVER}/post/recent-posts`;
+            const recentPostsURL = `/api/post/recent-posts`;
 
             return await axios.get(recentPostsURL).then(res => {
                 return res.data.response.dtoList;
@@ -98,7 +98,7 @@ const useGetAttendance = () => {
     return useQuery({
         queryKey: ['attendance-statistics'],
         queryFn: async () => {
-            const attendanceURL = `${import.meta.env.VITE_APP_SERVER}/attendance/statistics`;
+            const attendanceURL = `/api/attendance/statistics`;
 
             return await axios.get(attendanceURL).then(res => {
                 return res.data.response;

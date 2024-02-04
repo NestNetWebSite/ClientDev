@@ -104,7 +104,7 @@ export default function Page() {
 
 // REST: 스크롤시 다음 페이지의 앨범데이터를 가져옴
 const getMorePhotoAlbums = async ({ pageParam }) => {
-    const photoAlbumsURL = `${import.meta.env.VITE_APP_SERVER}/photo-post?page=${pageParam}`;
+    const photoAlbumsURL = `/api/photo-post?page=${pageParam}`;
     return await axios.get(photoAlbumsURL, { withCredentials: true }).then(res => {
         return res.data.response.dtoList;
     });
