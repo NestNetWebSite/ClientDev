@@ -7,7 +7,7 @@ export default function NotFoundErrorPage() {
         <div className={'flex h-[calc(100dvh-4.68rem)] w-full items-center justify-center'}>
             <div className={'flex w-[38rem] flex-col'}>
                 <img className={'w-full rounded-2xl'} src={NotFoundImageUrl} alt={'404_image'} />
-                <h2 className={'my-4 text-center text-3xl font-black text-rose-800'}>
+                <h2 className={'my-4 text-center text-3xl font-black text-rose-700'}>
                     해당 페이지를 찾을 수 없습니다.
                 </h2>
                 <p className={'font-bold text-gray-600'}>
@@ -16,7 +16,7 @@ export default function NotFoundErrorPage() {
                 <div className={'my-9 flex justify-center gap-x-7'}>
                     <button
                         className={
-                            'rounded-xl border border-rose-800 px-4 py-3 font-bold text-rose-800 transition-all hover:bg-rose-50'
+                            'rounded-xl border border-rose-700 px-4 py-3 font-bold text-rose-700 transition-all hover:bg-rose-50'
                         }
                         type={'button'}
                         onClick={() => {
@@ -27,7 +27,7 @@ export default function NotFoundErrorPage() {
                     </button>
                     <button
                         className={
-                            'rounded-xl border border-rose-800 bg-rose-800 px-4 py-3 font-bold text-white transition-all hover:bg-rose-900'
+                            'rounded-xl border border-rose-700 bg-rose-700 px-4 py-3 font-bold text-white transition-all hover:bg-rose-800'
                         }
                         type={'button'}
                         onClick={() => {

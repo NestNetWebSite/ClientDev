@@ -1,6 +1,10 @@
 import { ClipLoader } from 'react-spinners';
 
-export default function LoadingSpinner({ size }) {
+interface Props {
+    size: number;
+}
+
+export default function LoadingSpinner({ size }: Props) {
     return (
         <div className={'flex w-full items-center justify-center'}>
             <ClipLoader size={size} color={'#be123c'} />

@@ -1,4 +1,5 @@
 import { Outlet, useLocation } from 'react-router-dom';
+import GlobalNavbar from '../_components/globalNavBar/GlobarNavbar.tsx';
 import useScrollToTop from '../_hooks/useScrollToTop.ts';
 
 export default function PublicLayout() {
@@ -11,7 +12,7 @@ export default function PublicLayout() {
             {pathname !== '/signin' &&
                 pathname !== '/signup' &&
                 pathname !== '/search_id' &&
-                pathname !== '/search_pw' && <></>}
+                pathname !== '/search_pw' && <GlobalNavbar />}
             <Outlet />
         </>
     );
