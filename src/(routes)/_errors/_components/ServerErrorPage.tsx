@@ -12,7 +12,7 @@ export default function ServerErrorPage({ resetErrorBoundary }) {
             <div className={'flex gap-x-5'}>
                 <button
                     className={
-                        'rounded-xl border border-rose-800 px-4 py-3 font-bold text-rose-800 transition-all hover:bg-red-50'
+                        'rounded-xl border border-rose-700 px-4 py-3 font-bold text-rose-700 transition-all hover:bg-red-50'
                     }
                     onClick={() => {
                         navigate('/');
@@ -22,7 +22,7 @@ export default function ServerErrorPage({ resetErrorBoundary }) {
                 </button>
                 <button
                     className={
-                        'rounded-xl border border-rose-800 bg-rose-800 px-4 py-3 font-bold text-white transition-all hover:bg-rose-900'
+                        'rounded-xl border border-rose-700 bg-rose-700 px-4 py-3 font-bold text-white transition-all hover:bg-rose-900'
                     }
                     onClick={() => {
                         resetErrorBoundary();
