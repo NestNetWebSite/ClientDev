@@ -20,10 +20,10 @@ export default function DeleteBtn() {
     };
 
     return (
-        <div className='mt-3'>
+        <div className='text-red-600'>
             <Button
                 onClick={handleAlbumDelete}
-                content={<MdDelete className='mt-1 text-3xl' />}
+                content={<MdDelete className='mt-[0.2rem] text-3xl' />}
                 disabled={isDeletingAlbum ? true : false}
             />
         </div>

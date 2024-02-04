@@ -26,9 +26,9 @@ export default function Page() {
 
     const { data: originalData = {}, isLoading: isAlbumLoading, status } = useGetAlbum();
     const {
-        photoPostDto: metadata,
-        fileDtoList: fileData,
-        commentDtoList: commentData,
+        photoPostDto: postMetaData = {},
+        fileDtoList: fileData = [],
+        commentDtoList: commentData = [],
         memberLiked: isMemberLiked,
     } = originalData;
 
@@ -37,7 +37,7 @@ export default function Page() {
         if (status === 'success') {
             setSelectedPhoto(StringCombinator.getImageURL(fileData[0]));
         }
-    }, [status, fileData, metadata]);
+    }, [status, fileData, postMetaData]);
 
     return (
         <div className='AlbumWrapper max-w-screen bg-home-background pt-[6rem]'>
@@ -55,22 +55,23 @@ export default function Page() {
                             >
                                 <SelectedPhoto selectedPhoto={selectedPhoto} />
                             </div>
-                            <PhotoAlbumMetadata
-                                isAlbumLoading={isAlbumLoading}
-                                isMetadataVisible={isMetadataVisible}
-                                metadata={metadata}
-                                comments={commentData}
-                            />
+                            <div className='flex h-fit w-full flex-col bg-white shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]'>
+                                <PhotoAlbumMetadata
+                                    isMetadataVisible={isMetadataVisible}
+                                    postMetaData={postMetaData}
+                                    comments={commentData}
+                                />
+                            </div>
                             <CommentPostForm isMetadataVisible={isMetadataVisible} />
                         </div>
                         <div className='ActionBtnBanner w-[5rem]'>
                             {isAlbumLoading ? null : (
-                                <div className='flex-start mt-8 flex h-full flex-col items-center pr-3'>
+                                <div className='flex-start mt-8 flex h-full flex-col items-center gap-3 pr-3'>
                                     <DownloadBtn selectedPhoto={selectedPhoto} />
                                     <MetadataBtn setIsMetadataVisible={setIsMetadataVisible} />
-                                    <LikeBtn isMemberLiked={isMemberLiked} likeCount={metadata?.likeCount} />
+                                    <LikeBtn isMemberLiked={isMemberLiked} likeCount={postMetaData?.likeCount} />
                                     {/* 권한자에게만 보이는 버튼 */}
-                                    {metadata?.memberWritten ? (
+                                    {postMetaData?.memberWritten ? (
                                         <>
                                             <ModifyBtn existingData={originalData} />
                                             <DeleteBtn />
@@ -97,14 +98,20 @@ export default function Page() {
 
 // REST: 앨범 단건 조회
 const useGetAlbum = () => {
-    const { postId } = useParams();
+    const { boardId } = useParams();
 
     return useQuery({
-        queryKey: ['album', postId],
+        queryKey: ['album', boardId],
         queryFn: async () => {
-            const albumURL = `${import.meta.env.VITE_APP_SERVER}/photo-post/${postId}`;
+            // const albumURL = `${import.meta.env.VITE_APP_SERVER}/photo-post/${boardId}`;
+            // return await axios.get(albumURL).then(res => {
+            //     return res.data.response;
+            // });
+
+            // TEST: json-server
+            const albumURL = `http://localhost:8080/album?id=${boardId}`;
             return await axios.get(albumURL).then(res => {
-                return res.data.response;
+                return res.data[0];
             });
         },
     });

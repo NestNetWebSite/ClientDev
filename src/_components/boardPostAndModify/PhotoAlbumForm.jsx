@@ -2,7 +2,7 @@ import TitleInput from './TitleInput';
 import DescriptionInput from './DescriptionInput';
 import FileInput from './FileInput';
 import PostButton from './PostButton';
-import { ORIGINAL_FILE_FLAG } from '../../../../_constants/constants';
+import { ORIGINAL_FILE_FLAG } from '../../_constants/constants';
 import { useState, useEffect } from 'react';
 import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -61,10 +61,10 @@ export default function PhotoAlbumForm({ isModifying }) {
                     withCredentials: true,
                     headers: { 'Content-Type': 'multipart/form-data' },
                 })
-                ?.then(() => navigate(`/gallery`))
+                ?.then(() => navigate(`/photo-albums`))
                 ?.catch(() => {
                     alert('게시물 수정에 실패하였습니다.');
-                    navigate(`/gallery`);
+                    navigate(`/photo-albums`);
                 });
         }
 
@@ -88,10 +88,10 @@ export default function PhotoAlbumForm({ isModifying }) {
                     withCredentials: true,
                     headers: { 'Content-Type': 'multipart/form-data' },
                 })
-                ?.then(() => navigate('/gallery'))
+                ?.then(() => navigate('/photo-albums'))
                 ?.catch(() => {
                     alert('게시물 등록에 실패하였습니다.');
-                    navigate(`/gallery`);
+                    navigate(`/photo-albums`);
                 });
         }
     };

@@ -13,6 +13,27 @@ export default {
         thickGray: "#efefef",
         skeleton: "#d1d5db",
       },
+      keyframes: {
+        fadein: {
+          "0%": { opacity: "0.5" },
+          "50%": { opacity: "0.75" },
+          "100%": { opacity: "1" },
+        },
+        swapdown: {
+          "0%": { opacity: "0", transform: "translate(0, -20%)" },
+          "50%": { opacity: "0.5", transform: "translate(0, -10%)" },
+          "100%": { opacity: "1", transform: "translate(0)" },
+        },
+        infiniteslide: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+      },
+      animation: {
+        fadein: "fadein 0.2s linear forwards",
+        swapdown: "swapdown 0.5s linear forwards",
+        infiniteslide: "infiniteslide 60s linear infinite",
+      },
     },
   },
   plugins: [],

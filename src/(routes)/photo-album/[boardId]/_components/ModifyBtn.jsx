@@ -12,12 +12,10 @@ export default function ModifyBtn({ existingData }) {
     const navigate = useNavigate();
 
     return (
-        <div className='mt-3'>
-            <Button
-                // 앨범 수정 라우팅 설정 필요
-                onClick={() => navigate(`../modify/${postId}`, { state: existingData })}
-                content={<RiPencilFill className='mt-1 text-3xl' />}
-            />
-        </div>
+        <Button
+            // 앨범 수정 라우팅 설정 필요
+            onClick={() => navigate(`../modify/${postId}`, { state: existingData })}
+            content={<RiPencilFill className='mt-1 text-3xl' />}
+        />
     );
 }

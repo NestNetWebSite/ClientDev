@@ -59,10 +59,8 @@ export default function Comment({ comment }) {
         <>
             <li className='w-full' key={commentId}>
                 <div className='flex w-full pb-4'>
-                    <div className='profile mr-6 flex flex-col justify-start pt-1'>
-                        {/* 프로필 원 */}
-                        <div>{username}</div>
-                    </div>
+                    {/* 프로필 원 */}
+                    <div className='mr-4 w-12 max-w-12'>{username}</div>
                     <div className='w-full break-all'>
                         {isUpdateTarget ? (
                             updateInput

@@ -14,15 +14,22 @@ export default memo(function PhotoAlbumThumbnail({ item: photoAlbum }) {
                     alt='photo-album_thumbnail'
                     className='ThumbnailImage rounded-xl'
                 />
-                <div className='MetaData absolute left-0 top-0 h-full w-full cursor-zoom-in rounded-xl opacity-0 duration-300 hover:bg-black hover:opacity-80'>
-                    <div className='Title mx-6 mt-6 text-center text-2xl font-bold text-white'>{photoAlbum.title}</div>
-                    <div className='CntData absolute bottom-0 right-0 m-5 mr-6 text-[#666666]'>
-                        <span className='ViewCnt mr-2'>
-                            <FaEye /> <span>{photoAlbum.viewCount}</span>
-                        </span>
-                        <span className='LikeCnt ml-2'>
-                            <FaHeart /> <span>{photoAlbum.likeCount}</span>
-                        </span>
+                {/* 썸네일 호버시 나타나는 커버 */}
+                <div className='absolute left-0 top-0 flex h-full w-full cursor-zoom-in flex-col justify-between rounded-xl opacity-0 duration-300 hover:bg-black hover:opacity-80'>
+                    <div className='mx-6 mt-6 text-center text-2xl font-bold text-white'>{photoAlbum.title}</div>
+                    <div className='Metadata my-6 flex flex-row items-center justify-center text-[#666666]'>
+                        <div className='Visits mx-2 flex flex-row'>
+                            <span className='mr-2'>
+                                <FaEye />
+                            </span>
+                            <span className='leading-[100%]'>{photoAlbum.viewCount}</span>
+                        </div>
+                        <div className='Likes mx-2 flex flex-row'>
+                            <span className='mr-2'>
+                                <FaHeart />
+                            </span>
+                            <span className='leading-[100%]'>{photoAlbum.likeCount}</span>
+                        </div>
                     </div>
                 </div>
             </div>

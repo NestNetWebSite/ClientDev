@@ -12,7 +12,7 @@ export default function MetadataBtn({ setIsMetadataVisible }) {
     };
 
     return (
-        <div className='my-3' onClick={toggleMetadataVisibility}>
+        <div onClick={toggleMetadataVisibility}>
             <Button content={<MdComment className='mt-1 text-3xl' />} />
         </div>
     );
