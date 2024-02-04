@@ -17,7 +17,7 @@ export default function RecentPostsBanner({ items: recentPosts, isLoading }) {
         );
 
     return (
-        <article className='relative h-full w-full p-5'>
+        <div className='relative h-full w-full p-5'>
             <ul className='h-full w-full text-slate-600'>
                 {recentPosts.length === 0 ? (
                     <>
@@ -50,6 +50,6 @@ export default function RecentPostsBanner({ items: recentPosts, isLoading }) {
                     ))
                 )}
             </ul>
-        </article>
+        </div>
     );
 }
