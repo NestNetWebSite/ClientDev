@@ -2,6 +2,8 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import PublicLayout from './(routes)/publicLayout.tsx';
 
+import MainPage from './(routes)/home/page.jsx';
+
 import AccountLayout from './(routes)/(account)/layout.tsx';
 import SignInPage from './(routes)/(account)/signin/page.tsx';
 import SignUpPage from './(routes)/(account)/signup/page.tsx';
@@ -14,7 +16,8 @@ import SearchIdPage from './(routes)/(searchAccount)/search_id/page.tsx';
 import SearchPasswordPage from './(routes)/(searchAccount)/search_pw/page.tsx';
 
 // @ts-ignore
-import PhotoAlbumPage from './(routes)/photo-album/page.jsx';
+import PhotoAlbumListPage from './(routes)/photo-album/page.jsx';
+import PhotoAlbumPage from './(routes)/photo-album/[boardId]/page.jsx';
 import PhotoAlbumPostPage from './(routes)/photo-album/post/page.jsx';
 
 import NoticeBoardListPage from './(routes)/notice/page.tsx';
@@ -50,6 +53,10 @@ const router = createBrowserRouter([
                 ],
             },
             {
+                path: '/',
+                element: <MainPage />,
+            },
+            {
                 path: '/professor',
                 element: <ProfessorPage />,
             },
@@ -80,6 +87,10 @@ const router = createBrowserRouter([
             },
             {
                 path: '/photo_albums',
+                element: <PhotoAlbumListPage />,
+            },
+            {
+                path: '/photo_albums/:boardId',
                 element: <PhotoAlbumPage />,
             },
             {
