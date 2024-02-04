@@ -98,7 +98,7 @@ const useGetAttendance = () => {
     return useQuery({
         queryKey: ['attendance-statistics'],
         queryFn: async () => {
-            const attendanceURL = `${import.meta.env.VITE_APP_SERVER}/attendance/statistics`;
+            const attendanceURL = `/api/attendance/statistics`;
 
             return await axios.get(attendanceURL).then(res => {
                 return res.data.response;

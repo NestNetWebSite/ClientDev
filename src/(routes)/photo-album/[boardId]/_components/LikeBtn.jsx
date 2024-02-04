@@ -47,10 +47,10 @@ export default function LikeBtn({ isMemberLiked, likeCount = null }) {
                 }}
                 content={
                     isLiked ? (
-                            <div className='flex flex-col justify-between'>
-                                <FaHeart className='text-2xl text-red-400' />
-                                <span className='bottom-0 w-full text-center text-[0.6rem]'>{likeCount}</span>
-                            </div>
+                        <div className='flex flex-col justify-between'>
+                            <FaHeart className='text-2xl text-red-400' />
+                            <span className='bottom-0 w-full text-center text-[0.6rem]'>{likeCount}</span>
+                        </div>
                     ) : (
                         <div className='flex flex-col justify-between'>
                             <FaHeart className='text-2xl text-slate-300' />
@@ -86,7 +86,7 @@ function usePostAlbumLike() {
         mutationFn() {
             const likeState = queryClient.getQueryData(['likeState']);
             return axios.post(
-                `${import.meta.env.VITE_APP_SERVER}/post/${likeState ? 'like' : 'cancel-like'}`,
+                `/api/post/${likeState ? 'like' : 'cancel-like'}`,
                 { postId },
                 {
                     withCredentials: true,

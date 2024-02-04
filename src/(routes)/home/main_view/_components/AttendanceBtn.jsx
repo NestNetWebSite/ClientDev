@@ -36,7 +36,7 @@ function usePostMyAttendance() {
 
     return useMutation({
         mutationFn: async () => {
-            const myAttdURL = `${import.meta.env.VITE_APP_SERVER}/attendance`;
+            const myAttdURL = `/api/attendance`;
             return await axios.post(myAttdURL);
         },
         // 클라이언트 업데이트

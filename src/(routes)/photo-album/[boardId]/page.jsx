@@ -103,15 +103,9 @@ const useGetAlbum = () => {
     return useQuery({
         queryKey: ['album', boardId],
         queryFn: async () => {
-            // const albumURL = `${import.meta.env.VITE_APP_SERVER}/photo-post/${boardId}`;
-            // return await axios.get(albumURL).then(res => {
-            //     return res.data.response;
-            // });
-
-            // TEST: json-server
-            const albumURL = `http://localhost:8080/album?id=${boardId}`;
+            const albumURL = `/api/photo-post/${boardId}`;
             return await axios.get(albumURL).then(res => {
-                return res.data[0];
+                return res.data.response;
             });
         },
     });
