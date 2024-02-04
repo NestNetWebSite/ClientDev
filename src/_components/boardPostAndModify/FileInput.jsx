@@ -2,16 +2,16 @@ import { useRef, memo } from 'react';
 import { MdUpload } from 'react-icons/md';
 import { FaTrash } from 'react-icons/fa';
 import { AiFillFileImage } from 'react-icons/ai';
-import { StringCombinator } from '../../_utils/StringCombinator';
-import { ORIGINAL_FILE_FLAG } from '../../_constants/constants';
+import { StringCombinator } from '../../_utils/StringCombinator.js';
+import { ORIGINAL_FILE_FLAG } from '../../_constants/constants.js';
 import { nanoid } from 'nanoid';
 
 /**
  * 파일 인풋 박스
  */
 export default memo(function FileInput({
-    uploadFiles,
-    setUploadFiles,
+    uploadPhotos,
+    setUploadPhotos,
     existingPhotoIds,
     setExistingPhotoIds,
     isModifying,
@@ -24,8 +24,8 @@ export default memo(function FileInput({
     // 첨부 파일 추가
     const handleFileChange = event => {
         let photoFiles = event.target.files;
-        setUploadFiles([
-            ...uploadFiles,
+        setUploadPhotos([
+            ...uploadPhotos,
             ...Array.from(photoFiles).map(photoFile => ({
                 id: nanoid(),
                 photoFile,
@@ -47,7 +47,7 @@ export default memo(function FileInput({
         if (isModifying) {
             setExistingPhotoIds(existingPhotoIds.filter(id => id !== targetFileId));
         }
-        setUploadFiles(uploadFiles.filter(file => file.id !== targetFileId));
+        setUploadPhotos(uploadPhotos.filter(file => file.id !== targetFileId));
     };
 
     return (
@@ -62,7 +62,7 @@ export default memo(function FileInput({
                     multiple={true}
                 />
                 <div className={'FilesContainer h-[90%] w-full overflow-y-auto whitespace-nowrap'}>
-                    {uploadFiles.length === 0 ? (
+                    {uploadPhotos.length === 0 ? (
                         <div
                             className={
                                 'flex h-full w-full min-w-max flex-col items-center justify-center rounded-2xl border-2 border-dotted border-stone-600 bg-slate-200'
@@ -76,11 +76,11 @@ export default memo(function FileInput({
                         </div>
                     ) : (
                         <>
-                            {uploadFiles.map(fileInfo => (
+                            {uploadPhotos.map(fileInfo => (
                                 <div
                                     key={fileInfo.id}
                                     className={
-                                        'relative my-2 flex aspect-auto w-full flex-col overflow-hidden rounded-xl bg-gray-100 shadow-md brightness-[97%]'
+                                        'relative my-2 flex aspect-auto w-full flex-col overflow-hidden rounded-xl bg-gray-100 shadow-md brightness-95'
                                     }
                                 >
                                     {/* 기존 사진 파일인 경우와 새로 업로드하는 파일 src 구분 */}
