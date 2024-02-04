@@ -43,13 +43,13 @@ export default function CommentPostForm({ isMetadataVisible }) {
                         ) : (
                             <input
                                 onChange={handleCommentInputChange}
-                                className='CommentInput outline-home-primary mr-4 flex h-[3rem] w-full rounded-2xl border-none bg-[#efefef] px-6 py-0 outline-4'
+                                className='CommentInput mr-4 flex h-[3rem] w-full rounded-2xl border-none bg-[#efefef] px-6 py-0 outline-4 outline-secondary'
                                 type='text'
                                 placeholder='댓글 추가'
                                 ref={inputRef}
                             />
                         )}
-                        <button className='CommentPostBtn text-home-primary h-10 w-10' disabled={isCommentPending}>
+                        <button className='CommentPostBtn h-10 w-10 text-primary' disabled={isCommentPending}>
                             <FiSend size={32} />
                         </button>
                     </form>

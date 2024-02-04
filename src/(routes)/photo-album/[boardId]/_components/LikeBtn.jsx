@@ -11,7 +11,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
  * @param {boolean, number}
  * @returns
  */
-export default function LikeBtn({ isMemberLiked, likeCount }) {
+export default function LikeBtn({ isMemberLiked, likeCount = null }) {
     // const [oldLikeCount, setOldLikeCount] = useState(likeCount);
 
     const { data: isLiked } = useGetIsMemberLiked(isMemberLiked);
@@ -40,21 +40,26 @@ export default function LikeBtn({ isMemberLiked, likeCount }) {
     }, [updateAlbumLike, queryClient]);
 
     return (
-        <div className='relative mt-3'>
+        <>
             <Button
                 onClick={() => {
                     handleButtonClick().catch(reason => console.error(reason));
                 }}
                 content={
                     isLiked ? (
-                        <FaHeart className='mt-1 text-2xl text-red-400' />
+                            <div className='flex flex-col justify-between'>
+                                <FaHeart className='text-2xl text-red-400' />
+                                <span className='bottom-0 w-full text-center text-[0.6rem]'>{likeCount}</span>
+                            </div>
                     ) : (
-                        <FaHeart className=' text-2xl text-slate-300' />
+                        <div className='flex flex-col justify-between'>
+                            <FaHeart className='text-2xl text-slate-300' />
+                            <span className='bottom-0 w-full text-center text-[0.6rem]'>{likeCount}</span>
+                        </div>
                     )
                 }
             />
-            <span className='absolute bottom-[0.2rem] w-full text-center text-[0.7rem]'>{likeCount}</span>
-        </div>
+        </>
     );
 }
 

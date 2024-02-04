@@ -1,4 +1,4 @@
-export default function CircleActivationButton({ onClick, content, disabled = false }) {
+export function CircleActivationButton({ onClick, content, disabled = false }) {
     return (
         <>
             <button
