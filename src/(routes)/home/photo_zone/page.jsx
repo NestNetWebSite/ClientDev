@@ -41,10 +41,17 @@ const useGetPhotos = inView => {
     return useQuery({
         queryKey: ['photo-zone'],
         queryFn: async () => {
-            const photoZoneURL = `${import.meta.env.VITE_APP_SERVER}/life4cut?size=20`;
-            return await axios.get(photoZoneURL).then(res => {
-                return res.data.response.dtoList;
-            });
+            const photoZoneURL = `/api/life4cut?size=20`;
+            return await axios
+                .get(photoZoneURL)
+                .then(res => {
+                    return res.data.response.dtoList;
+                })
+                .catch(e => {
+                    if (e.response) {
+                        console.log(e.response);
+                    }
+                });
         },
         gcTime: 0,
         enabled: inView,

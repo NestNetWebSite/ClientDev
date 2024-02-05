@@ -114,6 +114,8 @@ function usePostPhoto() {
         onSuccess: () => {
             queryClient.invalidateQueries(['photo-zone']);
         },
-        throwOnError: true,
+        onError: () => {
+            console.log('포토존 에러');
+        },
     });
 }
