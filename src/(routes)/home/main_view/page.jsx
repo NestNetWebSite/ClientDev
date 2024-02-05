@@ -86,9 +86,16 @@ const useGetNewPosts = () => {
         queryFn: async () => {
             const recentPostsURL = `/api/post/recent-posts`;
 
-            return await axios.get(recentPostsURL).then(res => {
-                return res.data.response.dtoList;
-            });
+            return await axios
+                .get(recentPostsURL)
+                .then(res => {
+                    return res.data.response.dtoList;
+                })
+                .catch(e => {
+                    if (e.response) {
+                        console.log(e.response);
+                    }
+                });
         },
     });
 };
@@ -100,9 +107,16 @@ const useGetAttendance = () => {
         queryFn: async () => {
             const attendanceURL = `/api/attendance/statistics`;
 
-            return await axios.get(attendanceURL).then(res => {
-                return res.data.response;
-            });
+            return await axios
+                .get(attendanceURL)
+                .then(res => {
+                    return res.data.response;
+                })
+                .catch(e => {
+                    if (e.response) {
+                        console.log(e.response);
+                    }
+                });
         },
     });
 };
