@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { FaCalendar } from 'react-icons/fa';
 import { FaCalendarCheck } from 'react-icons/fa';
+import handleHttpError from '../../../../_utils/handleHttpError';
 
 /**
  * 출석 버튼
@@ -44,8 +45,9 @@ function usePostMyAttendance() {
             window.alert('출석 완료!');
             queryClient.invalidateQueries(['attendance-statistics']);
         },
-        onError: () => {
-            // 에러 처리 필요
+        onError: async error => {
+            handleHttpError(error.request.status);
         },
+        retry: 0,
     });
 }

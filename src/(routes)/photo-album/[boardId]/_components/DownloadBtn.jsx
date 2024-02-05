@@ -14,7 +14,7 @@ export default function DownloadBtn({ selectedPhoto }) {
         const postId = window.location.pathname.split('/')[2];
         const fileName = StringExtractor.extractFileName(selectedPhoto);
         const result = await axios
-            .get(`${import.meta.env.VITE_APP_SERVER}/file?postId=${postId}&fileName=${fileName}`, {
+            .get(`/api/file?postId=${postId}&fileName=${fileName}`, {
                 responseType: 'blob',
             })
             .then(response => response.data);

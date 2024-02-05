@@ -5,6 +5,7 @@ import { MdOutlineCancel } from 'react-icons/md';
 import { TbCameraSelfie } from 'react-icons/tb';
 import axios from 'axios';
 import LoadingSpinner from '../../../../_components/loadingSpinner/LoadingSpinner';
+import handleHttpError from '../../../../_utils/handleHttpError';
 
 /**
  * 사진 업로드
@@ -15,7 +16,7 @@ export default function PhotoPostForm() {
     const [fileName, setFileName] = useState('No selected file');
     const fileInputRef = useRef();
 
-    const { mutate: createPhoto, isPending: isPhotoPending, isError } = usePostPhoto();
+    const { mutate: createPhoto, isPending: isPhotoPending } = usePostPhoto();
 
     // 사진 등록
     const handlePhotoCreate = e => {
@@ -25,10 +26,6 @@ export default function PhotoPostForm() {
         formData.append('file', file);
         createPhoto(formData);
     };
-
-    if (isError) {
-        window.alert('사진 등록 실패');
-    }
 
     return (
         <form
@@ -114,8 +111,8 @@ function usePostPhoto() {
         onSuccess: () => {
             queryClient.invalidateQueries(['photo-zone']);
         },
-        onError: () => {
-            console.log('포토존 에러');
+        onError: error => {
+            handleHttpError(error.request.status);
         },
     });
 }
