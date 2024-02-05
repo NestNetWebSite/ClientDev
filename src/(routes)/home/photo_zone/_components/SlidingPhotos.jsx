@@ -7,13 +7,13 @@ import { StringCombinator } from '../../../../_utils/StringCombinator';
  */
 export default function SlidingPhotos({ photos }) {
     return (
-        <div className='animationList flex w-[900rem] animate-infiniteslide select-none flex-row hover:[animation-play-state:paused]'>
+        <div className='AnimationList inline-block w-[400rem] animate-infiniteslide select-none hover:[animation-play-state:paused]'>
             {photos.length === 0
                 ? null
                 : [...Array(2)].map((_, index) => (
-                      <div key={index} className='imgList flex w-[450rem] flex-row items-center'>
+                      <div key={index} className='inline-block w-[200rem]'>
                           {photos.map(photo => (
-                              <div key={photo.id} className='cell inline-block h-fit w-[45rem] px-1'>
+                              <div key={photo.id} className='ImageCell inline-block h-fit w-[20rem] px-2'>
                                   <img
                                       className='brightness-98 rounded-sm shadow-md'
                                       src={StringCombinator.getImageURL(photo)}
