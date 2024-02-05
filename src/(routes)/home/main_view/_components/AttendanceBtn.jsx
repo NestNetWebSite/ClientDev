@@ -44,6 +44,8 @@ function usePostMyAttendance() {
             window.alert('출석 완료!');
             queryClient.invalidateQueries(['attendance-statistics']);
         },
-        throwOnError: true,
+        onError: () => {
+            // 에러 처리 필요
+        },
     });
 }

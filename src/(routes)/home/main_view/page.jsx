@@ -35,9 +35,9 @@ export default function Page() {
             <div className='fixed bottom-10 right-7 z-50'>
                 <AttendanceBtn isMemberAttended={isMemberAttended} />
             </div>
-            <div className='w-full pb-[16rem]'>
+            <div className='w-full pb-[10rem]'>
                 <div className='relative top-10 mx-auto max-w-screen-xl px-16 xl:px-20'>
-                    <div className='relative top-24 z-10 grid w-full grid-cols-1 gap-20 lg:grid-cols-[auto_14rem] xl:gap-8'>
+                    <div className='relative top-3 z-10 grid w-full grid-cols-1 gap-20 lg:grid-cols-[auto_14rem] xl:gap-8'>
                         {/* 메인 사진 */}
                         <div className='hidden w-full sm:flex'>
                             <div className='h-fit max-h-[36rem] overflow-hidden rounded-md shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] brightness-95'>
@@ -51,10 +51,12 @@ export default function Page() {
                         {/* 배너 */}
                         <div className='px-auto	mx-auto flex select-none flex-col gap-4 sm:flex-row lg:flex-col'>
                             <div className='flex flex-col justify-between gap-4'>
+                                {/* 최신 글 배너 */}
                                 <article className='relative h-[14rem] w-[14rem] rounded-[0.5rem] border-2 border-secondary  bg-white p-4 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]'>
                                     <h1 className='text-md mb-2 font-bold text-primary'>최신 글</h1>
-                                    <RecentPostsBanner items={recentPosts} isLoading={isNewPostsLoading} />
+                                    {/* <RecentPostsBanner items={recentPosts} isLoading={isNewPostsLoading} /> */}
                                 </article>
+                                {/* 로고 배너 */}
                                 <div className='h-[6rem] w-[14rem] overflow-hidden rounded-[0.5rem] bg-secondary p-2 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] lg:hidden'>
                                     <img
                                         className='h-full w-full object-contain'
@@ -64,11 +66,13 @@ export default function Page() {
                                 </div>
                             </div>
                             <div className='flex flex-col gap-4'>
+                                {/* 링크 배너 */}
                                 <article className='max-[78rem]:flex relative box-border h-[7.5rem] min-w-[14rem] overflow-hidden rounded-[0.5rem] shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] brightness-95 lg:hidden xl:flex'>
                                     <LinkBanner />
                                 </article>
+                                {/* 출석 순위 배너 */}
                                 <article className='relative h-[12.5rem] w-[14rem] overflow-hidden rounded-[0.5rem] border-2 border-secondary bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]'>
-                                    <AttendanceBanner items={attdRankSlides} isLoading={isAttdRanksLoading} />
+                                    {/* <AttendanceBanner items={attdRankSlides} isLoading={isAttdRanksLoading} /> */}
                                 </article>
                             </div>
                         </div>
