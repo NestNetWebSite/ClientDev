@@ -66,7 +66,7 @@ function useCreateComment() {
 
     return useMutation({
         mutationFn: async newComment => {
-            const commentPostURL = `${import.meta.env.VITE_APP_SERVER}/comment/${postId}`;
+            const commentPostURL = `/api/comment/${postId}`;
 
             return await axios.post(commentPostURL, {
                 content: newComment,

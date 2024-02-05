@@ -10,7 +10,7 @@ import PhotoPostForm from './_components/PhotoPostForm';
  */
 export default function Page({ inView }) {
     // 옵저버 감지시 조회 api 호출
-    const { data: photos = [], isLoading: isPhotosLoading } = useGetPhotos(inView);
+    const { data: photos = [], isLoading: isPhotosLoading, isError } = useGetPhotos(inView);
 
     return (
         <>
@@ -19,6 +19,7 @@ export default function Page({ inView }) {
                 <PhotoPostForm />
             </div>
             {/* 사진 리스트 */}
+            {isError && <div className='w-full text-center'>사진 정보를 불러오지 못했습니다.</div>}
             {isPhotosLoading ? (
                 // LOADING: 스켈레톤
                 <div className='flex h-[30rem] w-full flex-row overflow-hidden'>
@@ -30,7 +31,9 @@ export default function Page({ inView }) {
                     ))}
                 </div>
             ) : (
-                <SlidingPhotos photos={photos} />
+                <div className='relative space-y-2.5 overflow-hidden'>
+                    <SlidingPhotos photos={photos} />
+                </div>
             )}
         </>
     );
@@ -42,17 +45,11 @@ const useGetPhotos = inView => {
         queryKey: ['photo-zone'],
         queryFn: async () => {
             const photoZoneURL = `/api/life4cut?size=20`;
-            return await axios
-                .get(photoZoneURL)
-                .then(res => {
-                    return res.data.response.dtoList;
-                })
-                .catch(e => {
-                    if (e.response) {
-                        console.log(e.response);
-                    }
-                });
+            return await axios.get(photoZoneURL).then(res => {
+                return res.data.response.dtoList;
+            });
         },
+        retry: 0,
         gcTime: 0,
         enabled: inView,
     });
