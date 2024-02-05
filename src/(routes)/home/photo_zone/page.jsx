@@ -13,7 +13,7 @@ export default function Page({ inView }) {
     const { data: photos = [], isLoading: isPhotosLoading } = useGetPhotos(inView);
 
     return (
-        <div className='pt-64 dark:bg-gray-900'>
+        <>
             {/* 사진 업로드 */}
             <div className='header mb-14 flex flex-row justify-start pl-16'>
                 <PhotoPostForm />
@@ -32,7 +32,7 @@ export default function Page({ inView }) {
             ) : (
                 <SlidingPhotos photos={photos} />
             )}
-        </div>
+        </>
     );
 }
 
