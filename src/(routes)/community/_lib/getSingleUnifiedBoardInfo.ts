@@ -12,7 +12,7 @@ interface UnifiedBoardInfo {
 const getSingleUnifiedBoardInfo: QueryFunction<UnifiedBoardInfo, [_1: string, _2: string, _3: string]> = ({
     queryKey,
 }) => {
-    const boardId = queryKey[1];
+    const boardId = queryKey[2];
     return axios.get(`/api/unified-post/${boardId}`).then(response => response.data.response);
 };
 
