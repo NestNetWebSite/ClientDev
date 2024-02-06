@@ -1,7 +1,7 @@
 import { FormEventHandler, useCallback, useState } from 'react';
 
 interface Props {
-    id: number;
+    commentId: number;
     currentCommentContent: string;
 
     closeCommentModifyForm(): void;
@@ -9,14 +9,19 @@ interface Props {
     modifyComment(id: number, newContent: string): void;
 }
 
-export default function CommentModifyForm({ id, currentCommentContent, closeCommentModifyForm, modifyComment }: Props) {
+export default function CommentModifyForm({
+    commentId,
+    currentCommentContent,
+    closeCommentModifyForm,
+    modifyComment,
+}: Props) {
     const [newCommentContent, setNewCommentContent] = useState(currentCommentContent);
 
     const handleFormSubmit: FormEventHandler = useCallback(
         event => {
             event.preventDefault();
             closeCommentModifyForm();
-            modifyComment(id, newCommentContent);
+            modifyComment(commentId, newCommentContent);
         },
         [newCommentContent],
     );
