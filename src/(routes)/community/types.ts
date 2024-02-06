@@ -5,7 +5,9 @@ export interface FileData {
 }
 
 export interface CommentData {
-    id: number;
+    commentId: number;
+    memberLoginId: string;
+    memberAuthority: string;
     username: string;
     content: string;
     createdTime: number[];
@@ -20,8 +22,9 @@ export interface UnifiedBoardData {
     unifiedPostType: string;
     viewCount: number;
     likeCount: number;
-    userName: string;
+    username: string;
     createdTime: number[];
     modifiedTime: number[] | null;
     memberWritten: boolean;
+    memberLoginId: string;
 }
