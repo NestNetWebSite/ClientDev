@@ -1,4 +1,6 @@
+import { useCallback } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 import { CiHeart } from 'react-icons/ci';
 import { FaRegUser } from 'react-icons/fa';
 import { PiEyeLight } from 'react-icons/pi';
@@ -17,6 +19,7 @@ interface Props {
     onDeleteTextClick(): void;
 
     memberWritten: boolean;
+    memberLoginId: string;
 }
 
 export default function BoardHeader({
@@ -29,13 +32,20 @@ export default function BoardHeader({
     onModifyTextClick,
     onDeleteTextClick,
     memberWritten,
+    memberLoginId,
 }: Props) {
+    const navigate = useNavigate();
+
     const { data } = useQuery({
         queryKey: ['likeCount'],
         queryFn: () => Promise.resolve(likeCount),
         retry: false,
         refetchOnWindowFocus: false,
     });
+
+    const handleUserNameClick = useCallback((memberLoginId: string) => {
+        navigate(`/user/${memberLoginId}`);
+    }, []);
 
     return (
         <header className='mb-4'>
@@ -44,7 +54,14 @@ export default function BoardHeader({
                 <div className='flex items-center'>
                     <div className='mr-5 flex items-center'>
                         <FaRegUser className={'mr-2.5 h-6 w-6'} />
-                        <span className='text-[15px] font-bold'>{username}</span>
+                        <span
+                            className={'cursor-pointer text-[15px] font-bold'}
+                            onClick={() => {
+                                handleUserNameClick(memberLoginId);
+                            }}
+                        >
+                            {username}
+                        </span>
                     </div>
                     <div className='flex items-center gap-x-4'>
                         <span className='text-[15px] text-gray-600'>

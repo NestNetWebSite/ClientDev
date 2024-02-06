@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import LOGO_URL from '/public/_assets/images/nestnet-logo.png';
 import Dropdown from './Dropdown';
 import AuthStatusArea from './authStatusArea/AuthStatusArea.tsx';
 
@@ -25,7 +26,7 @@ const navItemsInformation: { label: string; pathname?: string; navItems?: NavIte
             },
             {
                 label: '전 임원 소개',
-                pathname: '/former-executives',
+                pathname: '/former_executives',
             },
         ],
     },
@@ -35,7 +36,7 @@ const navItemsInformation: { label: string; pathname?: string; navItems?: NavIte
         navItems: [
             {
                 label: '갤러리',
-                pathname: '/gallery',
+                pathname: '/photo-album',
             },
             {
                 label: '통합 게시판',
@@ -50,7 +51,7 @@ const navItemsInformation: { label: string; pathname?: string; navItems?: NavIte
         navItems: [
             { label: '공지사항', pathname: '/notice' },
             { label: '자기 소개', pathname: '/about_me' },
-            { label: '출석부', pathname: '/attendance' },
+            // { label: '출석부', pathname: '/attendance' },
         ],
     },
 ];
@@ -85,11 +86,8 @@ export default function GlobalNavbar() {
             className={'z-10 flex h-[4.68rem] w-full justify-between border-b border-b-gray-200 bg-white p-4 shadow-sm'}
         >
             <div className={'flex flex-1 items-center justify-center'}>
-                <Link
-                    to={'/'}
-                    className={'ml-5 text-[1.8rem] font-semibold leading-[2.6rem] tracking-widest text-rose-700'}
-                >
-                    Nest.Net
+                <Link to={'/'}>
+                    <img className={'w-36'} src={LOGO_URL} alt={'NestNetLogo'} />
                 </Link>
             </div>
             <ul className={'relative flex flex-1 items-center justify-center gap-x-24'}>

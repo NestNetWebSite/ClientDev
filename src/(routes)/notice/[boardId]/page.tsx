@@ -61,6 +61,7 @@ export default function Page() {
                         onModifyTextClick={handleModifyTextClick}
                         onDeleteTextClick={handleDeleteTextClick}
                         memberWritten={data.noticePostDto.memberWritten}
+                        memberLoginId={data.noticePostDto.memberLoginId}
                     />
                     <BoardBody bodyContent={data.noticePostDto.bodyContent} />
                     <FileList files={data.fileDtoList} />

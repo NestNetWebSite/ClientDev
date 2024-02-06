@@ -3,12 +3,15 @@ import CommentHeader from './CommentHeader';
 import CommentModifyForm from './CommentModifyForm';
 
 interface CommentData {
-    id: number;
+    commentId: number;
+    memberLoginId: string;
+    memberAuthority: string;
     username: string;
     content: string;
     createdTime: number[];
     modifiedTime: number[] | null;
     memberWritten: boolean;
+    onCommentAvatarClick: (memberId: string) => void;
 }
 
 type Props = CommentData & {
@@ -17,13 +20,16 @@ type Props = CommentData & {
 };
 
 export default function Comment({
-    id,
+    commentId,
+    memberLoginId,
+    memberAuthority,
     username,
     content,
     createdTime,
     modifiedTime,
     memberWritten,
     onCommentDeleteTextClick,
+    onCommentAvatarClick,
     modifyComment,
 }: Props) {
     const [isCommentModifyFormOpen, setIsCommentModifyFormOpen] = useState<boolean>(false);
@@ -39,18 +45,21 @@ export default function Comment({
     return (
         <li className='my-7 flex flex-col'>
             <CommentHeader
-                id={id}
+                commentId={commentId}
+                memberLoginId={memberLoginId}
+                memberAuthority={memberAuthority}
                 username={username}
                 content={content}
                 createdTime={createdTime}
                 modifiedTime={modifiedTime}
                 memberWritten={memberWritten}
+                onCommentAvatarClick={onCommentAvatarClick}
                 onCommentModifyTextClick={handleCommentModifyTextClick}
                 onCommentDeleteTextClick={onCommentDeleteTextClick}
             />
             {isCommentModifyFormOpen ? (
                 <CommentModifyForm
-                    id={id}
+                    commentId={commentId}
                     currentCommentContent={content}
                     closeCommentModifyForm={closeCommentModifyForm}
                     modifyComment={modifyComment}

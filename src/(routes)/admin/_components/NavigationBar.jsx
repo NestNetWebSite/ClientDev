@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 /**
  * 관리자 페이지 네비게이션바 (상단, 좌측)
@@ -10,6 +10,14 @@ export default function NavigationBar() {
             title: '사용자관리',
             link: 'users',
         },
+        {
+            title: '현 임원 관리',
+            link: 'executives',
+        },
+        {
+            title: '전 임원 관리',
+            link: 'former-executives',
+        },
     ];
 
     return (
@@ -20,8 +28,15 @@ export default function NavigationBar() {
             <section className='overflow-y-screen fixed left-0 z-10 h-screen max-h-screen w-[14rem] border-r-2 border-[#D9D9D9] pt-[5rem]'>
                 <ul>
                     {adminLinks.map((item, idx) => (
-                        <li key={idx} className={`h-fit w-full border-b-2 bg-white p-5 text-center`}>
-                            <Link to={item.link}>{item.title}</Link>
+                        <li key={idx} className={`h-fit w-full border-b-2 bg-white p-5 text-center text-xl font-bold`}>
+                            <NavLink
+                                className={({ isActive }) => {
+                                    return isActive ? 'text-rose-800' : 'text-gray-500';
+                                }}
+                                to={item.link}
+                            >
+                                {item.title}
+                            </NavLink>
                         </li>
                     ))}
                 </ul>

@@ -73,7 +73,7 @@ export default function NoticeBoardPostForm() {
                 <div className={'flex justify-end gap-x-4'}>
                     <button
                         className={
-                            'rounded-xl border border-rose-800 p-3 text-rose-800 transition-all hover:bg-rose-50'
+                            'rounded-xl border border-rose-800 p-3 text-rose-700 transition-all hover:bg-rose-50'
                         }
                         type={'button'}
                         onClick={() => {

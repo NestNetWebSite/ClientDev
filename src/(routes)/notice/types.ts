@@ -5,7 +5,9 @@ export interface FileData {
 }
 
 export interface CommentData {
-    id: number;
+    commentId: number;
+    memberLoginId: string;
+    memberAuthority: string;
     username: string;
     content: string;
     createdTime: number[];
@@ -23,4 +25,5 @@ export interface NoticeBoardData {
     createdTime: string;
     modifiedTime: string | null;
     memberWritten: boolean;
+    memberLoginId?: string;
 }

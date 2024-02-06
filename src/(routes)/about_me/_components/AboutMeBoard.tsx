@@ -36,7 +36,7 @@ export default function AboutMeBoard({
                 {saveFileName ? (
                     <img
                         className={'h-28 w-28 rounded-lg bg-center object-cover'}
-                        src={`/image/${saveFilePath}/${saveFileName}`}
+                        src={`/api/image/${saveFilePath}/${saveFileName}`}
                         alt={`thumbnail_${saveFileName}`}
                     />
                 ) : (

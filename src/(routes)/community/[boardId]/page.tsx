@@ -51,7 +51,7 @@ export default function Page() {
                 <div className={'flex flex-col'}>
                     <BoardHeader
                         title={data.unifiedPostDto.title}
-                        username={data.unifiedPostDto.userName}
+                        username={data.unifiedPostDto.username}
                         viewCount={data.unifiedPostDto.viewCount}
                         likeCount={data.unifiedPostDto.likeCount}
                         createdTime={data.unifiedPostDto.createdTime}
@@ -59,6 +59,7 @@ export default function Page() {
                         onModifyTextClick={handleModifyTextClick}
                         onDeleteTextClick={handleDeleteTextClick}
                         memberWritten={data.unifiedPostDto.memberWritten}
+                        memberLoginId={data.unifiedPostDto.memberLoginId}
                     />
                     <BoardBody bodyContent={data.unifiedPostDto.bodyContent} />
                     <FileList files={data.fileDtoList} />

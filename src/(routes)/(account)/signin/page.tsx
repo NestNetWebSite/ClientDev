@@ -26,7 +26,7 @@ export default function Page() {
 
     const onSubmit: SubmitHandler<FormData> = async data => {
         try {
-            await axios.post(`/auth/login`, data);
+            await axios.post(`/api/auth/login`, data);
             localStorage.setItem('isLoggedIn', 'true');
             navigate('/');
         } catch (error) {

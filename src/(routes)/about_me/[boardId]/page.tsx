@@ -60,11 +60,12 @@ export default function Page() {
                         onModifyTextClick={handleModifyTextClick}
                         onDeleteTextClick={handleDeleteTextClick}
                         memberWritten={data.introductionPostDto.memberWritten}
+                        memberLoginId={data.introductionPostDto.memberLoginId}
                     />
                     {data.fileDtoList[0] && (
                         <img
                             className={'w-3/4'}
-                            src={`/image/${data.fileDtoList[0].saveFilePath}/${data.fileDtoList[0].saveFileName}`}
+                            src={`/api/image/${data.fileDtoList[0].saveFilePath}/${data.fileDtoList[0].saveFileName}`}
                             alt={data.fileDtoList[0].saveFileName}
                         />
                     )}
