@@ -78,7 +78,7 @@ export default function Page() {
         }
 
         try {
-            const response = await axios.post(`/auth/signup`, signUpData);
+            const response = await axios.post(`/api/auth/signup`, signUpData);
             window.alert(response.data.response);
             navigate('/signin', { replace: true });
         } catch (error) {

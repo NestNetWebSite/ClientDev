@@ -21,7 +21,7 @@ export default function Page() {
 
     const onSubmit: SubmitHandler<FormData> = async data => {
         try {
-            const response = await axios.post(`/member/find-id`, data);
+            const response = await axios.post(`/api/member/find-id`, data);
             window.alert(response.data.response);
             navigate('/signin', { replace: true });
         } catch (error) {

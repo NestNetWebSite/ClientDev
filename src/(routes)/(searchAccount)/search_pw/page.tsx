@@ -14,7 +14,7 @@ export default function Page() {
 
     const onSubmit: SubmitHandler<{ loginId: string }> = async data => {
         try {
-            const response = await axios.post('/member/get-temp-pw', data);
+            const response = await axios.post('/api/member/get-temp-pw', data);
             window.alert(response.data.response);
             navigate('/signin', { replace: true });
         } catch (error) {
