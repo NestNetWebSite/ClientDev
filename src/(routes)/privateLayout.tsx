@@ -13,7 +13,7 @@ export default function PrivateLayout() {
 
     return (
         <div>
-            <GlobalNavbar />
+            {!(pathname.includes('/admin') && pathname.split('/')[1] === 'admin') && <GlobalNavbar />}
             <ErrorBoundary key={pathname} onReset={reset} FallbackComponent={GlobalApiErrorFallback}>
                 <Outlet />
             </ErrorBoundary>
