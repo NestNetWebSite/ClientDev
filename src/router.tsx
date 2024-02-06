@@ -1,10 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import PublicLayout from './(routes)/publicLayout.tsx';
+import PrivateLayout from './(routes)/privateLayout.tsx';
 
 import GlobalNavbar from './_components/globalNavBar/GlobarNavbar.tsx';
 
-//@ts-ignore
 import MainHome from './(routes)/home/page.jsx';
 
 import AccountLayout from './(routes)/(account)/layout.tsx';
@@ -14,10 +14,17 @@ import SignUpPage from './(routes)/(account)/signup/page.tsx';
 import HistoryPage from './(routes)/(introduction)/history/page.tsx';
 import ProfessorPage from './(routes)/(introduction)/professor/page.tsx';
 import RegulationsPage from './(routes)/(introduction)/regulations/page.tsx';
+import ExecutivesPage from './(routes)/(introduction)/executives/page.tsx';
+import FormerExecutives from './(routes)/(introduction)/former_executives/page.tsx';
 
 import SearchAccountLayout from './(routes)/(searchAccount)/layout.tsx';
 import SearchIdPage from './(routes)/(searchAccount)/search_id/page.tsx';
 import SearchPasswordPage from './(routes)/(searchAccount)/search_pw/page.tsx';
+
+import PhotoAlbumListPage from './(routes)/photo-album/page.jsx';
+import PhotoAlbumPage from './(routes)/photo-album/[boardId]/page.jsx';
+import PhotoAlbumPostPage from './(routes)/photo-album/post/page.jsx';
+import PhotoAlbumModifyPage from './(routes)/photo-album/modify/page.jsx';
 
 import UnifiedBoardListPage from './(routes)/community/page.tsx';
 import UnifiedBoardPage from './(routes)/community/[boardId]/page.tsx';
@@ -28,15 +35,6 @@ import ExamBoardListPage from './(routes)/exam/page.tsx';
 import ExamBoardPage from './(routes)/exam/[boardId]/page.tsx';
 import ExamBoardPostPage from './(routes)/exam/post/page.tsx';
 import ExamBoardModifyPage from './(routes)/exam/modify/page.tsx';
-
-// @ts-ignore
-import PhotoAlbumListPage from './(routes)/photo-album/page.jsx';
-
-// @ts-ignore
-import PhotoAlbumPage from './(routes)/photo-album/[boardId]/page.jsx';
-
-// @ts-ignore
-import PhotoAlbumPostPage from './(routes)/photo-album/post/page.jsx';
 
 import NoticeBoardListPage from './(routes)/notice/page.tsx';
 import NoticeBoardPage from './(routes)/notice/[boardId]/page.tsx';
@@ -51,8 +49,12 @@ import AboutMeBoardModifyPage from './(routes)/about_me/modify/page.tsx';
 import UserLayout from './(routes)/user/layout.tsx';
 import UserActivityPage from './(routes)/user/activity/page.tsx';
 
+import AdminPage from './(routes)/admin/page.jsx';
+import MemberManagementPage from './(routes)/admin/member_management/page.jsx';
+
+import ExecutivesManagementPage from './(routes)/admin/executives/page.tsx';
+
 import NotFoundErrorPage from './(routes)/_errors/_components/NotFoundErrorPage.tsx';
-import PrivateLayout from './(routes)/privateLayout.tsx';
 
 const router = createBrowserRouter([
     {
@@ -96,6 +98,14 @@ const router = createBrowserRouter([
                         path: '/regulations',
                         element: <RegulationsPage />,
                     },
+                    {
+                        path: '/executives',
+                        element: <ExecutivesPage />,
+                    },
+                    {
+                        path: '/former_executives',
+                        element: <FormerExecutives />,
+                    },
                 ],
             },
             {
@@ -112,6 +122,10 @@ const router = createBrowserRouter([
                     {
                         path: '/photo-album/post',
                         element: <PhotoAlbumPostPage />,
+                    },
+                    {
+                        path: '/photo-album/modify/:boardId',
+                        element: <PhotoAlbumModifyPage />,
                     },
                     {
                         path: '/community',
@@ -182,6 +196,15 @@ const router = createBrowserRouter([
                         children: [
                             { path: '/user/:userId?', element: <UserActivityPage /> },
                             { path: '/user/:userId?/activity', element: <UserActivityPage /> },
+                        ],
+                    },
+                    {
+                        path: '/admin',
+                        element: <AdminPage />,
+                        children: [
+                            { index: true, element: <MemberManagementPage /> },
+                            { path: 'users', element: <MemberManagementPage /> },
+                            { path: 'executives', element: <ExecutivesManagementPage /> },
                         ],
                     },
                 ],
