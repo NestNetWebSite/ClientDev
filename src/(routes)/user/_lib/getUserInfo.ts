@@ -19,7 +19,7 @@ const userInfo: UserInfo = {
     name: '김강민',
     emailAddress: 'kangmin9814@gmail.com',
     studentId: '2020039048',
-    memberAuthority: 'GENERAL_MEMBER',
+    memberAuthority: 'ADMIN',
     grade: 4,
     graduateYear: null,
     loginMember: true,
@@ -27,11 +27,10 @@ const userInfo: UserInfo = {
 
 const getUserInfo: QueryFunction<UserInfo, [_1: string, _2: string]> = ({ queryKey }) => {
     const userId = queryKey[1];
-    // if (userId === '') {
-    //     return axios.get(`/api/member-profile/member-info`).then(response => response.data.response);
-    // }
-    // return axios.get(`/api/member-profile/member-info/${userId}`).then(response => response.data.response);
-    return Promise.resolve(userInfo);
+    if (userId === '') {
+        return axios.get(`/api/member-profile/member-info`).then(response => response.data.response);
+    }
+    return axios.get(`/api/member-profile/member-info/${userId}`).then(response => response.data.response);
 };
 
 export default getUserInfo;
