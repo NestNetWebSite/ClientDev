@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 import { QueryFunction } from '@tanstack/react-query';
 
 const histories: any = [
@@ -112,7 +112,7 @@ const histories: any = [
     },
 ];
 
-const getHistory: QueryFunction<any, [_1: string]> = ({ queryKey }) => {
+const getHistory: QueryFunction<any, [_1: string]> = ({}) => {
     // return axios.get(``).then(response => response.data.response);
     return Promise.resolve(histories);
 };
