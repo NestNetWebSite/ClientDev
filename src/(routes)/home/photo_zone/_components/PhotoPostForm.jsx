@@ -5,7 +5,6 @@ import { MdOutlineCancel } from 'react-icons/md';
 import { TbCameraSelfie } from 'react-icons/tb';
 import axios from 'axios';
 import LoadingSpinner from '../../../../_components/loadingSpinner/LoadingSpinner';
-import handleHttpError from '../../../../_utils/handleHttpError';
 
 /**
  * 사진 업로드
@@ -112,7 +111,7 @@ function usePostPhoto() {
             queryClient.invalidateQueries(['photo-zone']);
         },
         onError: error => {
-            handleHttpError(error.request.status);
+            window.alert(error.response.data.error.message);
         },
     });
 }
