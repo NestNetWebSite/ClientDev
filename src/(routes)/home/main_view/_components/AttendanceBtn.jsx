@@ -2,31 +2,24 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { FaCalendar } from 'react-icons/fa';
 import { FaCalendarCheck } from 'react-icons/fa';
-import handleHttpError from '../../../../_utils/handleHttpError';
 
 /**
  * 출석 버튼
  * @param {boolean}
  * @returns
  */
-export default function AttendanceBtn({ isMemberAttended = false }) {
+export default function AttendanceBtn() {
     const { mutate: createMyAttd, isPending: isMyAttdPending } = usePostMyAttendance();
 
     return (
         <div className='absolute bottom-0 right-0 h-[4rem] w-[4rem] overflow-hidden'>
-            {isMemberAttended ? (
-                <div className='flex h-full w-full flex-col items-center justify-center rounded-full border-2 border-secondary bg-white'>
-                    <FaCalendarCheck className='text-3xl text-secondary' />
-                </div>
-            ) : (
-                <div
-                    className='flex h-full w-full cursor-pointer flex-col items-center justify-center rounded-full border-2 border-gray-400 bg-white'
-                    onClick={() => createMyAttd()}
-                    disabled={isMemberAttended || isMyAttdPending}
-                >
-                    <FaCalendar className='text-3xl text-gray-300' />
-                </div>
-            )}
+            <div
+                className='flex h-full w-full cursor-pointer flex-col items-center justify-center rounded-full border-2 border-secondary bg-white text-primary transition-all hover:scale-90 hover:text-secondary'
+                onClick={() => createMyAttd()}
+                disabled={isMyAttdPending}
+            >
+                <FaCalendar className='hover:primary text-3xl ' />
+            </div>
         </div>
     );
 }
@@ -46,7 +39,7 @@ function usePostMyAttendance() {
             queryClient.invalidateQueries(['attendance-statistics']);
         },
         onError: async error => {
-            handleHttpError(error.request.status);
+            window.alert(error.response.data.error.message);
         },
         retry: 0,
     });
