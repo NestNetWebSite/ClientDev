@@ -38,7 +38,7 @@ export default function Page() {
                 {Services.map((service, idx) => (
                     <Link to={`${service.link}`} key={idx}>
                         <div
-                            className={`${isVisible ? 'animate-swapdown' : 'opacity-0'} 
+                            className={`${isVisible ? 'xl:animate-swapdown' : 'xl:opacity-0'} 
                             relative flex h-full w-full flex-col overflow-hidden rounded-lg bg-white shadow-lg  
                             duration-300 hover:shadow-xl hover:ease-in-out`}
                             key={idx}
