@@ -10,10 +10,26 @@
 <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
 </div>
 
-## Preview
-### 사진게시판
+## 😎미리보기
+### 메인 홈
 <p align="center">
-<img src="https://github.com/NestNetWebSite/ClientDev/assets/70367717/d5075332-12d8-447f-8c57-e14fc5b70eca">
+<img src="https://github.com/NestNetWebSite/ClientDev/assets/70367717/e898d988-f41a-4e11-abab-f521bceea397">
+</p>
+
+### 사진게시판
+#### 목록
+<p align="center">
+<img src="https://github.com/NestNetWebSite/ClientDev/assets/70367717/047be270-d13d-47e2-8c91-99104dc1ffef">
+</p>
+
+#### 게시물 상세
+<p align="center">
+<img src="https://github.com/NestNetWebSite/ClientDev/assets/70367717/dac01964-8924-49c3-97cc-9da012a1e121">
+</p>
+
+#### 등록
+<p align="center">
+<img src="https://github.com/NestNetWebSite/ClientDev/assets/70367717/a13de595-3fff-4fda-9fa6-f81cca3c1886">
 </p>
 
 
