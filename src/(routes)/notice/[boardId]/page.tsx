@@ -25,7 +25,7 @@ export default function Page() {
     });
 
     const handleModifyTextClick = useCallback(() => {
-        navigate(`/api/notice/modify/${boardId}`);
+        navigate(`/notice/modify/${boardId}`);
     }, []);
 
     const handleDeleteTextClick = useCallback(() => {
@@ -33,10 +33,9 @@ export default function Page() {
             axios
                 .delete(`/api/post/delete?postId=${boardId}`)
                 .then(() => {
-                    navigate('/board');
+                    navigate('/notice');
                 })
                 .catch(error => {
-                    // @ts-ignore
                     const errorMessage = error.response.data.error.message;
                     window.alert(errorMessage);
                 });

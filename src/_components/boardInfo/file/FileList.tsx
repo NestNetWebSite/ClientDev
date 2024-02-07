@@ -12,7 +12,7 @@ export default function FileList({ files }: { files: FileData[] }) {
     const handleFileDownloadButtonClick = useCallback(async (originalFileName: string, saveFileName: string) => {
         const boardId = window.location.pathname.split('/')[2];
         const result = await axios
-            .get(`/api/file/${boardId}/${saveFileName}`, {
+            .get(`/api/file?postId=${boardId}&fileName=${saveFileName}`, {
                 responseType: 'blob',
             })
             .then(response => response.data);

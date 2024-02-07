@@ -16,8 +16,8 @@ export default function BoardLikeButton({ boardId, isMemberLiked, likeCount }: P
     // state 상태인 쿼리의 데이터를 queryClient.set 하면 컴포넌트 리렌더링됨
     // 반면에 inactive 상태인 쿼리의 데이터를 queryClient.set 해도 컴포넌트 리렌더링 안됨
     // (둘다 테스트해봄)
-    const [oldLikeState, setOldLikeState] = useState<boolean | undefined>(undefined);
-    const [oldLikeCount, setOldLikeCount] = useState(likeCount);
+    const [oldLikeState] = useState<boolean | undefined>(undefined);
+    const [oldLikeCount] = useState(likeCount);
     const { data } = useQuery({
         queryKey: ['likeState'],
         queryFn() {
@@ -32,11 +32,7 @@ export default function BoardLikeButton({ boardId, isMemberLiked, likeCount }: P
     const { mutate } = useMutation({
         mutationFn() {
             const likeState = queryClient.getQueryData(['likeState']);
-            return axios.post(
-                `/post/${likeState ? 'like' : 'cancel-like'}`,
-                { postId: boardId },
-                { withCredentials: true, headers: { Authorization: localStorage.getItem('access_token') } },
-            );
+            return axios.post(`/api/post/${likeState ? 'like' : 'cancel-like'}`, { postId: boardId });
         },
 
         onSuccess() {
