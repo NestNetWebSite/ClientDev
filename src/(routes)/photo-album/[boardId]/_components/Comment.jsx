@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { StringCombinator } from '../../../../_utils/StringCombinator';
+import getAvatarStyle from '../../../../_utils/getAvatarStyle';
+import LoadingSpinner from '../../../../_components/loadingSpinner/LoadingSpinner';
 
 /**
  * 댓글
@@ -59,15 +61,23 @@ export default function Comment({ comment }) {
         <>
             <li className='w-full' key={commentId}>
                 <div className='flex w-full pb-4'>
-                    {/* 프로필 원 */}
-                    <div className='mr-4 w-12 max-w-12'>{username}</div>
+                    {/* 프로필 원 - 테스트 필요 */}
+                    <div
+                        className='mr-4 flex h-12  w-12 max-w-12 items-center justify-center rounded-full p-1 text-center text-sm'
+                        style={getAvatarStyle('GENERAL_MEMBER')}
+                    >
+                        {username.slice(0, 3)}
+                    </div>
                     <div className='w-full break-all'>
                         {isUpdateTarget ? (
                             updateInput
                         ) : (
                             <div className='w-full whitespace-normal'>
                                 {isUpdatePending ? (
-                                    <div className='h-fit w-full text-center'>{/* 로딩스피너 */}</div>
+                                    <div className='h-fit w-full text-center'>
+                                        {/* 테스트 필요 */}
+                                        <LoadingSpinner />
+                                    </div>
                                 ) : (
                                     content
                                 )}

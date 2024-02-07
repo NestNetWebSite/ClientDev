@@ -8,6 +8,7 @@ import { useInView } from 'react-intersection-observer';
 import Skeleton from '@mui/material/Skeleton';
 import Box from '@mui/material/Box';
 import PhotoAlbumThumbnail from './_components/PhotoAlbumThumbnail';
+import LoadingSpinner from '../../_components/loadingSpinner/LoadingSpinner';
 
 // Masonary 레이아웃 열 갯수 (반응형)
 const breakpointColumnsObj = {
@@ -30,7 +31,7 @@ export default function Page() {
         isPhotoAlbumsPending,
         fetchNextPage,
         hasNextPage,
-        // isFetchingNextPage,
+        isFetchingNextPage,
     } = useInfiniteQuery({
         queryKey: ['albums'],
         queryFn: getMorePhotoAlbums,
@@ -95,8 +96,8 @@ export default function Page() {
                             }),
                         )}
                 </Flex>
-                {/* 로딩스피너 */}
-                {/* {isFetchingNextPage && <LoadingSpinner />} */}
+                {/* 로딩스피너 -테스트필요 */}
+                <div className='w-full text-center'>{isFetchingNextPage && <LoadingSpinner />}</div>
             </div>
         </>
     );

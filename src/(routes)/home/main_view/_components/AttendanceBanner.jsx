@@ -19,7 +19,7 @@ export default function AttendanceBanner({ items: attendanceRanks, isLoading }) 
 
     if (isLoading)
         return (
-            <div className='absolute left-0 top-0 flex h-full w-full flex-col justify-center pt-3'>
+            <div className='relative top-[45%] text-center'>
                 <LoadingSpinner size={30} />
             </div>
         );
@@ -30,12 +30,12 @@ export default function AttendanceBanner({ items: attendanceRanks, isLoading }) 
             {attendanceRanks?.map((attendanceRank, idx) => (
                 <div
                     key={attendanceRank.id}
-                    className={`slide absolute left-0 top-0 h-full w-full p-5 pt-4 text-black ${
+                    className={`RankSlide absolute left-0 top-0 h-full w-full ${
                         slideIdx === idx + 1 ? 'visible' : 'invisible'
                     }`}
                 >
-                    <div className='text-home-primary mb-[0.35rem] text-sm font-bold'>{BannerTitle[idx]}</div>
-                    <div className='mb-1 flex h-[1rem] w-full flex-row text-xs font-semibold'>
+                    <div className='m-[0.8rem] mb-[0.4rem] text-sm font-bold text-primary'>{BannerTitle[idx]}</div>
+                    <div className='mb-2 flex h-[1rem] w-full flex-row px-4 text-xs font-semibold'>
                         <span className='mr-12 w-10'>순위</span>
                         <div className='flex w-full flex-row justify-between'>
                             <span>이름</span>
@@ -46,9 +46,9 @@ export default function AttendanceBanner({ items: attendanceRanks, isLoading }) 
                         <p className='w-full pt-10 text-center text-xs text-stone-500'>출석자가 없습니다</p>
                     ) : (
                         <>
-                            <ul className='pr-1 text-black'>
+                            <ul className='flex flex-row px-4 text-black'>
                                 {attendanceRank.map((ranker, idx) => (
-                                    <li className='flex h-[1.4rem] w-full flex-row text-xs'>
+                                    <li className='flex h-4 w-full flex-row text-xs'>
                                         <span className='mr-14 w-2 pl-2'>{idx + 1}</span>
                                         <div className='flex w-full flex-row justify-between'>
                                             <span>{ranker.memberName}</span>
