@@ -10,8 +10,8 @@ import { nanoid } from 'nanoid';
  * 파일 인풋 박스
  */
 export default memo(function FileInput({
-    uploadPhotos,
-    setUploadPhotos,
+    uploadFiles,
+    setUploadFiles,
     existingPhotoIds,
     setExistingPhotoIds,
     isModifying,
@@ -24,8 +24,8 @@ export default memo(function FileInput({
     // 첨부 파일 추가
     const handleFileChange = event => {
         let photoFiles = event.target.files;
-        setUploadPhotos([
-            ...uploadPhotos,
+        setUploadFiles([
+            ...uploadFiles,
             ...Array.from(photoFiles).map(photoFile => ({
                 id: nanoid(),
                 photoFile,
@@ -47,7 +47,7 @@ export default memo(function FileInput({
         if (isModifying) {
             setExistingPhotoIds(existingPhotoIds.filter(id => id !== targetFileId));
         }
-        setUploadPhotos(uploadPhotos.filter(file => file.id !== targetFileId));
+        setUploadFiles(uploadFiles.filter(file => file.id !== targetFileId));
     };
 
     return (
@@ -62,7 +62,7 @@ export default memo(function FileInput({
                     multiple={true}
                 />
                 <div className={'FilesContainer h-[90%] w-full overflow-y-auto whitespace-nowrap'}>
-                    {uploadPhotos.length === 0 ? (
+                    {uploadFiles.length === 0 ? (
                         <div
                             className={
                                 'flex h-full w-full min-w-max flex-col items-center justify-center rounded-2xl border-2 border-dotted border-stone-600 bg-slate-200'
@@ -76,7 +76,7 @@ export default memo(function FileInput({
                         </div>
                     ) : (
                         <>
-                            {uploadPhotos.map(fileInfo => (
+                            {uploadFiles.map(fileInfo => (
                                 <div
                                     key={fileInfo.id}
                                     className={
