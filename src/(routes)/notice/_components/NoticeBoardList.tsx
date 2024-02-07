@@ -9,7 +9,7 @@ interface Props {
         createdTime: number[];
         viewCount: number;
         likeCount: number;
-        userName: string;
+        username: string;
     }[];
 }
 
