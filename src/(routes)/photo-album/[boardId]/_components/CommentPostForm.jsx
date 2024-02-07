@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { FiSend } from 'react-icons/fi';
+import LoadingSpinner from '../../../../_components/loadingSpinner/LoadingSpinner';
 
 /**
  * 사진첩 댓글 작성 폼
@@ -39,7 +40,10 @@ export default function CommentPostForm({ isMetadataVisible }) {
                         onSubmit={handleCommentCreate}
                     >
                         {isCommentPending ? (
-                            <div className='flex h-full w-full justify-center pb-1 pt-2'>{/* 로딩 스피너 */}</div>
+                            <div className='flex h-full w-full justify-center pb-1 pt-2'>
+                                {/* 테스트필요 */}
+                                <LoadingSpinner />
+                            </div>
                         ) : (
                             <input
                                 onChange={handleCommentInputChange}

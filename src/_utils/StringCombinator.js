@@ -1,11 +1,9 @@
 export const StringCombinator = {
     // 이미지 경로 조합
     getImageURL: image => {
-        const imageRootURL = `${import.meta.env.VITE_APP_SERVER}/image`;
+        const imageRootURL = `/api/image`;
 
-        // TEST
-        return `/${image.saveFilePath}/${image.saveFileName}`;
-        // return `${imageRootURL}/${image.saveFilePath}/${image.saveFileName}`;
+        return `${imageRootURL}/${image.saveFilePath}/${image.saveFileName}`;
     },
 
     // 날짜 정보 조합
