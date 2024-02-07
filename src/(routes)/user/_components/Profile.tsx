@@ -55,19 +55,18 @@ export default function Profile({ name, memberAuthority, emailAddress, grade, gr
                             {memberAuthorityInfo.find(element => element.value === memberAuthority).label}
                         </span>
                     </div>
-                    {memberAuthority === 'ADMIN' ||
-                        (memberAuthority === 'MANAGER' && (
-                            <button
-                                className={
-                                    'mr-4 rounded-2xl bg-rose-700 px-3 py-2 text-sm font-bold text-white transition-all hover:bg-rose-800'
-                                }
-                                onClick={() => {
-                                    navigate('/admin');
-                                }}
-                            >
-                                관리자 페이지
-                            </button>
-                        ))}
+                    {(memberAuthority === 'ADMIN' || memberAuthority === 'MANAGER') && (
+                        <button
+                            className={
+                                'mr-4 rounded-2xl bg-rose-700 px-3 py-2 text-sm font-bold text-white transition-all hover:bg-rose-800'
+                            }
+                            onClick={() => {
+                                navigate('/admin');
+                            }}
+                        >
+                            관리자 페이지
+                        </button>
+                    )}
                 </div>
                 {memberAuthority === 'GRADUATED' && (
                     <div className={'flex items-center gap-x-2.5 text-gray-500'}>
