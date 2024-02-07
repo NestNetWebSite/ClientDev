@@ -17,10 +17,12 @@ interface Props {
 
 export default function FormerExecutiveListWithFilter({ yearList, formerExecutiveList }: Props) {
     const [year, setYear] = useState(yearList[0]);
-    const yearOptions = yearList.map(year => ({
-        value: year,
-        label: `${String(year)}년도`,
-    }));
+    const yearOptions = yearList
+        .map(year => ({
+            value: year,
+            label: `${String(year)}년도`,
+        }))
+        .toReversed();
 
     return (
         <>
