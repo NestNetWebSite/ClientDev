@@ -23,9 +23,11 @@ export default function Page() {
     } = useGetAttendance();
     const [attdRankSlides, setAttdRankSlides] = useState([]);
 
-    if (isSuccess) {
-        setAttdRankSlides(weeklyAttdRank.concat(monthlyAttdRank));
-    }
+    useEffect(() => {
+        if (isSuccess) {
+            setAttdRankSlides([[...weeklyAttdRank], [...monthlyAttdRank]]);
+        }
+    }, [isSuccess, weeklyAttdRank, monthlyAttdRank]);
 
     return (
         <>
@@ -48,13 +50,15 @@ export default function Page() {
                             </div>
                         </div>
                         {/* 배너 */}
-                        <div className='px-auto	mx-auto flex select-none flex-col gap-4 sm:flex-row lg:flex-col'>
+                        <div className='px-auto	mx-auto flex select-none flex-col gap-4 sm:flex-row sm:gap-12 md:gap-8 lg:flex-col lg:gap-4'>
                             <div className='flex flex-col justify-between gap-4'>
                                 {/* 최신 글 배너 */}
-                                <article className='relative h-[14rem] w-[14rem] rounded-[0.5rem] border-2 border-secondary  bg-white p-4 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]'>
-                                    <h1 className='text-md mb-2 font-bold text-primary'>최신 글</h1>
+                                <article className='flex h-[14rem] w-[14rem] flex-col rounded-[0.5rem] border-2 border-secondary bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]'>
+                                    <h1 className='m-[0.8rem] mb-[0.3rem] text-sm font-bold text-primary'>최신 글</h1>
                                     {isNewPostsError ? (
-                                        <div className='text-xs'>최신 글을 불러오는데 실패했습니다.</div>
+                                        <div className='relative top-[35%] text-center text-xs'>
+                                            최신 글을 불러오는데 실패했습니다.
+                                        </div>
                                     ) : (
                                         <RecentPostsBanner items={recentPosts} isLoading={isNewPostsLoading} />
                                     )}
@@ -74,9 +78,9 @@ export default function Page() {
                                     <LinkBanner />
                                 </article>
                                 {/* 출석 순위 배너 */}
-                                <article className='relative h-[12.5rem] w-[14rem] overflow-hidden rounded-[0.5rem] border-2 border-secondary bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]'>
+                                <article className='flex h-[12.5rem] w-[14rem] flex-col overflow-hidden rounded-[0.5rem] border-2 border-secondary bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]'>
                                     {isAttdRankError ? (
-                                        <div className='absolute left-1/2 top-1/2 mx-auto h-fit w-full -translate-x-1/2 -translate-y-1/2  text-center text-xs'>
+                                        <div className='relative top-[45%] text-center text-xs'>
                                             출석 순위를 불러오는데 실패했습니다.
                                         </div>
                                     ) : (
@@ -107,7 +111,7 @@ const useGetNewPosts = () => {
     });
 };
 
-// REST: 출석정보 조회
+// REST: 출석 순위 조회
 const useGetAttendance = () => {
     return useQuery({
         queryKey: ['attendance-statistics'],
@@ -115,6 +119,7 @@ const useGetAttendance = () => {
             const attendanceURL = `/api/attendance/statistics`;
 
             return await axios.get(attendanceURL).then(res => {
+                console.log(res.data.response);
                 return res.data.response;
             });
         },
