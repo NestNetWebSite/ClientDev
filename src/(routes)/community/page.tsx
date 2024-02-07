@@ -38,7 +38,9 @@ export default function Page() {
                 <BoardAddButton content={'게시글 작성'} href={'/community/post'} />
             </div>
             {isLoading || isFetching ? (
-                <LoadingSpinner size={70} />
+                <div className={'flex h-full items-center justify-center'}>
+                    <LoadingSpinner size={70} />
+                </div>
             ) : data && data.totalSize !== 0 ? (
                 <>
                     <UnifiedBoardList unifiedBoardList={data.dtoList} />

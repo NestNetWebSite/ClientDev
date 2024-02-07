@@ -5,7 +5,7 @@ import LoadingSpinner from '../../../_components/loadingSpinner/LoadingSpinner.t
 export default function Page() {
     return (
         <main className={'w-full'}>
-            <Suspense fallback={<LoadingSpinner />}>
+            <Suspense fallback={<LoadingSpinner size={70} />}>
                 <AboutMeBoardModifyForm />
             </Suspense>
         </main>
