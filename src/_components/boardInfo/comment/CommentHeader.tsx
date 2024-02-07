@@ -1,7 +1,9 @@
 import getAvatarStyle from '../../../_utils/getAvatarStyle';
 
 interface Props {
-    id: number;
+    commentId: number;
+    memberLoginId: string;
+    memberAuthority: string;
     username: string;
     content: string;
     createdTime: number[];
@@ -9,23 +11,32 @@ interface Props {
     memberWritten: boolean;
     onCommentModifyTextClick: () => void;
     onCommentDeleteTextClick: (id: number) => void;
+    onCommentAvatarClick: (memberId: string) => void;
 }
 
 export default function CommentHeader({
-    id,
+    commentId,
+    memberLoginId,
+    memberAuthority,
     username,
     createdTime,
     modifiedTime,
     memberWritten,
     onCommentModifyTextClick,
     onCommentDeleteTextClick,
+    onCommentAvatarClick,
 }: Props) {
     return (
         <div className='flex items-center justify-between'>
             <div className='flex items-center'>
                 <div
-                    className='mr-4 flex h-12 w-12 items-center justify-center rounded-full p-1 text-center text-sm'
-                    style={getAvatarStyle('GENERAL_MEMBER')}
+                    className={
+                        'mr-4 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full p-1 text-center text-sm'
+                    }
+                    style={getAvatarStyle(memberAuthority)}
+                    onClick={() => {
+                        onCommentAvatarClick(memberLoginId);
+                    }}
                 >
                     {username.slice(0, 3)}
                 </div>
@@ -53,7 +64,7 @@ export default function CommentHeader({
                         <span
                             className='mx-1 cursor-pointer text-sm text-gray-400 duration-300 hover:text-gray-800'
                             onClick={() => {
-                                onCommentDeleteTextClick(id);
+                                onCommentDeleteTextClick(commentId);
                             }}
                         >
                             삭제

@@ -68,7 +68,7 @@ export default function Layout() {
                     <div className={'flex w-[50rem] flex-col gap-y-2 rounded-xl border border-gray-200 shadow-lg'}>
                         <SideNavbar />
                         <ErrorBoundary onReset={reset} FallbackComponent={UserActivityApiErrorFallback}>
-                            <Outlet context={{ id: userInfo.id }} />
+                            <Outlet context={{ id: userInfo.id, loginMember: userInfo.loginMember }} />
                         </ErrorBoundary>
                     </div>
                 </main>

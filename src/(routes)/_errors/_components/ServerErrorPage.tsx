@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 //@ts-ignore
-export default function ServerErrorPage({ resetErrorBoundary }) {
+export default function ServerErrorPage({ retry }) {
     const navigate = useNavigate();
 
     return (
@@ -25,7 +25,7 @@ export default function ServerErrorPage({ resetErrorBoundary }) {
                         'rounded-xl border border-rose-700 bg-rose-700 px-4 py-3 font-bold text-white transition-all hover:bg-rose-900'
                     }
                     onClick={() => {
-                        resetErrorBoundary();
+                        retry();
                     }}
                 >
                     다시 시도

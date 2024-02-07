@@ -34,7 +34,7 @@ export default function EmailAuthenticationInputs({ isEmailAuthenticated, checkE
                 )
             ) {
                 try {
-                    await axios.post(`/auth/mail-auth`);
+                    await axios.post(`/api/auth/mail-auth`, { email: emailAddress });
                     setIsAuthenticationRequested(true);
                     window.alert('인증 메일이 발송되었습니다.');
                 } catch (error) {
@@ -52,7 +52,7 @@ export default function EmailAuthenticationInputs({ isEmailAuthenticated, checkE
             return;
         } else {
             try {
-                await axios.post(`/auth/mail-auth-answer`, {
+                await axios.post(`/api/auth/mail-auth-answer`, {
                     answer: authenticationCode,
                 });
                 window.alert('인증되었습니다.');

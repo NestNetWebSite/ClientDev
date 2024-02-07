@@ -40,10 +40,15 @@ export default function UserBoardList() {
                 </div>
             ) : (
                 data.dtoList &&
-                data.dtoList.length !== 0 &&
-                data.dtoList.map(userBoard => {
-                    return <UserBoard key={userBoard.id} {...userBoard} onBoardClick={handleBoardClick} />;
-                })
+                (data.dtoList.length !== 0 ? (
+                    data.dtoList.map(userBoard => {
+                        return <UserBoard key={userBoard.id} {...userBoard} onBoardClick={handleBoardClick} />;
+                    })
+                ) : (
+                    <div className={'flex h-full flex-col items-center justify-center'}>
+                        <p className={'text-lg font-bold'}>작성한 게시글이 없습니다. 게시글을 작성해보세요.</p>
+                    </div>
+                ))
             )}
         </ul>
     );

@@ -3,6 +3,7 @@ import { FaSchool } from 'react-icons/fa';
 import { FiCalendar, FiUser } from 'react-icons/fi';
 import { MdOutlineEmail } from 'react-icons/md';
 import Avatar from './Avatar.tsx';
+import { useNavigate } from 'react-router-dom';
 
 const memberAuthorityInfo: { value: string; label: string }[] = [
     { value: 'ADMIN', label: '관리자' },
@@ -25,6 +26,7 @@ interface Props {
 }
 
 export default function Profile({ name, memberAuthority, emailAddress, grade, graduateYear }: Props) {
+    const navigate = useNavigate();
     return (
         <div className={'flex h-fit w-[15.5rem] flex-col rounded-xl'}>
             <div className={'mx-auto'}>
@@ -38,7 +40,7 @@ export default function Profile({ name, memberAuthority, emailAddress, grade, gr
                 </div>
                 <div className={'flex items-center gap-x-2.5 text-gray-600'}>
                     <MdOutlineEmail className={'h-5 w-5'} />
-                    <div className={'scrollbar-hide flex-1 items-center overflow-x-scroll'}>
+                    <div className={'flex-1 items-center overflow-x-scroll scrollbar-hide'}>
                         <span className={'text-[0.95rem] font-semibold'}>{emailAddress}</span>
                     </div>
                 </div>
@@ -46,11 +48,26 @@ export default function Profile({ name, memberAuthority, emailAddress, grade, gr
                     <FaSchool className={'h-5 w-5'} />
                     <span className={'text-[0.95rem] font-semibold'}>{grade}학년</span>
                 </div>
-                <div className={'flex items-center gap-x-2.5 text-orange-500'}>
-                    <BsFillCreditCardFill className={'h-5 w-5'} />
-                    <span className={'text-[0.95rem] font-semibold'}>
-                        {memberAuthorityInfo.find(element => element.value === memberAuthority).label}
-                    </span>
+                <div className={'flex items-center justify-between text-orange-500'}>
+                    <div className={'flex gap-x-2.5'}>
+                        <BsFillCreditCardFill className={'h-5 w-5'} />
+                        <span className={'text-[0.95rem] font-semibold'}>
+                            {memberAuthorityInfo.find(element => element.value === memberAuthority).label}
+                        </span>
+                    </div>
+                    {memberAuthority === 'ADMIN' ||
+                        (memberAuthority === 'MANAGER' && (
+                            <button
+                                className={
+                                    'mr-4 rounded-2xl bg-rose-700 px-3 py-2 text-sm font-bold text-white transition-all hover:bg-rose-800'
+                                }
+                                onClick={() => {
+                                    navigate('/admin');
+                                }}
+                            >
+                                관리자 페이지
+                            </button>
+                        ))}
                 </div>
                 {memberAuthority === 'GRADUATED' && (
                     <div className={'flex items-center gap-x-2.5 text-gray-500'}>

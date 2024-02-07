@@ -2,9 +2,12 @@ import axios from 'axios';
 import { useCallback } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Comment from './Comment';
+import { useNavigate } from 'react-router-dom';
 
 interface CommentData {
-    id: number;
+    commentId: number;
+    memberLoginId: string;
+    memberAuthority: string;
     username: string;
     content: string;
     createdTime: number[];
@@ -17,6 +20,7 @@ interface Props {
 }
 
 export default function CommentList({ comments }: Props) {
+    const navigate = useNavigate();
     const queryClient = useQueryClient();
     const { mutate: commentDeleteMutate } = useMutation({
         mutationFn(id: number) {
@@ -46,6 +50,10 @@ export default function CommentList({ comments }: Props) {
         },
     });
 
+    const handleCommentAvatarClick = useCallback((memberId: string) => {
+        navigate(`/user/${memberId}`);
+    }, []);
+
     const handleCommentDeleteTextClick = useCallback((id: number) => {
         if (window.confirm('댓글을 삭제하시겠습니까?')) {
             commentDeleteMutate(id);
@@ -61,14 +69,17 @@ export default function CommentList({ comments }: Props) {
             {comments.map(comment => {
                 return (
                     <Comment
-                        key={comment.id}
-                        id={comment.id}
+                        key={comment.commentId}
+                        commentId={comment.commentId}
+                        memberLoginId={comment.memberLoginId}
+                        memberAuthority={comment.memberAuthority}
                         username={comment.username}
                         content={comment.content}
                         createdTime={comment.createdTime}
                         modifiedTime={comment.modifiedTime}
                         memberWritten={comment.memberWritten}
                         onCommentDeleteTextClick={handleCommentDeleteTextClick}
+                        onCommentAvatarClick={handleCommentAvatarClick}
                         modifyComment={modifyComment}
                     />
                 );

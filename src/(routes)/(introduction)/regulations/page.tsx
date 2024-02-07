@@ -43,11 +43,7 @@ export default function Page() {
                     menuPlacement={'auto'}
                     classNames={{
                         control() {
-                            return `!w-[16rem] !border-gray-300 !px-2 !rounded-xl !h-[3rem] !border !bg-white !text-sm !shadow-none !transition-all`;
-                        },
-
-                        option() {
-                            return '!text-sm';
+                            return `!w-[16rem] !border-gray-300 !px-2 !rounded-xl !h-[3rem] !border !bg-white !font-bold !shadow-none !transition-all`;
                         },
 
                         placeholder() {

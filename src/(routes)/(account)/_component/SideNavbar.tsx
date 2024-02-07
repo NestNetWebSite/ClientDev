@@ -8,7 +8,7 @@ export default function SideNavbar() {
                 className={({ isActive }) => {
                     return (
                         (isActive ? 'bg-white text-rose-700' : 'bg-gray-100 text-black') +
-                        ' w-1/2 rounded-t-3xl py-3 text-center text-lg font-bold transition-all'
+                        ' w-1/2 rounded-t-2xl py-3 text-center text-lg font-bold transition-all'
                     );
                 }}
             >
@@ -19,7 +19,7 @@ export default function SideNavbar() {
                 className={({ isActive }) => {
                     return (
                         (isActive ? 'bg-white text-rose-700' : 'bg-gray-100 text-black') +
-                        ' w-1/2 rounded-t-3xl py-3 text-center text-lg font-bold transition-all'
+                        ' w-1/2 rounded-t-2xl py-3 text-center text-lg font-bold transition-all'
                     );
                 }}
             >
