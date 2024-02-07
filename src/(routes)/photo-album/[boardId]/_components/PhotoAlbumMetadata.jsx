@@ -18,17 +18,13 @@ export default memo(function PhotoAlbumMetadata({ isMetadataVisible, postMetaDat
                     <span className='ml-2'>{comments?.length}</span>
                 </h2>
                 <ul className='Comments max-h-96 w-full overflow-auto px-12 py-4'>
-                    <>
-                        {comments.length ? (
-                            comments.map(comment => {
-                                return <Comment key={comment.id} comment={comment} />;
-                            })
-                        ) : (
-                            <p className='text-base text-gray-600'>
-                                아직 댓글이 없습니다! 가장 먼저 댓글을 작성해보세요.
-                            </p>
-                        )}
-                    </>
+                    {comments.length ? (
+                        comments.map(comment => {
+                            return <Comment key={comment.commentId} comment={comment} />;
+                        })
+                    ) : (
+                        <p className='text-base text-gray-600'>아직 댓글이 없습니다! 가장 먼저 댓글을 작성해보세요.</p>
+                    )}
                 </ul>
             </>
         );

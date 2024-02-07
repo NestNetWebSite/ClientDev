@@ -41,9 +41,15 @@ export default function MemberList() {
         }
     };
 
+    // 로그인 정보 로컬 스토리지 삭제
+    const removeIsLoggedIn = () => {
+        localStorage.removeItem('isLoggedIn');
+    };
+
     // 회원 탈퇴 재확인
     const showReconfirm = (inputValue, deleteRow) => {
         if (inputValue === deleteRow.original.name) {
+            removeIsLoggedIn();
             deleteUser(deleteRow.original);
         } else {
             window.alert('회원 탈퇴에 실패했습니다.');

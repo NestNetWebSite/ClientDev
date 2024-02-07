@@ -3,7 +3,7 @@ export const ORIGINAL_FILE_FLAG = 'originalFileName';
 
 // 페이지 라우팅
 export const PAGE_ROUTE = Object.freeze({
-    PHOTOALBUMS: 'photo-albums',
+    PHOTOALBUMS: 'photo-album',
     HISTORY: 'history',
     PROFESSOR: 'professor',
     EXECUTIVES: 'executives',

@@ -7,11 +7,11 @@ export const StringTranslator = {
             case 'NOTICE':
                 return PAGE_ROUTE.NOTICE;
             case 'UNIFIED':
-                return PAGE_ROUTE.BOARD;
+                return PAGE_ROUTE.COMMUINTY;
             case 'EXAM':
-                return PAGE_ROUTE.PEDIGREE;
+                return PAGE_ROUTE.EXAM;
             case 'PHOTO':
-                return PAGE_ROUTE.GALLERY;
+                return PAGE_ROUTE.PHOTOALBUMS;
             case 'INTRODUCTION':
                 return PAGE_ROUTE.ABOUT_ME;
             default:

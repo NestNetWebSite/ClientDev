@@ -1,9 +1,10 @@
 import { useState, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { FiSend } from 'react-icons/fi';
 import LoadingSpinner from '../../../../_components/loadingSpinner/LoadingSpinner';
+import { PAGE_ROUTE } from '../../../../_constants/constants';
 
 /**
  * 사진첩 댓글 작성 폼
@@ -66,11 +67,12 @@ export default function CommentPostForm({ isMetadataVisible }) {
 // REST: 댓글 작성
 function useCreateComment() {
     const queryClient = useQueryClient();
-    const { postId } = useParams();
+    const { boardId } = useParams();
+    const navigate = useNavigate();
 
     return useMutation({
         mutationFn: async newComment => {
-            const commentPostURL = `/api/comment/${postId}`;
+            const commentPostURL = `/api/comment/${boardId}`;
 
             return await axios.post(commentPostURL, {
                 content: newComment,
@@ -78,7 +80,7 @@ function useCreateComment() {
         },
         // 클라이언트 업데이트
         onSuccess: () => {
-            queryClient.invalidateQueries(['album', postId]);
+            navigate(0);
         },
     });
 }

@@ -7,13 +7,13 @@ import { CircleActivationButton as Button } from '../../../../_components/button
  * @param {boolean} existingData
  * @returns
  */
-export default function ModifyBtn({ existingData }) {
+export default function ModifyBtn() {
     const { boardId } = useParams();
     const navigate = useNavigate();
 
     return (
         <Button
-            onClick={() => navigate(`/photo-albums/modify/${boardId}`, { state: existingData })}
+            onClick={() => navigate(`/photo-album/modify/${boardId}`)}
             content={<RiPencilFill className='mt-1 text-3xl' />}
         />
     );
