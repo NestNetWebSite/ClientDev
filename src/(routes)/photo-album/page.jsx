@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Masonry from 'react-masonry-css';
 import { Flex } from '@chakra-ui/react';
@@ -9,6 +9,8 @@ import Skeleton from '@mui/material/Skeleton';
 import Box from '@mui/material/Box';
 import PhotoAlbumThumbnail from './_components/PhotoAlbumThumbnail';
 import LoadingSpinner from '../../_components/loadingSpinner/LoadingSpinner';
+import { FaPlus } from 'react-icons/fa';
+import { PAGE_ROUTE } from '../../_constants/constants';
 
 // Masonary 레이아웃 열 갯수 (반응형)
 const breakpointColumnsObj = {
@@ -25,6 +27,8 @@ export default function Page() {
     // 무한스크롤 api 호출 지점 옵저버
     const { ref: observeBtmRef, inView } = useInView();
 
+    const navigate = useNavigate();
+
     // 리액트 쿼리 무한스크롤 api
     const {
         data: photoAlbums,
@@ -39,6 +43,7 @@ export default function Page() {
         initialPageParam: 1,
         // lastPage: 마지막에 불러온 한 페이지 내 배열, allPages: 현재까지 불러온 총페이지 배열
         getNextPageParam: (lastPage, allPages) => (lastPage.length ? allPages.length + 1 : undefined),
+        throwOnError: true,
     });
 
     // ref가 inView 영역에 도달하면 다음 페이지를 불러옴
@@ -48,12 +53,17 @@ export default function Page() {
         }
     }, [inView, hasNextPage, fetchNextPage]);
 
-    // 에러 처리
-    // if (status === 'error') return
-
     return (
         <>
-            <div className='flex justify-center pt-20'>
+            {/* 사진게시판 게시물 등록 버튼 */}
+            <div
+                className='fixed bottom-10 right-10 flex h-10 w-10 cursor-pointer flex-col items-center justify-center rounded-full bg-primary text-white'
+                onClick={() => navigate(`/${PAGE_ROUTE.PHOTOALBUMS}/post`)}
+            >
+                <FaPlus />
+            </div>
+            {/* 게시물 목록 */}
+            <div className='mx-auto flex w-full justify-center'>
                 <Flex as={Masonry} breakpointCols={breakpointColumnsObj}>
                     {/* LOADING: 스켈레톤  */}
                     {isPhotoAlbumsPending &&
@@ -96,9 +106,9 @@ export default function Page() {
                             }),
                         )}
                 </Flex>
-                {/* 로딩스피너 -테스트필요 */}
-                <div className='w-full text-center'>{isFetchingNextPage && <LoadingSpinner />}</div>
             </div>
+            {/* 로딩스피너 */}
+            <div className='h-fit w-full text-center'>{isFetchingNextPage && <LoadingSpinner />}</div>
         </>
     );
 }
