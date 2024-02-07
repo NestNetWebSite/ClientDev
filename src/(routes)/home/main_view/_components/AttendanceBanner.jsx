@@ -29,7 +29,7 @@ export default function AttendanceBanner({ items: attendanceRanks, isLoading }) 
             {/* 출석 순위 */}
             {attendanceRanks?.map((attendanceRank, idx) => (
                 <div
-                    key={attendanceRank.id}
+                    key={idx}
                     className={`RankSlide absolute left-0 top-0 h-full w-full ${
                         slideIdx === idx + 1 ? 'visible' : 'invisible'
                     }`}
@@ -45,19 +45,17 @@ export default function AttendanceBanner({ items: attendanceRanks, isLoading }) 
                     {attendanceRank.length === 0 ? (
                         <p className='w-full pt-10 text-center text-xs text-stone-500'>출석자가 없습니다</p>
                     ) : (
-                        <>
-                            <ul className='flex flex-row px-4 text-black'>
-                                {attendanceRank.map((ranker, idx) => (
-                                    <li className='flex h-4 w-full flex-row text-xs'>
-                                        <span className='mr-14 w-2 pl-2'>{idx + 1}</span>
-                                        <div className='flex w-full flex-row justify-between'>
-                                            <span>{ranker.memberName}</span>
-                                            <span className='text-right'>{ranker.point}</span>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
-                        </>
+                        <ul className='w-full px-4 text-black'>
+                            {attendanceRank.map((ranker, idx) => (
+                                <li key={idx} className='mb-1 flex h-4 w-full flex-row text-xs'>
+                                    <span className='mr-16 w-2 pl-2'>{idx + 1}</span>
+                                    <div className='flex w-full flex-row justify-between'>
+                                        <span>{ranker.memberName}</span>
+                                        <span className='text-right'>{ranker.point}</span>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
                     )}
                 </div>
             ))}

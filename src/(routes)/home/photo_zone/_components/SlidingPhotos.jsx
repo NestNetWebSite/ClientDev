@@ -12,8 +12,8 @@ export default function SlidingPhotos({ photos }) {
                 ? null
                 : [...Array(2)].map((_, index) => (
                       <div key={index} className='inline-block w-[400rem]'>
-                          {photos.map(photo => (
-                              <div key={photo.id} className='ImageCell inline-block h-fit w-[20rem] px-2'>
+                          {photos.map((photo, idx) => (
+                              <div key={idx} className='ImageCell inline-block h-fit w-[20rem] px-2'>
                                   <img
                                       className='brightness-98 rounded-sm shadow-md'
                                       src={StringCombinator.getImageURL(photo)}
