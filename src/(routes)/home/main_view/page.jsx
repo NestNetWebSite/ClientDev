@@ -13,11 +13,7 @@ import AttendanceBanner from './_components/AttendanceBanner';
 export default function Page() {
     const { data: recentPosts, isLoading: isNewPostsLoading, isSuccess, isError: isNewPostsError } = useGetNewPosts();
     const {
-        data: {
-            memberAttended: isMemberAttended,
-            weeklyStatisticsDtoList: weeklyAttdRank = [],
-            monthlyStatisticsDtoList: monthlyAttdRank = [],
-        } = {},
+        data: { weeklyStatisticsDtoList: weeklyAttdRank = [], monthlyStatisticsDtoList: monthlyAttdRank = [] } = {},
         isLoading: isAttdRanksLoading,
         isError: isAttdRankError,
     } = useGetAttendance();
@@ -34,7 +30,7 @@ export default function Page() {
             <div className='pointer-events-none fixed inset-0 overflow-hidden' />
             {/* 출석체크 버튼 */}
             <div className='fixed bottom-10 right-7 z-50'>
-                <AttendanceBtn isMemberAttended={isMemberAttended} />
+                <AttendanceBtn />
             </div>
             <div className='w-full pb-[10rem]'>
                 <div className='relative top-10 mx-auto max-w-screen-xl px-16 xl:px-20'>
@@ -119,7 +115,6 @@ const useGetAttendance = () => {
             const attendanceURL = `/api/attendance/statistics`;
 
             return await axios.get(attendanceURL).then(res => {
-                console.log(res.data.response);
                 return res.data.response;
             });
         },
