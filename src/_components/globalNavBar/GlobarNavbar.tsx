@@ -1,7 +1,6 @@
 import { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import LOGO_URL from '/public/_assets/images/nestnet-logo.png';
 import Dropdown from './Dropdown';
 import AuthStatusArea from './authStatusArea/AuthStatusArea.tsx';
 
@@ -87,7 +86,7 @@ export default function GlobalNavbar() {
         >
             <div className={'flex flex-1 items-center justify-center'}>
                 <Link to={'/'}>
-                    <img className={'w-36'} src={LOGO_URL} alt={'NestNetLogo'} />
+                    <img className={'w-36'} src={'/_assets/images/nestnet-logo.png'} alt={'NestNetLogo'} />
                 </Link>
             </div>
             <ul className={'relative flex flex-1 items-center justify-center gap-x-24'}>
