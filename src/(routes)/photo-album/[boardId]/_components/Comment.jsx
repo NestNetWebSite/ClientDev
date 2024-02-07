@@ -12,7 +12,15 @@ import LoadingSpinner from '../../../../_components/loadingSpinner/LoadingSpinne
  * @returns
  */
 export default function Comment({ comment }) {
-    const { id: commentId, username, content, createdTime, modifiedTime, memberWritten: isMemberWritten } = comment;
+    const {
+        commentId,
+        username,
+        memberAuthority,
+        content,
+        createdTime,
+        modifiedTime,
+        memberWritten: isMemberWritten,
+    } = comment;
 
     // 댓글 수정중 내용
     const [updateValue, setUpdateValue] = useState('');
@@ -61,10 +69,10 @@ export default function Comment({ comment }) {
         <>
             <li className='w-full' key={commentId}>
                 <div className='flex w-full pb-4'>
-                    {/* 프로필 원 - 테스트 필요 */}
+                    {/* 프로필 */}
                     <div
-                        className='mr-4 flex h-12  w-12 max-w-12 items-center justify-center rounded-full p-1 text-center text-sm'
-                        style={getAvatarStyle('GENERAL_MEMBER')}
+                        className='mr-6 flex h-12 w-12 min-w-12 items-center justify-center rounded-full text-center text-sm'
+                        style={getAvatarStyle(memberAuthority)}
                     >
                         {username.slice(0, 3)}
                     </div>
@@ -86,12 +94,7 @@ export default function Comment({ comment }) {
                         <div className='mt-2 flex flex-row justify-between pr-4 text-[0.8rem]'>
                             <div className={`${isUpdateTarget ? 'invisible' : ''}`}>
                                 <span className='mr-2'>{StringCombinator.getFormatDate(createdTime)}</span>
-                                {/* 수정됨 표시 테스트 필요 */}
-                                {modifiedTime.length !== 0 ? (
-                                    <>
-                                        <span>(수정됨)</span>
-                                    </>
-                                ) : null}
+                                {modifiedTime ? <span>(수정됨)</span> : null}
                             </div>
                             {/* 댓글 수정 및 삭제 관련 버튼 */}
                             <div>
@@ -155,7 +158,7 @@ function useUpdateComment() {
 // REST: 댓글 삭제
 function useDeleteComment() {
     const queryClient = useQueryClient();
-    const { postId } = useParams();
+    const { boardId } = useParams();
 
     return useMutation({
         mutationFn: async commentId => {
@@ -165,7 +168,7 @@ function useDeleteComment() {
 
         // 클라이언트 업데이트
         onSuccess: () => {
-            queryClient.invalidateQueries(['album', postId]);
+            queryClient.invalidateQueries(['album', boardId]);
         },
         onError: () => {
             window.alert('댓글 삭제에 실패하였습니다.');
