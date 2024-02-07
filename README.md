@@ -11,13 +11,18 @@
 </div>
 
 ## 😎미리보기
-### 메인 홈
+### 메인 홈 🏠
 <p align="center">
 <img src="https://github.com/NestNetWebSite/ClientDev/assets/70367717/e898d988-f41a-4e11-abab-f521bceea397">
 </p>
 
-### 사진게시판
-#### 목록
+> 반응형
+> <p align="center">
+> <img src="https://github.com/NestNetWebSite/ClientDev/assets/70367717/144217c7-306f-494a-aafc-91ac692c9696">
+> </p>
+
+### 사진게시판 📷
+#### 게시물 전체 목록
 <p align="center">
 <img src="https://github.com/NestNetWebSite/ClientDev/assets/70367717/047be270-d13d-47e2-8c91-99104dc1ffef">
 </p>
@@ -27,7 +32,7 @@
 <img src="https://github.com/NestNetWebSite/ClientDev/assets/70367717/dac01964-8924-49c3-97cc-9da012a1e121">
 </p>
 
-#### 등록
+#### 게시물 등록
 <p align="center">
 <img src="https://github.com/NestNetWebSite/ClientDev/assets/70367717/a13de595-3fff-4fda-9fa6-f81cca3c1886">
 </p>
