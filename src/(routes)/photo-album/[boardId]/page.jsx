@@ -40,16 +40,14 @@ export default function Page() {
     }, [status, fileData, postMetaData]);
 
     return (
-        <div className='AlbumWrapper max-w-screen bg-home-background pt-[6rem]'>
-            <div className='MainView flex flex-row justify-between'>
+        <div className='AlbumWrapper max-w-screen h-[calc(100vh-4.68rem)]'>
+            <div className='MainView flex h-full flex-row justify-between'>
                 <div className='LeftMainView w-1/4 min-w-[12rem]'>{/* 사이드바 */}</div>
-                <div className='CenterMainView h-[calc(100vh-6rem)] w-2/4 min-w-[50rem] overflow-y-auto pl-10'>
+                <div className='CenterMainView w-2/4 min-w-[50rem] overflow-y-auto pl-10'>
                     <div className='flex flex-row'>
                         <div className='relative m-auto flex w-[40rem] flex-col items-center'>
                             <div
-                                className={`SelectedPhotoContainer mt-4 w-[40rem] ${
-                                    selectedPhoto ? 'h-max' : 'h-screen'
-                                } ${
+                                className={`SelectedPhotoContainer mt-4 w-fit ${selectedPhoto ? 'h-max' : 'h-screen'} ${
                                     isMetadataVisible ? 'rounded-t-2xl' : 'rounded-2xl'
                                 } overflow-hidden shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]`}
                             >
@@ -83,7 +81,7 @@ export default function Page() {
                     </div>
                 </div>
                 <div className='RightMainView relative w-1/4'>
-                    <div className='ml-auto h-[calc(100vh-6rem)] w-[20rem] min-w-[20rem] max-w-[20rem] overflow-y-scroll px-12 pr-14 pt-5'>
+                    <div className='ml-auto h-full w-[20rem] min-w-[20rem] max-w-[20rem] overflow-y-scroll px-12 pr-14 pt-5'>
                         <UnselectedPhotos
                             isAlbumLoading={isAlbumLoading}
                             photos={fileData}
