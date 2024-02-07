@@ -80,14 +80,14 @@ function useGetIsMemberLiked(isMemberLiked) {
 // REST: 좋아요 요청
 function usePostAlbumLike() {
     const queryClient = useQueryClient();
-    const { postId } = useParams();
+    const { boardId } = useParams();
 
     return useMutation({
         mutationFn() {
             const likeState = queryClient.getQueryData(['likeState']);
             return axios.post(
                 `/api/post/${likeState ? 'like' : 'cancel-like'}`,
-                { postId },
+                { postId: boardId },
                 {
                     withCredentials: true,
                     headers: { Authorization: localStorage.getItem('access_token') },
@@ -97,7 +97,7 @@ function usePostAlbumLike() {
         // 클라이언트 업데이트
         // SUCCESS: 재조회
         onSuccess() {
-            return queryClient.invalidateQueries({ queryKey: ['album', postId] });
+            return queryClient.invalidateQueries({ queryKey: ['album', boardId] });
         },
 
         // ERROR: 기존 데이터 폴백
