@@ -27,7 +27,7 @@ export default function Page() {
             </div>
             <FormerExecutiveListWithFilter
                 yearList={Array.from(new Set(data.dtoList.map(executive => executive.year)))}
-                formerExecutiveList={data.dtoList}
+                formerExecutiveList={data.dtoList.sort((a, b) => a.priority - b.priority)}
             />
         </main>
     );

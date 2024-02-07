@@ -16,6 +16,7 @@ interface FormData {
 
 export default function EmailAuthenticationInputs({ isEmailAuthenticated, checkEmailAuthenticated }: Props) {
     const [isAuthenticationRequested, setIsAuthenticationRequested] = useState(false);
+    const [isAuthenticationRequesting, setIsAuthenticationRequesting] = useState(false);
     const {
         register,
         getValues,
@@ -34,6 +35,7 @@ export default function EmailAuthenticationInputs({ isEmailAuthenticated, checkE
                 )
             ) {
                 try {
+                    setIsAuthenticationRequesting(true);
                     await axios.post(`/api/auth/mail-auth`, { email: emailAddress });
                     setIsAuthenticationRequested(true);
                     window.alert('인증 메일이 발송되었습니다.');
@@ -84,11 +86,11 @@ export default function EmailAuthenticationInputs({ isEmailAuthenticated, checkE
                     />
                     <button
                         className={
-                            'mr-1 rounded-xl border border-gray-300 p-2 text-rose-700 transition-all hover:bg-gray-50'
+                            'mr-1 rounded-xl border border-gray-300 p-2 text-rose-700 transition-all hover:bg-gray-50 disabled:opacity-75'
                         }
                         type={'button'}
                         onClick={handleAuthenticationRequestButtonClick}
-                        disabled={isAuthenticationRequested}
+                        disabled={isAuthenticationRequested || isAuthenticationRequesting}
                     >
                         인증 요청
                     </button>

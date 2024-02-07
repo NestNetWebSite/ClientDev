@@ -33,7 +33,9 @@ export default function Page() {
                 <BoardAddButton content={'공지사항 작성'} href={'/notice/post'} />
             </div>
             {isLoading || isFetching ? (
-                <LoadingSpinner size={70} />
+                <div className={'flex h-full items-center justify-center'}>
+                    <LoadingSpinner size={70} />
+                </div>
             ) : data && data.totalSize !== 0 ? (
                 <>
                     <NoticeBoardList noticeBoardList={data.dtoList} />

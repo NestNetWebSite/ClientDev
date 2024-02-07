@@ -44,7 +44,7 @@ export default function NoticeBoardPostForm() {
             formData.append('data', blob);
             fileInformation.forEach(fileData => formData.append('file', fileData.file));
 
-            await axios.post(`/notice-post/post`, formData, {
+            await axios.post(`/api/notice-post/post`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -53,7 +53,8 @@ export default function NoticeBoardPostForm() {
             window.alert('게시글 저장에 성공하였습니다.');
             navigate('/notice');
         } catch (error) {
-            console.log(error);
+            const errorMessage = error.response.data.error.message;
+            window.alert(errorMessage);
         }
     };
 
@@ -85,6 +86,7 @@ export default function NoticeBoardPostForm() {
                     <button
                         className={'rounded-xl bg-rose-800 p-3 text-white transition-all hover:bg-rose-900'}
                         type={'submit'}
+                        disabled={formMethods.formState.isSubmitting}
                     >
                         <span className={'font-semibold '}>게시하기</span>
                     </button>

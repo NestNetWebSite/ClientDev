@@ -34,7 +34,9 @@ export default function Page() {
                     <BoardAddButton content={'자기소개 작성'} href={'/about_me/post'} />
                 </div>
                 {isLoading || isFetching ? (
-                    <LoadingSpinner size={70} />
+                    <div className={'flex h-full items-center justify-center'}>
+                        <LoadingSpinner size={70} />
+                    </div>
                 ) : data && data.totalSize !== 0 ? (
                     <>
                         <AboutMeBoardList aboutMeBoardList={data.dtoList} />

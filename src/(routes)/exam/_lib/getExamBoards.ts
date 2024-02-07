@@ -35,7 +35,7 @@ const getExamBoards: QueryFunction<
                 Number(semester) === 0 ? '' : `semester=${semester}&`
             }${examType === '' ? '' : `examType=${examType}&`}${subject === '' ? '' : `subject=${subject}&`}${
                 professor === '' ? '' : `professor=${professor}&`
-            }page=${currentPage - 1}&size=9`,
+            }page=${currentPage - 1}&size=12`,
         )
         .then(response => response.data.response);
 };

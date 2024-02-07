@@ -1,12 +1,11 @@
-import NotFoundImageUrl from '/public/_assets/images/네스트넷-404.png';
 import { useNavigate } from 'react-router-dom';
 
 export default function NotFoundErrorPage() {
     const navigate = useNavigate();
     return (
-        <div className={'flex h-[calc(100dvh-4.68rem)] w-full items-center justify-center'}>
+        <div className={'flex min-h-[calc(100dvh-4.68rem)] w-full items-center justify-center'}>
             <div className={'flex w-[38rem] flex-col'}>
-                <img className={'w-full rounded-2xl'} src={NotFoundImageUrl} alt={'404_image'} />
+                <img className={'w-full rounded-2xl'} src={'/_assets/images/notFoundImg.png'} alt={'404_image'} />
                 <h2 className={'my-4 text-center text-3xl font-black text-rose-700'}>
                     해당 페이지를 찾을 수 없습니다.
                 </h2>

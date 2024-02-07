@@ -21,6 +21,7 @@ export default function GlobalApiErrorFallback({ error, resetErrorBoundary }) {
             return <NotFoundErrorPage />;
 
         case 500:
+        case 504:
             return <ServerErrorPage retry={resetErrorBoundary} />;
 
         default:

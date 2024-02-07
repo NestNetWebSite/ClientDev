@@ -13,17 +13,17 @@ interface UserInfo {
     loginMember: boolean;
 }
 
-const userInfo: UserInfo = {
-    id: 1,
-    loginId: 'aaaa1234',
-    name: '김강민',
-    emailAddress: 'kangmin9814@gmail.com',
-    studentId: '2020039048',
-    memberAuthority: 'ADMIN',
-    grade: 4,
-    graduateYear: null,
-    loginMember: true,
-};
+// const userInfo: UserInfo = {
+//     id: 1,
+//     loginId: 'aaaa1234',
+//     name: '김강민',
+//     emailAddress: 'kangmin9814@gmail.com',
+//     studentId: '2020039048',
+//     memberAuthority: 'ADMIN',
+//     grade: 4,
+//     graduateYear: null,
+//     loginMember: true,
+// };
 
 const getUserInfo: QueryFunction<UserInfo, [_1: string, _2: string]> = ({ queryKey }) => {
     const userId = queryKey[1];

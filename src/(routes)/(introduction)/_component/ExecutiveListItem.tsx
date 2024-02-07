@@ -10,7 +10,7 @@ export default function ExecutiveListItem({ studentId, name, role }: Props) {
     return (
         <li className={'flex flex-col rounded-xl border border-gray-200 p-6 shadow-xl'}>
             <div className={'flex w-full justify-end'}>
-                <img className={'w-16'} src={'_assets/images/nestNet-image-logo.png'} alt={'nestNetLogo'} />
+                <img className={'w-16'} src={'/_assets/images/nestNet-image-logo.png'} alt={'nestNetLogo'} />
             </div>
             <div className={'mb-4'}>
                 <span className={'text-2xl font-bold tracking-wider'}>{name}</span>

@@ -7,7 +7,7 @@ interface NoticeBoard {
     createdTime: number[];
     viewCount: number;
     likeCount: number;
-    userName: string;
+    username: string;
 }
 
 const getNoticeBoards: QueryFunction<

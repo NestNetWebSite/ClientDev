@@ -6,7 +6,6 @@ import AccountManagement from './_components/AccountManagement.tsx';
 import SideNavbar from './_components/SideNavbar.tsx';
 import getUserInfo from './_lib/getUserInfo.ts';
 import UserActivityApiErrorFallback from '../_errors/_components/UserApiErrorFallback.tsx';
-import LoadingSpinner from '../../_components/loadingSpinner/LoadingSpinner.tsx';
 
 interface UserInfo {
     id: number;
@@ -39,7 +38,7 @@ export default function Layout() {
     return (
         <>
             {isLoading || isFetching ? (
-                <LoadingSpinner size={70} />
+                <></>
             ) : (
                 <main className={'mx-auto mt-8 flex w-[75rem] justify-center gap-x-6 p-4'}>
                     <div className={'flex h-fit w-[15.5rem] flex-col rounded-xl px-5 py-2'}>

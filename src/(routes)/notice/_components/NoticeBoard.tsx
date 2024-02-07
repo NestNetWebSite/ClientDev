@@ -9,11 +9,11 @@ interface Props {
     createdTime: number[];
     viewCount: number;
     likeCount: number;
-    userName: string;
+    username: string;
     onBoardClick: (id: number) => void;
 }
 
-export default function NoticeBoard({ id, title, createdTime, viewCount, likeCount, userName, onBoardClick }: Props) {
+export default function NoticeBoard({ id, title, createdTime, viewCount, likeCount, username, onBoardClick }: Props) {
     return (
         <article
             className={
@@ -26,7 +26,7 @@ export default function NoticeBoard({ id, title, createdTime, viewCount, likeCou
             <div className={'flex items-center gap-x-2'}>
                 <div className={'flex gap-x-1.5'}>
                     <FaRegUser className={'h-5 w-5'} />
-                    <span className={'text-[0.9rem] font-bold text-black'}>{userName}</span>
+                    <span className={'text-[0.9rem] font-bold text-black'}>{username}</span>
                 </div>
                 ·
                 <div>

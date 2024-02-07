@@ -82,7 +82,7 @@ export default function NoticeBoardModifyForm() {
         const fileIdListBlob = new Blob([JSON.stringify(existingFileIdList)], { type: 'application/json' });
         formData.append('file-id', fileIdListBlob);
         try {
-            await axios.post(`/notice-post/modify`, formData, {
+            await axios.post(`/api/notice-post/modify`, formData, {
                 withCredentials: true,
                 headers: { Authorization: localStorage.getItem('access_token'), 'Content-Type': 'multipart/form-data' },
             });

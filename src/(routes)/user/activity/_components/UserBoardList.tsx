@@ -22,13 +22,15 @@ export default function UserBoardList() {
 
     const handleBoardClick = (id: number, postCategory: string) => {
         if (postCategory === 'EXAM') {
-            navigate(`/pedigree/${id}`);
+            navigate(`/exam/${id}`);
         } else if (postCategory === 'UNIFIED') {
             navigate(`/board/${id}`);
         } else if (postCategory === 'INTRODUCTION') {
             navigate(`/about_me/${id}`);
         } else if (postCategory === 'NOTICE') {
             navigate(`/notice/${id}`);
+        } else if (postCategory === 'PHOTO') {
+            navigate(`/photo-album/${id}`);
         }
     };
 
