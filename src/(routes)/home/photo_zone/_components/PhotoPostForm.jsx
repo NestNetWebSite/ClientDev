@@ -24,6 +24,7 @@ export default function PhotoPostForm() {
         const formData = new FormData();
         formData.append('file', file);
         createPhoto(formData);
+        setFile(null);
     };
 
     return (
@@ -58,13 +59,9 @@ export default function PhotoPostForm() {
             border-2 border-primary p-[0.7rem] font-semibold text-primary shadow-md hover:cursor-pointer`}
                 >
                     {file ? (
-                        <>
-                            <span className='mx-1 w-fit max-w-[20rem] truncate text-white'>{fileName}</span>
-                        </>
+                        <span className='mx-1 w-fit max-w-[20rem] truncate text-white'>{fileName}</span>
                     ) : (
-                        <>
-                            <TbCameraSelfie size={24} />
-                        </>
+                        <TbCameraSelfie size={24} />
                     )}
                 </div>
                 {file ? (
