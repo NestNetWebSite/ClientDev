@@ -15,8 +15,8 @@ import { PAGE_ROUTE } from '../../_constants/constants';
 // Masonary 레이아웃 열 갯수 (반응형)
 const breakpointColumnsObj = {
     default: 3,
-    1300: 2,
-    1000: 1,
+    900: 2,
+    300: 1,
 };
 
 /**
@@ -63,8 +63,8 @@ export default function Page() {
                 <FaPlus />
             </div>
             {/* 게시물 목록 */}
-            <div className='mx-auto flex w-full justify-center'>
-                <Flex as={Masonry} breakpointCols={breakpointColumnsObj}>
+            <div className='relative mx-auto flex h-[calc(100dvh-4.68rem)] w-[70rem] flex-col overflow-y-auto border-x border-gray-200 scrollbar-hide'>
+                <Flex w={1120} as={Masonry} breakpointCols={breakpointColumnsObj}>
                     {/* LOADING: 스켈레톤  */}
                     {isPhotoAlbumsPending &&
                         Array.from(new Array(9)).map((_, index) => (
@@ -85,20 +85,17 @@ export default function Page() {
                             photoAlbums.map((photoAlbum, idx) => {
                                 if (photoAlbums.length === idx + 1) {
                                     return (
-                                        <div
-                                            className='m-4 h-min min-w-[22.65rem] max-w-[22.65rem]'
-                                            ref={observeBtmRef}
-                                        >
+                                        <div className='m-4 h-min' ref={observeBtmRef}>
                                             <Link to={`${photoAlbum.id}`}>
-                                                <PhotoAlbumThumbnail key={photoAlbum.postId} item={photoAlbum} />
+                                                <PhotoAlbumThumbnail key={photoAlbum.postId} metaData={photoAlbum} />
                                             </Link>
                                         </div>
                                     );
                                 } else {
                                     return (
-                                        <div className='m-4 h-min min-w-[22.65rem] max-w-[22.65rem]'>
+                                        <div className='m-4 h-min'>
                                             <Link to={`${photoAlbum.id}`}>
-                                                <PhotoAlbumThumbnail key={photoAlbum.postId} item={photoAlbum} />
+                                                <PhotoAlbumThumbnail key={photoAlbum.postId} metaData={photoAlbum} />
                                             </Link>
                                         </div>
                                     );
