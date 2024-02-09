@@ -20,17 +20,21 @@ export default function LoginStatusArea() {
     }, []);
 
     return (
-        <div className={'flex flex-1 items-center justify-center'}>
-            <div className={'mx-3 flex items-center text-slate-500 duration-300 hover:text-slate-800'}>
-                <BiUserPin className={'mr-1.5 h-5 w-5'} />
-                <Link to={'/user'} className={'font-semibold'}>
-                    마이페이지
-                </Link>
-            </div>
-            <div className={'mx-3 flex items-center text-slate-500 duration-300 hover:text-red-400'}>
-                <BiLogOut className={'mr-1.5 h-5 w-5'} />
+        <div className={'flex flex-row items-center justify-evenly gap-2'}>
+            <Link to={'/user'} className={'font-semibold'}>
+                <div className={'flex min-w-max flex-row items-center text-slate-500 duration-300 hover:text-primary'}>
+                    <BiUserPin className={'inline h-6 w-6 md:mr-2'} />
+                    <span className='hidden md:inline'>마이페이지</span>
+                </div>
+            </Link>
+            <div
+                className={
+                    'flex min-w-max cursor-pointer flex-row items-center text-slate-500 duration-300 hover:text-primary'
+                }
+            >
+                <BiLogOut className={'inline h-6 w-6 md:mr-2'} />
                 <span
-                    className={'font-semibold'}
+                    className={'hidden font-semibold md:inline'}
                     onClick={(): void => {
                         handleLogoutTextClick();
                     }}

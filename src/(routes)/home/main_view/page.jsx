@@ -46,7 +46,7 @@ export default function Page() {
                             </div>
                         </div>
                         {/* 배너 */}
-                        <div className='px-auto	mx-auto flex select-none flex-col gap-4 sm:flex-row sm:gap-12 md:gap-8 lg:flex-col lg:gap-4'>
+                        <div className='px-auto	mx-auto flex select-none flex-col gap-4 sm:flex-row sm:gap-12 md:gap-24 lg:flex-col lg:gap-4'>
                             <div className='flex flex-col justify-between gap-4'>
                                 {/* 최신 글 배너 */}
                                 <article className='flex h-[14rem] w-[14rem] flex-col rounded-[0.5rem] border-2 border-secondary bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]'>
