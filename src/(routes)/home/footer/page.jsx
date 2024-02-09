@@ -20,19 +20,21 @@ export default function Footer() {
         new Content('블랙보드', 'https://lms.chungbuk.ac.kr/login/index.php/'),
     ];
 
+    const introductions = [
+        new Content('동아리 연혁', PAGE_ROUTE.HISTORY),
+        new Content('교수님 소개', PAGE_ROUTE.PROFESSOR),
+        new Content('동아리 회칙', PAGE_ROUTE.REGULATIONS),
+        new Content('현 임원 소개', PAGE_ROUTE.EXECUTIVES),
+        new Content('전 임원 소개', PAGE_ROUTE.FORMER_EXECUTIVES),
+    ];
+
     const boards = [
-        new Content('공지사항', PAGE_ROUTE.NOTICE),
         new Content('통합 게시판', PAGE_ROUTE.COMMUINTY),
         new Content('사진 게시판', PAGE_ROUTE.PHOTOALBUMS),
         new Content('자료 게시판', PAGE_ROUTE.EXAM),
     ];
 
-    const etcs = [
-        new Content('동아리 연혁', PAGE_ROUTE.HISTORY),
-        new Content('교수 소개', PAGE_ROUTE.PROFESSOR),
-        new Content('현 임원 소개', PAGE_ROUTE.EXECUTIVES),
-        new Content('전 임원 소개', PAGE_ROUTE.FORMER_EXECUTIVES),
-    ];
+    const lifes = [new Content('공지사항', PAGE_ROUTE.NOTICE), new Content('자기 소개', PAGE_ROUTE.ABOUT_ME)];
 
     return (
         <footer className='mt-20 border-t-2 border-gray-300 bg-white dark:bg-gray-800'>
@@ -54,9 +56,22 @@ export default function Footer() {
                                 </ul>
                             </div>
                         </div>
-                        <div className='grid grid-cols-2 gap-8'>
+                        <div className='grid grid-cols-3 gap-8'>
+                            {/* 홈페이지 내 소개 바로가기 링크 */}
                             <div>
-                                {/* 홈페이지 내 게시판 바로가기 링크 */}
+                                <h4 className='mb-2 text-gray-800'>소개</h4>
+                                <ul>
+                                    {introductions.map((introduction, idx) => (
+                                        <li key={idx} className='mb-1'>
+                                            <Link to={introduction.link} target='_blank'>
+                                                <span className='text-sm text-gray-500'>{introduction.title}</span>
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            {/* 홈페이지 내 게시판 바로가기 링크 */}
+                            <div>
                                 <h4 className='mb-2 text-gray-800'>게시판</h4>
                                 <ul>
                                     {boards.map((board, idx) => (
@@ -68,14 +83,14 @@ export default function Footer() {
                                     ))}
                                 </ul>
                             </div>
+                            {/* 홈페이지 내 생활 바로가기 링크 */}
                             <div>
-                                {/* 홈페이지 내 기타 바로가기 링크 */}
-                                <h4 className='mb-2 text-gray-800'>기타</h4>
+                                <h4 className='mb-2 text-gray-800'>생활</h4>
                                 <ul>
-                                    {etcs.map((etc, idx) => (
+                                    {lifes.map((life, idx) => (
                                         <li key={idx} className='mb-1'>
-                                            <Link to={etc.link} target='_blank'>
-                                                <span className='text-sm text-gray-500'>{etc.title}</span>
+                                            <Link to={life.link} target='_blank'>
+                                                <span className='text-sm text-gray-500'>{life.title}</span>
                                             </Link>
                                         </li>
                                     ))}
