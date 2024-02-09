@@ -34,7 +34,7 @@ const navItemsInformation: { label: string; pathname?: string; navItems?: NavIte
         label: '게시판',
         navItems: [
             {
-                label: '갤러리',
+                label: '사진 게시판',
                 pathname: '/photo-album',
             },
             {
@@ -82,14 +82,24 @@ export default function GlobalNavbar() {
     return (
         <nav
             id={'globalNavbar'}
-            className={'z-10 flex h-[4.68rem] w-full justify-between border-b border-b-gray-200 bg-white p-4 shadow-sm'}
+            className={
+                'z-10 flex h-[4.68rem] w-full items-center justify-between border-b border-b-gray-200 bg-white p-4 shadow-sm'
+            }
         >
-            <div className={'flex flex-1 items-center justify-center'}>
-                <Link to={'/'}>
-                    <img className={'w-36'} src={'/_assets/images/nestnet-logo.png'} alt={'NestNetLogo'} />
-                </Link>
-            </div>
-            <ul className={'relative flex flex-1 items-center justify-center gap-x-24'}>
+            <Link to={'/'}>
+                <div className='h-[4rem] w-[12rem] md:w-[14rem] lg:w-[16rem] xl:w-[18rem]'>
+                    <img
+                        className='h-full w-full object-contain'
+                        src={'/_assets/images/nestnet-logo-primary.png'}
+                        alt={'NestNetLogo'}
+                    />
+                </div>
+            </Link>
+            <ul
+                className={
+                    'relative mx-4 hidden h-10 items-center justify-center gap-x-4 sm:flex sm:gap-x-10 md:gap-x-16 lg:gap-x-20 xl:gap-x-24'
+                }
+            >
                 {navItemsInformation.map(itemInfo => {
                     if (itemInfo.label === '스터디') {
                         return (
@@ -110,7 +120,11 @@ export default function GlobalNavbar() {
                                     controlDropdown(itemInfo.label);
                                 }}
                             >
-                                <span className={'cursor-pointer font-semibold transition-all hover:text-rose-700'}>
+                                <span
+                                    className={
+                                        'h-full w-fit min-w-fit cursor-pointer break-keep text-[1.1rem] font-semibold tracking-widest transition-all hover:text-primary'
+                                    }
+                                >
                                     {itemInfo.label}
                                 </span>
                                 <AnimatePresence>
@@ -127,7 +141,9 @@ export default function GlobalNavbar() {
                     }
                 })}
             </ul>
-            <AuthStatusArea />
+            <div className='w-[12rem] md:w-[14rem] lg:w-[16rem] xl:w-[18rem]'>
+                <AuthStatusArea />
+            </div>
         </nav>
     );
 }
