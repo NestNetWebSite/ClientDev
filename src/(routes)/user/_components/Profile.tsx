@@ -1,9 +1,9 @@
+import { Link } from 'react-router-dom';
 import { BsFillCreditCardFill } from 'react-icons/bs';
 import { FaSchool } from 'react-icons/fa';
 import { FiCalendar, FiUser } from 'react-icons/fi';
 import { MdOutlineEmail } from 'react-icons/md';
 import Avatar from './Avatar.tsx';
-import { useNavigate } from 'react-router-dom';
 
 const memberAuthorityInfo: { value: string; label: string }[] = [
     { value: 'ADMIN', label: '관리자' },
@@ -26,7 +26,6 @@ interface Props {
 }
 
 export default function Profile({ name, memberAuthority, emailAddress, grade, graduateYear }: Props) {
-    const navigate = useNavigate();
     return (
         <div className={'flex h-fit w-[15.5rem] flex-col rounded-xl'}>
             <div className={'mx-auto'}>
@@ -56,16 +55,15 @@ export default function Profile({ name, memberAuthority, emailAddress, grade, gr
                         </span>
                     </div>
                     {(memberAuthority === 'ADMIN' || memberAuthority === 'MANAGER') && (
-                        <button
+                        <Link
                             className={
-                                'mr-4 rounded-2xl bg-rose-700 px-3 py-2 text-sm font-bold text-white transition-all hover:bg-rose-800'
+                                'mr-4 text-sm font-bold text-rose-700 transition-all hover:decoration-rose-700 hover:decoration-2 hover:underline-offset-4'
                             }
-                            onClick={() => {
-                                navigate('/admin');
-                            }}
+                            to={'/admin'}
+                            target={'_blank'}
                         >
                             관리자 페이지
-                        </button>
+                        </Link>
                     )}
                 </div>
                 {memberAuthority === 'GRADUATED' && (
