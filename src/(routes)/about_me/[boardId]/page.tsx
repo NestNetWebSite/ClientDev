@@ -24,7 +24,7 @@ export default function Page() {
     });
 
     const handleModifyTextClick = useCallback(() => {
-        navigate(`/api/about_me/modify/${boardId}`);
+        navigate(`/about_me/modify/${boardId}`);
     }, []);
 
     const handleDeleteTextClick = useCallback(() => {
