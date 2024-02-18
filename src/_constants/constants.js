@@ -8,7 +8,7 @@ export const PAGE_ROUTE = Object.freeze({
     PROFESSOR: 'professor',
     EXECUTIVES: 'executives',
     FORMER_EXECUTIVES: 'former-executives',
-    COMMUINTY: 'community ',
+    COMMUINTY: 'community',
     EXAM: 'exam',
     NOTICE: 'notice',
     ABOUT_ME: 'about_me',
