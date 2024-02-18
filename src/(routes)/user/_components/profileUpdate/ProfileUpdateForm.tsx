@@ -42,7 +42,7 @@ export default function ProfileUpdateForm({ loginId, name, emailAddress, student
                     headers: { Authorization: localStorage.getItem('access_token') },
                 })
                 .then(() => {
-                    queryClient.invalidateQueries({ queryKey: ['user information'], exact: true }).then(() => {
+                    queryClient.invalidateQueries({ queryKey: ['user'] }).then(() => {
                         window.alert('회원 정보가 수정되었습니다');
                     });
                 })
