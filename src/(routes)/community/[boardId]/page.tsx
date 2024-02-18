@@ -35,7 +35,12 @@ export default function Page() {
                     navigate('/community');
                 })
                 .catch(error => {
-                    const errorMessage = error.response.data.error.message;
+                    let errorMessage = '';
+                    if (error.response.status === 403) {
+                        errorMessage = error.response.data;
+                    } else {
+                        errorMessage = error.response.data.error.message;
+                    }
                     window.alert(errorMessage);
                 });
         }

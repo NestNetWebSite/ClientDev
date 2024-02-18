@@ -53,7 +53,12 @@ export default function NoticeBoardPostForm() {
             window.alert('게시글 저장에 성공하였습니다.');
             navigate('/notice');
         } catch (error) {
-            const errorMessage = error.response.data.error.message;
+            let errorMessage = '';
+            if (error.response.status === 403) {
+                errorMessage = error.response.data;
+            } else {
+                errorMessage = error.response.data.error.message;
+            }
             window.alert(errorMessage);
         }
     };

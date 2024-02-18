@@ -36,7 +36,12 @@ export default function Page() {
                 })
                 .catch(error => {
                     // @ts-ignore
-                    const errorMessage = error.response.data.error.message;
+                    let errorMessage = '';
+                    if (error.response.status === 403) {
+                        errorMessage = error.response.data;
+                    } else {
+                        errorMessage = error.response.data.error.message;
+                    }
                     window.alert(errorMessage);
                 });
         }
