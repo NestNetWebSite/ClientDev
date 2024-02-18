@@ -105,7 +105,7 @@ export default function Page() {
                 </Flex>
             </div>
             {/* 로딩스피너 */}
-            <div className='h-fit w-full text-center'>{isFetchingNextPage && <LoadingSpinner />}</div>
+            <div className='h-fit w-full text-center'>{isFetchingNextPage && <LoadingSpinner size={24} />}</div>
         </>
     );
 }
