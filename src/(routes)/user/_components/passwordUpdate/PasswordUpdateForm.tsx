@@ -27,7 +27,12 @@ export default function PasswordUpdateForm({ closeModal }: { closeModal(): void 
                 window.alert('비밀번호를 변경하였습니다.');
             })
             .catch(error => {
-                const errorMessage = error.response.data.error.message;
+                let errorMessage = '';
+                if (error.response.status === 403) {
+                    errorMessage = error.response.data;
+                } else {
+                    errorMessage = error.response.data.error.message;
+                }
                 window.alert(errorMessage);
             })
             .finally(() => {

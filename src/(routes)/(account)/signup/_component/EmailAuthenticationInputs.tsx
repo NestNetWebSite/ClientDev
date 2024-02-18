@@ -41,7 +41,12 @@ export default function EmailAuthenticationInputs({ isEmailAuthenticated, checkE
                     window.alert('인증 메일이 발송되었습니다.');
                 } catch (error) {
                     // @ts-ignore
-                    const errorMessage = error.response.data.error.message;
+                    let errorMessage = '';
+                    if (error.response.status === 403) {
+                        errorMessage = error.response.data;
+                    } else {
+                        errorMessage = error.response.data.error.message;
+                    }
                     window.alert(errorMessage);
                 }
             }
@@ -61,7 +66,12 @@ export default function EmailAuthenticationInputs({ isEmailAuthenticated, checkE
                 checkEmailAuthenticated();
             } catch (error) {
                 // @ts-ignore
-                const errorMessage = error.response.data.error.message;
+                let errorMessage = '';
+                if (error.response.status === 403) {
+                    errorMessage = error.response.data;
+                } else {
+                    errorMessage = error.response.data.error.message;
+                }
                 window.alert(errorMessage);
             }
         }

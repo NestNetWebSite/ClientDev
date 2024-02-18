@@ -89,7 +89,13 @@ export default function NoticeBoardModifyForm() {
             window.alert('수정되었습니다.');
             navigate(`/notice/${boardId}`, { replace: true });
         } catch (error) {
-            console.log(error);
+            let errorMessage = '';
+            if (error.response.status === 403) {
+                errorMessage = error.response.data;
+            } else {
+                errorMessage = error.response.data.error.message;
+            }
+            window.alert(errorMessage);
         }
     };
 
