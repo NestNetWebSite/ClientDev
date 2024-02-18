@@ -24,7 +24,7 @@ export default function UserBoardList() {
         if (postCategory === 'EXAM') {
             navigate(`/exam/${id}`);
         } else if (postCategory === 'UNIFIED') {
-            navigate(`/board/${id}`);
+            navigate(`/community/${id}`);
         } else if (postCategory === 'INTRODUCTION') {
             navigate(`/about_me/${id}`);
         } else if (postCategory === 'NOTICE') {
