@@ -46,7 +46,7 @@ export default function ExecutiveAddForm({ closeModal }: Props) {
         onSuccess() {
             window.alert('성공적으로 추가하였습니다.');
             reset();
-            return queryClient.invalidateQueries({ queryKey: ['executives', 'current'], exact: true });
+            return queryClient.invalidateQueries({ queryKey: ['executives'] });
         },
 
         onError() {
