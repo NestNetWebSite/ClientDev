@@ -45,7 +45,7 @@ export default function ExecutivesTable() {
 
         onSuccess() {
             window.alert('성공적으로 삭제하였습니다.');
-            return queryClient.invalidateQueries({ queryKey: ['executives', 'current'], exact: true });
+            return queryClient.invalidateQueries({ queryKey: ['executives'] });
         },
 
         onError() {

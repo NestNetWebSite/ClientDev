@@ -78,7 +78,7 @@ const currentExecutiveList: Executive[] = [
 ];
 
 const getExecutiveList: QueryFunction<{ dtoList: Executive[] }, [_1: string, _2: string]> = ({ queryKey }) => {
-    console.log(queryKey[1]);
+    // return axios.get(`/api/executive-info/${queryKey[1] === 'current' ? 'current' : 'prev'}`)
     return Promise.resolve({ dtoList: currentExecutiveList });
 };
 
