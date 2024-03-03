@@ -53,6 +53,7 @@ import AdminPage from './(routes)/admin/page.jsx';
 import MemberManagementPage from './(routes)/admin/member_management/page.jsx';
 
 import ExecutivesManagementPage from './(routes)/admin/executives/page.tsx';
+import FormerExecutivesManagementPage from './(routes)/admin/former_executives/page.tsx';
 
 import NotFoundErrorPage from './(routes)/_errors/_components/NotFoundErrorPage.tsx';
 
@@ -205,6 +206,7 @@ const router = createBrowserRouter([
                             { index: true, element: <MemberManagementPage /> },
                             { path: 'users', element: <MemberManagementPage /> },
                             { path: 'executives', element: <ExecutivesManagementPage /> },
+                            { path: 'former_executives', element: <FormerExecutivesManagementPage /> },
                         ],
                     },
                 ],
