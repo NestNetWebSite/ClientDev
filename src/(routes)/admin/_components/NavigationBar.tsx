@@ -1,9 +1,5 @@
 import { NavLink } from 'react-router-dom';
 
-/**
- * 관리자 페이지 네비게이션바 (상단, 좌측)
- * @returns
- */
 export default function NavigationBar() {
     const adminLinks = [
         {
