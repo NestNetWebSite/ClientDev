@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { MaterialReactTable, useMaterialReactTable } from 'material-react-table';
+import { MaterialReactTable, useMaterialReactTable, type MRT_Row, type MRT_ColumnDef } from 'material-react-table';
 import { Box, IconButton, Tooltip } from '@mui/material';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { RiPencilFill } from 'react-icons/ri';
@@ -11,14 +11,15 @@ import {
     TABLE_COL_NAME,
     WINDOW_ALERT_MESSAGE,
 } from '../../../../_constants/constants';
+import { IMember } from '../../type';
 
-/**
- * 동아리원 목록
- * @returns
- */
+// 동아리원 목록
 export default function MemberList() {
-    const [validationErrors, setValidationErrors] = useState({});
-    const columns = useMemo(validationErrors => TABLE_COL_NAME.member(validationErrors), [validationErrors]);
+    const [validationErrors, setValidationErrors] = useState<Record<string, string | undefined>>({});
+    const columns = useMemo<MRT_ColumnDef<IMember>[]>(
+        validationErrors => TABLE_COL_NAME.member(validationErrors),
+        [validationErrors],
+    );
 
     // call READ hook
     const {
@@ -35,8 +36,8 @@ export default function MemberList() {
     // 권한 수정 핸들러
     const handleMemberEditSave = async ({ row, values, table }) => {
         if (window.confirm(WINDOW_ALERT_MESSAGE.authorityChange(row, values))) {
-            const updateMemberId = row.id;
-            await updateUser({ updateMemberId, updateValues: values });
+            const updatedMemberId = row.id;
+            await updateUser({ updatedMemberId, updatedValues: values });
             table.setEditingRow(null);
         }
     };
@@ -45,9 +46,8 @@ export default function MemberList() {
     const removeIsLoggedIn = () => {
         localStorage.removeItem('isLoggedIn');
     };
-
     // 회원 탈퇴 재확인
-    const showReconfirm = (inputValue, deleteRow) => {
+    const showReconfirm = (inputValue: string, deleteRow: MRT_Row<IMember>) => {
         if (inputValue === deleteRow.original.name) {
             removeIsLoggedIn();
             deleteUser(deleteRow.original);
@@ -57,7 +57,7 @@ export default function MemberList() {
     };
 
     // 회원 탈퇴 핸들러
-    const handleMemberDelete = row => {
+    const handleMemberDelete = (row: MRT_Row<IMember>) => {
         if (window.confirm(WINDOW_ALERT_MESSAGE.memberDeletion(row))) {
             const inputValue = window.prompt(
                 `탈퇴를 확정하기 위해, 아래 입력칸에 '${row.original.name}'을(를) 입력하세요.`,
@@ -111,21 +111,17 @@ export default function MemberList() {
         },
     });
 
-    return (
-        <>
-            <MaterialReactTable table={table} />
-        </>
-    );
+    return <MaterialReactTable table={table} />;
 }
 
 // REST: 동아리원 목록 조회
 function useGetUsers() {
-    return useQuery({
+    return useQuery<IMember[]>({
         queryKey: ['members'],
         queryFn: async () => {
             const allMembersURL = `/api/manager/member-info`;
             return await axios.get(allMembersURL).then(res => {
-                const members = res.data.response.dtoList;
+                const members: IMember[] = res.data.response.dtoList;
 
                 return members.map(member => ({
                     ...member,
@@ -137,21 +133,26 @@ function useGetUsers() {
     });
 }
 
+interface IUpdatedMemberProps {
+    updatedMemberId: number;
+    updatedValues: IMember;
+}
+
 // REST: 동아리원 권한 수정
 function useUpdateUser() {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: async ({ updateMemberId, updateValues }) => {
+        mutationFn: async ({ updatedMemberId, updatedValues }: IUpdatedMemberProps) => {
             const authorityChangeURL = `/api/manager/change-authority`;
             return await axios.post(authorityChangeURL, {
-                id: updateMemberId,
-                memberAuthority: AUTHORITY_KOR_TO_ENG[updateValues.memberAuthority],
+                id: updatedMemberId,
+                memberAuthority: AUTHORITY_KOR_TO_ENG[updatedValues.memberAuthority],
             });
         },
         // 클라이언트 업데이트
         onSuccess: () => {
-            queryClient.invalidateQueries(['members']);
+            queryClient.invalidateQueries({ queryKey: ['members'] });
         },
     });
 }
@@ -161,13 +162,14 @@ function useDeleteUser() {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: async member => {
-            const deleteMemberURL = `/api/manager/member-withdraw?member-id=${member.id}`;
+        mutationFn: async ({ id }: IMember) => {
+            console.log(id);
+            const deleteMemberURL = `/api/manager/member-withdraw?member-id=${id}`;
             return await axios.delete(deleteMemberURL);
         },
         // 클라이언트 업데이트
         onSuccess: () => {
-            queryClient.invalidateQueries(['members']);
+            queryClient.invalidateQueries({ queryKey: ['members'] });
         },
     });
 }
