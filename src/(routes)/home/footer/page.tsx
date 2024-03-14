@@ -1,16 +1,12 @@
 import { Link } from 'react-router-dom';
 import { PAGE_ROUTE } from '../../../_constants/constants';
 
-/**
- * 메인 푸터 영역
- * @returns
- */
 export default function Footer() {
     class Content {
-        constructor(title, link) {
-            this.title = title;
-            this.link = link;
-        }
+        constructor(
+            readonly title: string,
+            readonly link: string,
+        ) {}
     }
 
     const links = [
@@ -105,7 +101,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className='text-slate-600'>
-                    {/* 프로젝트 개발자 */}
+                    {/* 홈페이지 제작자 */}
                     <div className='mb-1 text-xs'>제작자</div>
                     <div className='text-xs'>
                         <ul className='text-[0.7rem]'>
