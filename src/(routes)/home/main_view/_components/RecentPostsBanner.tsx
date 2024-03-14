@@ -2,13 +2,14 @@ import { Link } from 'react-router-dom';
 import { StringCombinator } from '../../../../_utils/StringCombinator';
 import { StringTranslator } from '../../../../_utils/StringTranslator';
 import LoadingSpinner from '../../../../_components/loadingSpinner/LoadingSpinner';
+import { INewPost } from '../../type';
 
-/**
- * 최근 글 목록 배너
- * @param {Object[], boolean}
- * @returns
- */
-export default function RecentPostsBanner({ items: recentPosts, isLoading }) {
+interface IProps {
+    items: INewPost[];
+    isLoading: boolean;
+}
+
+export default function RecentPostsBanner({ items: recentPosts, isLoading }: IProps) {
     if (isLoading)
         return (
             <div className='relative top-1/4 text-center'>
