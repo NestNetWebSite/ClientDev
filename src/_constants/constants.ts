@@ -1,5 +1,8 @@
 // 기존 등록 사진 여부
-export const ORIGINAL_FILE_FLAG = 'originalFileName';
+export const ORIGINAL_FILE_FLAG: string = 'originalFileName';
+
+// 사진게시판 사진 파일 제한 용량
+export const FILE_SIZE_MAX_LIMIT = 5 * 1024 * 1024;
 
 // 페이지 라우팅
 export const PAGE_ROUTE = Object.freeze({
@@ -44,7 +47,7 @@ export const AUTHORITY_KOR_TO_ENG = Object.freeze({
 
 // 동아리원 목록, 회원가입 요청 목록 테이블 컬럼
 export const TABLE_COL_NAME = Object.freeze({
-    member: validationErrors => [
+    member: (validationErrors: Record<string, string | undefined>) => [
         {
             accessorKey: 'name',
             header: '성명',
