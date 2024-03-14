@@ -3,22 +3,19 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 import { MdOutlineCancel } from 'react-icons/md';
 import { TbCameraSelfie } from 'react-icons/tb';
-import axios from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import LoadingSpinner from '../../../../_components/loadingSpinner/LoadingSpinner';
+import { IPhotoPostResponse } from '../../type';
 
-/**
- * 사진 업로드
- * @returns
- */
 export default function PhotoPostForm() {
-    const [file, setFile] = useState(null);
-    const [fileName, setFileName] = useState('No selected file');
-    const fileInputRef = useRef();
+    const [file, setFile] = useState<File>(null);
+    const [fileName, setFileName] = useState<string>('No selected file');
+    const fileInputRef = useRef<HTMLInputElement>();
 
     const { mutate: createPhoto, isPending: isPhotoPending } = usePostPhoto();
 
     // 사진 등록
-    const handlePhotoCreate = e => {
+    const handlePhotoCreate = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const formData = new FormData();
@@ -96,19 +93,23 @@ export default function PhotoPostForm() {
 function usePostPhoto() {
     const queryClient = useQueryClient();
 
-    return useMutation({
+    return useMutation<AxiosResponse<IPhotoPostResponse>, AxiosError<IPhotoPostResponse>, FormData>({
         mutationFn: async fileFormData => {
             const photoZoneURL = `/api/life4cut/save`;
-            return await axios.post(photoZoneURL, fileFormData, {
+            return await axios.post<IPhotoPostResponse>(photoZoneURL, fileFormData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
         },
         // 클라이언트 업데이트
         onSuccess: () => {
-            queryClient.invalidateQueries(['photo-zone']);
+            queryClient.invalidateQueries({ queryKey: ['photo-zone'] });
         },
-        onError: error => {
-            window.alert(error.response.data.error.message);
+        onError: e => {
+            if (axios.isAxiosError(e) && e.response.data) {
+                const { error } = e.response.data;
+                window.alert(error.message);
+                // window.alert(error.response.data.error.message);
+            }
         },
     });
 }
