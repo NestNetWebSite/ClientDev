@@ -12,7 +12,7 @@ export default function NavigationBar() {
         },
         {
             title: '전 임원 관리',
-            link: 'former-executives',
+            link: 'former_executives',
         },
     ];
 
