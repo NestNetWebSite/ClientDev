@@ -4,10 +4,6 @@ import PhotoZone from './photo_zone/page';
 import Services from './services/page';
 import Footer from './footer/page';
 
-/**
- * 메인 홈
- * @returns
- */
 export default function Page() {
     // api 호출 위한 포토존 영역 옵저버
     const { ref: photoZoneRef, inView } = useInView({
