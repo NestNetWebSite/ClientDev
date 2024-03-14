@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import SliderArrowBtn from '../../_components/SliderArrowBtn';
 import Dot from '../../_components/Dot';
 import { PAGE_ROUTE } from '../../../../_constants/constants';
+import { ILinkBannerItem } from '../../type';
 
 // 배너 내 각 슬라이드 아이템
-const sliderItems = [
+const sliderItems: ILinkBannerItem[] = [
     {
         title: '연혁',
         src: '_assets/images/history-bg.jpg',
@@ -28,9 +29,7 @@ const sliderItems = [
     },
 ];
 
-/**
- * 링크가 포함된 슬라이딩 배너
- */
+// 링크 슬라이딩 배너
 export default memo(function LinkBanner() {
     const [slideIdx, setSlideIdx] = useState(1);
 
@@ -43,7 +42,7 @@ export default memo(function LinkBanner() {
     };
 
     // 닷 클릭시 해당 슬라이드 이동
-    const handleDotClick = idx => {
+    const handleDotClick = (idx: number) => {
         setSlideIdx(idx + 1);
     };
 
@@ -61,7 +60,8 @@ export default memo(function LinkBanner() {
                                 <img className='brightness-[110%]' src={item.src} alt='' />
                             </div>
                             <div
-                                className={`SlideTitle absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2  text-[1.3rem] font-semibold tracking-normal text-${item.textColor} ${
+                                className={`SlideTitle absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2  
+                                text-[1.3rem] font-semibold tracking-normal ${
                                     slideIdx === idx + 1 ? 'opacity-100' : 'opacity-0'
                                 }`}
                             >
@@ -87,7 +87,7 @@ export default memo(function LinkBanner() {
                 {Array.from({ length: sliderItems?.length }).map((_, idx) => (
                     <Dot
                         key={idx}
-                        active={slideIdx === idx + 1 ? 'active' : ''}
+                        isActive={slideIdx === idx + 1 ? true : false}
                         idx={idx}
                         setSlideIdx={handleDotClick}
                     />
