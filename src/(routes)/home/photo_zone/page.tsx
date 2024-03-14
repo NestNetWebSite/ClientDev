@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
-import SlidingPhotos from './_components/SlidingPhotos';
-import PhotoPostForm from './_components/PhotoPostForm';
+import SlidingPhotos from './_components/SlidingPhotos.jsx';
+import PhotoPostForm from './_components/PhotoPostForm.tsx';
+import { ISlidingPhoto } from '../type.tsx';
 
-/**
- * 포토존(인생네컷) 섹션
- * @param {boolean}
- * @returns
- */
-export default function Page({ inView }) {
+interface IProps {
+    inView: boolean;
+}
+
+export default function Page({ inView }: IProps) {
     // 옵저버 감지시 조회 api 호출
     const { data: photos = [], isLoading: isPhotosLoading, isError } = useGetPhotos(inView);
 
@@ -40,8 +40,8 @@ export default function Page({ inView }) {
 }
 
 // REST: 포토존 사진 조회
-const useGetPhotos = inView => {
-    return useQuery({
+const useGetPhotos = (inView: boolean) => {
+    return useQuery<ISlidingPhoto[]>({
         queryKey: ['photo-zone'],
         queryFn: async () => {
             const photoZoneURL = `/api/life4cut?size=20`;
