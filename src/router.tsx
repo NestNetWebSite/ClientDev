@@ -5,7 +5,7 @@ import PrivateLayout from './(routes)/privateLayout.tsx';
 
 import GlobalNavbar from './_components/globalNavBar/GlobarNavbar.tsx';
 
-import MainHome from './(routes)/home/page.jsx';
+import MainHome from './(routes)/home/page.tsx';
 
 import AccountLayout from './(routes)/(account)/layout.tsx';
 import SignInPage from './(routes)/(account)/signin/page.tsx';
@@ -21,10 +21,10 @@ import SearchAccountLayout from './(routes)/(searchAccount)/layout.tsx';
 import SearchIdPage from './(routes)/(searchAccount)/search_id/page.tsx';
 import SearchPasswordPage from './(routes)/(searchAccount)/search_pw/page.tsx';
 
-import PhotoAlbumListPage from './(routes)/photo-album/page.jsx';
-import PhotoAlbumPage from './(routes)/photo-album/[boardId]/page.jsx';
-import PhotoAlbumPostPage from './(routes)/photo-album/post/page.jsx';
-import PhotoAlbumModifyPage from './(routes)/photo-album/modify/page.jsx';
+import PhotoAlbumListPage from './(routes)/photo-album/page.tsx';
+import PhotoAlbumPage from './(routes)/photo-album/[boardId]/page.tsx';
+import PhotoAlbumPostPage from './(routes)/photo-album/post/page.tsx';
+import PhotoAlbumModifyPage from './(routes)/photo-album/modify/page.tsx';
 
 import UnifiedBoardListPage from './(routes)/community/page.tsx';
 import UnifiedBoardPage from './(routes)/community/[boardId]/page.tsx';
@@ -49,8 +49,8 @@ import AboutMeBoardModifyPage from './(routes)/about_me/modify/page.tsx';
 import UserLayout from './(routes)/user/layout.tsx';
 import UserActivityPage from './(routes)/user/activity/page.tsx';
 
-import AdminPage from './(routes)/admin/page.jsx';
-import MemberManagementPage from './(routes)/admin/member_management/page.jsx';
+import AdminPage from './(routes)/admin/page.tsx';
+import MemberManagementPage from './(routes)/admin/member_management/page.tsx';
 
 import ExecutivesManagementPage from './(routes)/admin/executives/page.tsx';
 import FormerExecutivesManagementPage from './(routes)/admin/former_executives/page.tsx';
