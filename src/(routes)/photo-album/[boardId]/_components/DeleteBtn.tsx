@@ -1,14 +1,10 @@
 import { CircleActivationButton as Button } from '../../../../_components/button/CircleActivationButton';
 import { MdDelete } from 'react-icons/md';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { PAGE_ROUTE } from '../../../../_constants/constants';
 
-/**
- * 사진첩 단건 앨범 삭제
- * @returns
- */
 export default function DeleteBtn() {
     const { boardId } = useParams();
 
@@ -33,11 +29,10 @@ export default function DeleteBtn() {
 
 // REST: 앨범 삭제
 const useDeleteAlbum = () => {
-    const queryClient = useQueryClient();
     const navigate = useNavigate();
 
     return useMutation({
-        mutationFn: async boardId => {
+        mutationFn: async (boardId: string) => {
             const albumDeletionURL = `/api/post/delete?postId=${boardId}`;
 
             return await axios.delete(albumDeletionURL);
