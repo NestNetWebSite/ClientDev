@@ -5,13 +5,18 @@ import axios from 'axios';
 import { StringCombinator } from '../../../../_utils/StringCombinator';
 import getAvatarStyle from '../../../../_utils/getAvatarStyle';
 import LoadingSpinner from '../../../../_components/loadingSpinner/LoadingSpinner';
+import { ICommentDto } from '../../types';
+import { AxiosResponse } from 'axios';
 
-/**
- * 댓글
- * @param {Object}
- * @returns
- */
-export default function Comment({ comment }) {
+interface IProps {
+    comment: ICommentDto;
+}
+interface IModifiedCommentProps {
+    commentId: number;
+    updateValue: string;
+}
+
+export default function Comment({ comment }: IProps) {
     const {
         commentId,
         username,
@@ -23,11 +28,11 @@ export default function Comment({ comment }) {
     } = comment;
 
     // 댓글 수정중 내용
-    const [updateValue, setUpdateValue] = useState('');
+    const [updateValue, setUpdateValue] = useState<string>('');
 
     // 수정여부
-    const [isUpdateTarget, setIsUpdateTarget] = useState(false);
-    const updateInputRef = useRef(null);
+    const [isUpdateTarget, setIsUpdateTarget] = useState<boolean>(false);
+    const updateInputRef = useRef<HTMLTextAreaElement>(null);
 
     const { mutate: updateComment, isPending: isUpdatePending } = useUpdateComment();
     const { mutate: deleteComment } = useDeleteComment();
@@ -56,7 +61,7 @@ export default function Comment({ comment }) {
         <textarea
             onChange={() => setUpdateValue(updateInputRef.current.value)}
             className='flex w-full break-all border-b border-red-300 px-3 focus:border-red-500 focus:outline-none'
-            type='text'
+            // type='text'
             value={updateValue}
             ref={updateInputRef}
             minLength={2}
@@ -76,6 +81,7 @@ export default function Comment({ comment }) {
                     >
                         {username.slice(0, 3)}
                     </div>
+                    {/* 댓글 내용 */}
                     <div className='w-full break-all'>
                         {isUpdateTarget ? (
                             updateInput
@@ -83,8 +89,7 @@ export default function Comment({ comment }) {
                             <div className='w-full whitespace-normal'>
                                 {isUpdatePending ? (
                                     <div className='h-fit w-full text-center'>
-                                        {/* 테스트 필요 */}
-                                        <LoadingSpinner />
+                                        <LoadingSpinner size={20} />
                                     </div>
                                 ) : (
                                     content
@@ -96,7 +101,7 @@ export default function Comment({ comment }) {
                                 <span className='mr-2'>{StringCombinator.getFormatDate(createdTime)}</span>
                                 {modifiedTime ? <span>(수정됨)</span> : null}
                             </div>
-                            {/* 댓글 수정 및 삭제 관련 버튼 */}
+                            {/* 댓글 수정 및 삭제 버튼 */}
                             <div>
                                 {isMemberWritten ? (
                                     isUpdateTarget ? (
@@ -135,9 +140,9 @@ export default function Comment({ comment }) {
 // REST: 댓글 수정
 function useUpdateComment() {
     const queryClient = useQueryClient();
-    const { postId } = useParams();
+    const { boardId } = useParams();
 
-    return useMutation({
+    return useMutation<AxiosResponse, Error, IModifiedCommentProps>({
         mutationFn: async ({ commentId, updateValue }) => {
             const commentUpdateURL = `/api/comment/modify/${commentId}`;
             return await axios.post(commentUpdateURL, {
@@ -147,7 +152,7 @@ function useUpdateComment() {
 
         // 클라이언트 업데이트
         onSuccess: () => {
-            queryClient.invalidateQueries(['album', postId]);
+            queryClient.invalidateQueries({ queryKey: ['album', boardId] });
         },
         onError: () => {
             window.alert('댓글 수정에 실패하였습니다.');
@@ -160,7 +165,7 @@ function useDeleteComment() {
     const queryClient = useQueryClient();
     const { boardId } = useParams();
 
-    return useMutation({
+    return useMutation<AxiosResponse, Error, number>({
         mutationFn: async commentId => {
             const commentDeletionURL = `/api/comment/delete/${commentId}`;
             return await axios.delete(commentDeletionURL);
@@ -168,7 +173,7 @@ function useDeleteComment() {
 
         // 클라이언트 업데이트
         onSuccess: () => {
-            queryClient.invalidateQueries(['album', boardId]);
+            queryClient.invalidateQueries({ queryKey: ['album', boardId] });
         },
         onError: () => {
             window.alert('댓글 삭제에 실패하였습니다.');

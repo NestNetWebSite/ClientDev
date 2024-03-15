@@ -1,12 +1,13 @@
 import { memo } from 'react';
 import Comment from './Comment';
+import { IPhotoPostDto, ICommentDto } from '../../types';
 
-/**
- * 댓글창(앨범의 메타데이터 포함)
- * @param {boolean, boolean, Object, Object}
- * @returns
- */
-export default memo(function PhotoAlbumMetadata({ isMetadataVisible, postMetaData, comments }) {
+interface IProps {
+    isMetadataVisible: boolean;
+    postMetaData: IPhotoPostDto;
+    comments: ICommentDto[];
+}
+export default memo(function PhotoAlbumMetadata({ isMetadataVisible, postMetaData, comments }: IProps) {
     if (isMetadataVisible) {
         return (
             <>
