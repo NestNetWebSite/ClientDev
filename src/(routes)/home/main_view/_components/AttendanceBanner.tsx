@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import Dot from '../../_components/Dot';
 import LoadingSpinner from '../../../../_components/loadingSpinner/LoadingSpinner';
+import { IWeeklyAttdRank, IMonthlyAttdRank } from '../../type';
 
+interface IProps {
+    bannerItems: [IWeeklyAttdRank[], IMonthlyAttdRank[]];
+    isLoading: boolean;
+}
 // 배너 제목
 const BannerTitle = ['주간순위', '월간순위'];
 
-/**
- * 출석 순위 정보를 담는 슬라이드 배열
- * @param {Object}
- * @returns
- */
-export default function AttendanceBanner({ items: attendanceRanks, isLoading }) {
+export default function AttendanceBanner({ bannerItems: attendanceRanks, isLoading }: IProps) {
     const [slideIdx, setSlideIdx] = useState(1);
 
-    const handleDotClick = idx => {
+    const handleDotClick = (idx: number) => {
         setSlideIdx(idx + 1);
     };
 
@@ -64,7 +64,7 @@ export default function AttendanceBanner({ items: attendanceRanks, isLoading }) 
                 {Array.from({ length: attendanceRanks?.length }).map((_, idx) => (
                     <Dot
                         key={idx}
-                        active={slideIdx === idx + 1 ? 'active' : ''}
+                        isActive={slideIdx === idx + 1 ? true : false}
                         idx={idx}
                         setSlideIdx={handleDotClick}
                     />

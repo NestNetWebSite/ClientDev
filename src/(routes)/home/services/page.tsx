@@ -3,19 +3,16 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PAGE_ROUTE } from '../../../_constants/constants';
 
-/**
- * 서비스 목록 영역
- * @returns
- */
 export default function Page() {
     class Service {
-        constructor(imgSrc, mainTitle, link) {
-            this.imgSrc = imgSrc;
-            this.mainTitle = mainTitle;
-            this.link = link;
-        }
+        constructor(
+            public readonly imgSrc: string,
+            public readonly mainTitle: string,
+            public readonly link: string,
+        ) {}
     }
-    const Services = [
+
+    const services = [
         new Service('_assets/images/community_board.jpg', '통합 게시판', PAGE_ROUTE.COMMUINTY),
         new Service('_assets/images/photo-albums_board.jpg', '사진 게시판', PAGE_ROUTE.PHOTOALBUMS),
         new Service('_assets/images/exam_board.jpg', '자료 게시판', PAGE_ROUTE.EXAM),
@@ -35,7 +32,7 @@ export default function Page() {
         <>
             <div className='text-center text-[2.5rem] font-semibold text-gray-700'>서비스</div>
             <div className='ServiceContent mx-auto grid h-fit max-w-7xl select-none grid-cols-1 grid-rows-1 gap-x-10 gap-y-10 py-20 md:grid-cols-2 xl:grid-cols-3'>
-                {Services.map((service, idx) => (
+                {services.map((service, idx) => (
                     <Link to={`${service.link}`} key={idx}>
                         <div
                             className={`${isVisible ? 'xl:animate-swapdown' : 'xl:opacity-0'} 

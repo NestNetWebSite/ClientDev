@@ -4,15 +4,12 @@ import SignupReqList from './_components/SignupReqList';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-/**
- * 동아리원 관리 영역 페이지
- * @returns
- */
+// 회원 관리 페이지
 export default function Page() {
     const [alignment, setAlignment] = useState('members');
 
     // 토글버튼 핸들러
-    const handleChange = (event, newAlignment) => {
+    const handleChange = (event: React.MouseEvent<HTMLElement>, newAlignment: string) => {
         if (newAlignment !== null) {
             setAlignment(newAlignment);
         }

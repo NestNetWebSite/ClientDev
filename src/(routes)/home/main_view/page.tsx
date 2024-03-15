@@ -5,11 +5,8 @@ import AttendanceBtn from './_components/AttendanceBtn';
 import RecentPostsBanner from './_components/RecentPostsBanner';
 import LinkBanner from './_components/LinkBanner';
 import AttendanceBanner from './_components/AttendanceBanner';
+import { INewPost, IWeeklyAttdRank, IMonthlyAttdRank, IAttdRanks } from '../type';
 
-/**
- * 메인 배너 영역
- * @returns
- */
 export default function Page() {
     const { data: recentPosts, isLoading: isNewPostsLoading, isSuccess, isError: isNewPostsError } = useGetNewPosts();
     const {
@@ -17,7 +14,7 @@ export default function Page() {
         isLoading: isAttdRanksLoading,
         isError: isAttdRankError,
     } = useGetAttendance();
-    const [attdRankSlides, setAttdRankSlides] = useState([]);
+    const [attdRankSlides, setAttdRankSlides] = useState<[IWeeklyAttdRank[], IMonthlyAttdRank[]]>([[], []]);
 
     useEffect(() => {
         if (isSuccess) {
@@ -80,7 +77,7 @@ export default function Page() {
                                             출석 순위를 불러오는데 실패했습니다.
                                         </div>
                                     ) : (
-                                        <AttendanceBanner items={attdRankSlides} isLoading={isAttdRanksLoading} />
+                                        <AttendanceBanner bannerItems={attdRankSlides} isLoading={isAttdRanksLoading} />
                                     )}
                                 </article>
                             </div>
@@ -94,13 +91,16 @@ export default function Page() {
 
 // REST: 최근글 조회
 const useGetNewPosts = () => {
-    return useQuery({
+    return useQuery<INewPost[]>({
         queryKey: ['recent-posts'],
         queryFn: async () => {
-            const recentPostsURL = `/api/post/recent-posts`;
-
+            // TEST
+            const recentPostsURL = `/api/recent-posts`;
+            // const recentPostsURL = `/api/post/recent-posts`;
             return await axios.get(recentPostsURL).then(res => {
-                return res.data.response.dtoList;
+                // TEST
+                return res.data.dtoList;
+                // return res.data.response.dtoList;
             });
         },
         retry: 0,
@@ -109,13 +109,17 @@ const useGetNewPosts = () => {
 
 // REST: 출석 순위 조회
 const useGetAttendance = () => {
-    return useQuery({
+    return useQuery<IAttdRanks>({
         queryKey: ['attendance-statistics'],
         queryFn: async () => {
-            const attendanceURL = `/api/attendance/statistics`;
+            // TEST
+            const attendanceURL = `/api/attendance-statistics`;
+            // const attendanceURL = `/api/attendance/statistics`;
 
             return await axios.get(attendanceURL).then(res => {
-                return res.data.response;
+                // TEST
+                return res.data;
+                // return res.data.response;
             });
         },
         retry: 0,

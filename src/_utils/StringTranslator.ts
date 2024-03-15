@@ -2,7 +2,7 @@ import { PAGE_ROUTE } from '../_constants/constants';
 
 export const StringTranslator = {
     // 글 카테코리별 라우팅 전환
-    getPostCategoryURL(postCategory) {
+    getPostCategoryURL(postCategory: string): string {
         switch (postCategory) {
             case 'NOTICE':
                 return PAGE_ROUTE.NOTICE;
@@ -18,7 +18,7 @@ export const StringTranslator = {
                 return null;
         }
     },
-    getPostCategoryKOR(postCategory) {
+    getPostCategoryKOR(postCategory: string): string {
         // 글 카테코리별 영->한 전환
         switch (postCategory) {
             case 'NOTICE':

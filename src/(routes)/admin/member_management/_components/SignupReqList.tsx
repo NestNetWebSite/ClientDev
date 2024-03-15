@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { MaterialReactTable, useMaterialReactTable } from 'material-react-table';
+import { MaterialReactTable, useMaterialReactTable, type MRT_Row } from 'material-react-table';
 import { Box, IconButton, Tooltip } from '@mui/material';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { FaHandshakeSimple, FaHandshakeSimpleSlash } from 'react-icons/fa6';
@@ -10,11 +10,9 @@ import {
     TABLE_COL_NAME,
     WINDOW_ALERT_MESSAGE,
 } from '../../../../_constants/constants';
+import { ISignupReq } from '../../type';
 
-/**
- * 회원가입 요청 목록
- * @returns
- */
+// 회원가입 요청 목록
 export default function SignupReqList() {
     const columns = useMemo(() => TABLE_COL_NAME.signup, []);
 
@@ -32,15 +30,17 @@ export default function SignupReqList() {
     const { mutateAsync: rejectReq, isPending: isDeletingReq } = useRejectReq();
 
     // 회원가입 요청 승인 핸들러
-    const handleReqApprove = async ({ id, original }) => {
+    const handleReqApprove = async ({ original }) => {
+        console.log(original);
         if (window.confirm(WINDOW_ALERT_MESSAGE.signupApproval(original))) {
-            approveReq({ id, signupReq: original });
+            approveReq({ signupReq: original });
         }
     };
     // 회원가입 요청 거절 핸들러
-    const handleReqReject = ({ id, original }) => {
+    const handleReqReject = ({ original }) => {
+        console.log(original);
         if (window.confirm(WINDOW_ALERT_MESSAGE.signupReject(original))) {
-            rejectReq({ id, signupReq: original });
+            rejectReq({ signupReq: original });
         }
     };
 
@@ -48,7 +48,7 @@ export default function SignupReqList() {
     const table = useMaterialReactTable({
         columns,
         data: fetchedSignupReqs,
-        getRowId: row => row.id,
+        // getRowId: row => row.id,
         initialState: { density: 'compact' },
         enableEditing: true,
         enableFilters: false,
@@ -87,21 +87,17 @@ export default function SignupReqList() {
         },
     });
 
-    return (
-        <>
-            <MaterialReactTable table={table} />
-        </>
-    );
+    return <MaterialReactTable table={table} />;
 }
 
 // REST: 회원가입 요청 목록 조회
 function useGetSignupReqs() {
-    return useQuery({
+    return useQuery<ISignupReq[]>({
         queryKey: ['signups'],
         queryFn: async () => {
             const signupReqsURL = `/api/manager/signup-request`;
             return await axios.get(signupReqsURL).then(res => {
-                const reqs = res.data.response.dtoList;
+                const reqs: ISignupReq[] = res.data.response.dtoList;
 
                 return reqs.map(req => ({
                     ...req,
@@ -113,12 +109,15 @@ function useGetSignupReqs() {
     });
 }
 
+interface ISignupProps {
+    signupReq: ISignupReq;
+}
 // REST: 회원가입 요청 승인
 function useApproveReq() {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: async ({ signupReq }) => {
+        mutationFn: async ({ signupReq }: ISignupProps) => {
             const approveReqURL = `/api/manager/approve-signup`;
             return await axios.post(approveReqURL, {
                 loginId: signupReq.loginId,
@@ -127,7 +126,7 @@ function useApproveReq() {
         },
         // 클라이언트 업데이트
         onSuccess: () => {
-            queryClient.invalidateQueries(['signups']);
+            queryClient.invalidateQueries({ queryKey: ['signups'] });
         },
     });
 }
@@ -137,7 +136,7 @@ function useRejectReq() {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: async ({ signupReq }) => {
+        mutationFn: async ({ signupReq }: ISignupProps) => {
             const rejectReqURL = `/api/manager/reject-signup`;
             return await axios.post(rejectReqURL, {
                 loginId: signupReq.loginId,
@@ -146,7 +145,7 @@ function useRejectReq() {
         },
         // 클라이언트 업데이트
         onSuccess: () => {
-            queryClient.invalidateQueries(['signups']);
+            queryClient.invalidateQueries({ queryKey: ['signups'] });
         },
     });
 }

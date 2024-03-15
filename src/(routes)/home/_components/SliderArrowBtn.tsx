@@ -1,7 +1,11 @@
 import { IoIosArrowBack } from 'react-icons/io';
 import { IoIosArrowForward } from 'react-icons/io';
 
-export default function SliderArrowBtn({ moveSlide, direction }) {
+interface IProps {
+    moveSlide: () => void;
+    direction: string;
+}
+export default function SliderArrowBtn({ moveSlide, direction }: IProps) {
     return (
         <>
             <button onClick={moveSlide}>
