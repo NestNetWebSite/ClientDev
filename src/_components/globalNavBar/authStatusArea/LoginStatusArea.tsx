@@ -1,17 +1,24 @@
 import axios from 'axios';
 import { useCallback } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { Link, useNavigate } from 'react-router-dom';
 import { BiLogOut, BiUserPin } from 'react-icons/bi';
 
 export default function LoginStatusArea() {
     const navigate = useNavigate();
+    const queryClient = useQueryClient();
     const handleLogoutTextClick = useCallback(() => {
         axios
             .get(`/api/auth/logout`)
             .then(response => {
-                localStorage.removeItem('isLoggedIn');
                 window.alert(response.data.response);
-                navigate('/');
+                queryClient
+                    .invalidateQueries({
+                        queryKey: ['loggedIn_user'],
+                    })
+                    .then(() => {
+                        navigate('/');
+                    });
             })
             .catch(error => {
                 let errorMessage = '';
