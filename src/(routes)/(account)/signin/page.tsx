@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useCallback, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FiEye, FiEyeOff, FiLock, FiUser } from 'react-icons/fi';
 
@@ -11,6 +12,8 @@ interface FormData {
 
 export default function Page() {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+    const queryClient = useQueryClient();
 
     const {
         register,
@@ -27,7 +30,9 @@ export default function Page() {
     const onSubmit: SubmitHandler<FormData> = async data => {
         try {
             await axios.post(`/api/auth/login`, data);
-            localStorage.setItem('isLoggedIn', 'true');
+            await queryClient.invalidateQueries({
+                queryKey: ['loggedIn_user'],
+            });
             navigate('/');
         } catch (error) {
             // @ts-ignore

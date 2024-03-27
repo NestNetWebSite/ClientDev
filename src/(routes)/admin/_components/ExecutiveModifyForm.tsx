@@ -53,7 +53,7 @@ export default function ExecutiveModifyForm({ id, year, name, studentId, role, c
 
         onSuccess() {
             window.alert('성공적으로 수정하였습니다.');
-            return queryClient.invalidateQueries({ queryKey: ['executives'] });
+            return queryClient.invalidateQueries({ queryKey: ['executives', 'former'] });
         },
 
         onError() {

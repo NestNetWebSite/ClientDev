@@ -18,7 +18,7 @@ interface Props {
 }
 
 export default function SearchFilterArea({ currentSearchFilter, updateCurrentSearchFilter }: Props) {
-    const { filterReset } = useExamSearchFilterStore();
+    const { filterReset } = useExamSearchFilterStore(state => state);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 

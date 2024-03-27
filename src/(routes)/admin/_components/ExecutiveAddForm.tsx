@@ -40,7 +40,7 @@ export default function ExecutiveAddForm({ closeModal }: Props) {
 
     const { mutate: addExecutiveMutate } = useMutation({
         mutationFn(formData: FormData) {
-            return axios.post(`/api/executive-info/save`, formData);
+            return axios.post(`/api/executive-info/save`, [formData]);
         },
 
         onSuccess() {
