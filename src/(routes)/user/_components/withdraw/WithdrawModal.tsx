@@ -42,7 +42,6 @@ export default function WithdrawModal({ isModalOpen, closeModal }: Props) {
         if (window.confirm('정말로 탈퇴하시겠습니까?')) {
             try {
                 await axios.get('/api/member/withdraw');
-                localStorage.removeItem('isLoggedIn');
                 window.alert('탈퇴처리 되었습니다.');
                 navigate('/', { replace: true });
             } catch (error) {

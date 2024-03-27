@@ -1,28 +1,16 @@
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import Select from 'react-select';
-import getHistory from './_lib/getHistory';
+import { ACTIVITIES } from './constant.ts';
 
 export default function Page() {
-    const [currentYear, setCurrentYear] = useState(0);
+    const [currentYear, setCurrentYear] = useState(ACTIVITIES.sort((a1, a2) => a2.year - a1.year)[0].year);
 
-    const { data, isLoading } = useQuery({
-        queryKey: ['history'],
-        queryFn: getHistory,
-        retry: false,
-        refetchOnWindowFocus: false,
-        gcTime: Infinity,
-        throwOnError: true,
-    });
-
-    if (isLoading) {
-        return <></>;
-    }
-
-    const yearOptions: { label: string; value: number }[] = data.map(history => ({
-        label: String(history.year),
-        value: history.year,
-    }));
+    const yearOptions: { label: string; value: number }[] = ACTIVITIES.sort((a1, a2) => a2.year - a1.year).map(
+        activity => ({
+            label: `${String(activity.year)} 년`,
+            value: activity.year,
+        }),
+    );
 
     return (
         <main className={'mx-auto flex w-[55rem] flex-col p-5'}>
@@ -50,43 +38,22 @@ export default function Page() {
                 />
             </div>
             <div className={'flex flex-col gap-y-4'}>
-                <h1 className={'text-2xl font-semibold text-rose-700'}>
-                    {currentYear === 0 ? data[0].year : currentYear}
-                </h1>
+                <h1 className={'text-2xl font-semibold text-rose-700'}>{currentYear}</h1>
                 <hr />
-                {currentYear === 0 ? (
-                    <div className={'flex flex-col gap-y-16'}>
-                        {data[0].activities.map(activity => {
-                            return (
-                                <div key={activity.title}>
-                                    <h3 className={'mb-3 text-xl font-bold'}>{activity.title}</h3>
-                                    <ul className={'flex list-disc flex-col gap-y-3 px-8'}>
-                                        {activity.details.map(detail => {
-                                            return <li key={detail}>{detail}</li>;
-                                        })}
-                                    </ul>
-                                </div>
-                            );
-                        })}
-                    </div>
-                ) : (
-                    <div className={'flex flex-col gap-y-16'}>
-                        {data
-                            .find(history => history.year === currentYear)
-                            .activities.map(activity => {
-                                return (
-                                    <div key={activity.title}>
-                                        <h3 className={'mb-3 text-xl font-bold'}>{activity.title}</h3>
-                                        <ul className={'flex list-disc flex-col gap-y-3 px-8'}>
-                                            {activity.details.map(detail => {
-                                                return <li key={detail}>{detail}</li>;
-                                            })}
-                                        </ul>
-                                    </div>
-                                );
-                            })}
-                    </div>
-                )}
+                <div className={'flex flex-col gap-y-16'}>
+                    {ACTIVITIES.filter(history => history.year === currentYear).map(activity => {
+                        return (
+                            <div key={activity.title}>
+                                <h3 className={'mb-3 text-xl font-bold'}>{activity.title}</h3>
+                                <ul className={'flex list-disc flex-col gap-y-3 px-8'}>
+                                    {activity.details.map(detail => {
+                                        return <li key={detail}>{detail}</li>;
+                                    })}
+                                </ul>
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
         </main>
     );
