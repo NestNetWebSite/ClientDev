@@ -38,7 +38,7 @@ export default function CommentModifyForm({
             />
             <div className='text-right'>
                 <button
-                    className='mt-4 rounded-xl bg-rose-800 px-3 py-1 text-sm font-semibold text-white duration-300 enabled:opacity-100 enabled:hover:scale-105 disabled:cursor-default disabled:opacity-75'
+                    className='mt-4 rounded-xl bg-secondary px-3 py-1 text-sm font-semibold text-white duration-300 enabled:opacity-100 enabled:hover:scale-105 disabled:cursor-default disabled:opacity-75'
                     type={'submit'}
                     disabled={newCommentContent.trim().length === 0}
                 >
