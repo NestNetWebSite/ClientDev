@@ -5,7 +5,7 @@ export default function Layout() {
     return (
         <div className={'mx-auto flex w-[32rem] flex-col items-center'}>
             <header className={'mb-9 mt-14'}>
-                <Link className={'text-5xl font-bold tracking-wider text-rose-700'} to={'/'}>
+                <Link className={'text-5xl font-bold tracking-wider text-secondary'} to={'/'}>
                     <img className={'w-[18rem]'} src={'/_assets/images/nestnet-logo.png'} alt={'NestNetLogo'} />
                 </Link>
             </header>
@@ -15,7 +15,7 @@ export default function Layout() {
                     <Outlet />
                     <div className={'w-full text-end'}>
                         <Link
-                            className={'text-[0.9rem] font-bold text-gray-500 transition-all hover:text-rose-700'}
+                            className={'text-[0.9rem] font-bold text-gray-500 transition-all hover:text-secondary'}
                             to={'signin'}
                         >
                             로그인 / 회원가입

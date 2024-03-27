@@ -55,7 +55,7 @@ export default function Page() {
                 <div className={'mb-6 w-full'}>
                     <button
                         className={
-                            'w-full rounded-xl bg-rose-700 py-3 text-lg font-bold text-white transition-all hover:bg-rose-800 enabled:opacity-100 disabled:opacity-75'
+                            'w-full rounded-xl bg-secondary py-3 text-lg font-bold text-white transition-all hover:bg-primary enabled:opacity-100 disabled:opacity-75'
                         }
                         type={'submit'}
                         disabled={isSubmitting}
