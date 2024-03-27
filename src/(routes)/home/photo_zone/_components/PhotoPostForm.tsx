@@ -104,11 +104,17 @@ function usePostPhoto() {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['photo-zone'] });
         },
-        onError: e => {
-            if (axios.isAxiosError(e) && e.response.data) {
-                const { error } = e.response.data;
-                window.alert(error.message);
-                // window.alert(error.response.data.error.message);
+        onError: error => {
+            let errorMessage = '';
+            if (error.response.status === 403) {
+                errorMessage = '권한이 없는 사용자입니다';
+                alert(errorMessage);
+            } else if (error.response.status === 401) {
+                errorMessage = '다시 로그인 해주세요.';
+                alert(errorMessage);
+            } else if (error.response.status === 500) {
+                errorMessage = '게시물 등록에 실패하였습니다. 관리자에게 문의해주세요.';
+                alert(errorMessage);
             }
         },
     });
