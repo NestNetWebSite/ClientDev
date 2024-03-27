@@ -96,7 +96,7 @@ export default function EmailAuthenticationInputs({ isEmailAuthenticated, checkE
                     />
                     <button
                         className={
-                            'mr-1 rounded-xl border border-gray-300 p-2 text-rose-700 transition-all hover:bg-gray-50 disabled:opacity-75'
+                            'mr-1 rounded-xl border border-gray-300 p-2 text-secondary transition-all hover:bg-gray-50 disabled:opacity-75'
                         }
                         type={'button'}
                         onClick={handleAuthenticationRequestButtonClick}
@@ -134,7 +134,7 @@ export default function EmailAuthenticationInputs({ isEmailAuthenticated, checkE
                     )}
                     <button
                         className={
-                            'mx-1 rounded-xl border border-gray-300 p-2 text-rose-700 transition-all enabled:hover:bg-gray-50 disabled:opacity-75 '
+                            'mx-1 rounded-xl border border-gray-300 p-2 text-secondary transition-all enabled:hover:bg-gray-50 disabled:opacity-75 '
                         }
                         type={'button'}
                         onClick={handleAuthenticationConfirmButtonClick}
