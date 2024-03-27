@@ -13,10 +13,11 @@ interface IProps {
 
 export default function LikeBtn({ isMemberLiked, likeCount }: IProps) {
     const { data: isLiked } = useGetIsMemberLiked(isMemberLiked);
-    const { mutate: updateAlbumLike } = usePostAlbumLike();
-
+    const [oldLikeState] = useState(isMemberLiked);
+    const [oldLikeCount] = useState(likeCount);
+    const { mutate: updateAlbumLike } = usePostAlbumLike(oldLikeState, oldLikeCount);
     const queryClient = useQueryClient();
-    const debouncedMutate = debounce(updateAlbumLike, 1000);
+    const debouncedMutate = debounce(updateAlbumLike, 500);
 
     // 좋아요 버튼 클릭 핸들러
     const handleButtonClick = useCallback(async (): Promise<void> => {
@@ -30,15 +31,13 @@ export default function LikeBtn({ isMemberLiked, likeCount }: IProps) {
         queryClient.setQueryData(['likeState'], !previousLikeState);
         queryClient.setQueryData(['likeCount'], previousLikeState ? previousLikeCount - 1 : previousLikeCount + 1);
         // Mutation 수행
-        updateAlbumLike();
+        // updateAlbumLike();
         debouncedMutate();
-    }, [queryClient, debouncedMutate, updateAlbumLike]);
+    }, []);
 
     return (
         <Button
-            onClick={() => {
-                handleButtonClick().catch(reason => console.error(reason));
-            }}
+            onClick={() => handleButtonClick()}
             content={
                 isLiked ? (
                     <div className='flex flex-col justify-between'>
@@ -71,12 +70,10 @@ function useGetIsMemberLiked(isMemberLiked: boolean) {
 }
 
 // REST: 좋아요 요청
-function usePostAlbumLike() {
+function usePostAlbumLike(oldLikeState: boolean, oldLikeCount: number) {
     const queryClient = useQueryClient();
     const { boardId } = useParams();
 
-    console.log(oldLikeState);
-    console.log(oldLikeCount);
     return useMutation<AxiosResponse, Error>({
         mutationFn() {
             const likeState = queryClient.getQueryData(['likeState']);
