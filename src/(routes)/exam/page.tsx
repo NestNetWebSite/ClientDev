@@ -19,7 +19,7 @@ interface ExamSearchFilter {
 }
 
 export default function Page() {
-    const { examSearchFilter, filterReset } = useExamSearchFilterStore();
+    const { examSearchFilter, filterReset } = useExamSearchFilterStore(state => state);
 
     const [currentSearchFilter, setCurrentSearchFilter] = useState<ExamSearchFilter>(examSearchFilter);
 
