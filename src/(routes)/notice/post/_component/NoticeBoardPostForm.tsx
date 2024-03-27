@@ -79,7 +79,7 @@ export default function NoticeBoardPostForm() {
                 <div className={'flex justify-end gap-x-4'}>
                     <button
                         className={
-                            'rounded-xl border border-rose-800 p-3 text-rose-700 transition-all hover:bg-rose-50'
+                            'rounded-xl border border-secondary p-3 text-secondary transition-all hover:bg-rose-50'
                         }
                         type={'button'}
                         onClick={() => {
@@ -89,7 +89,7 @@ export default function NoticeBoardPostForm() {
                         <span className={'font-semibold '}>취소하기</span>
                     </button>
                     <button
-                        className={'rounded-xl bg-rose-800 p-3 text-white transition-all hover:bg-rose-900'}
+                        className={'rounded-xl bg-secondary p-3 text-white transition-all hover:bg-primary'}
                         type={'submit'}
                         disabled={formMethods.formState.isSubmitting}
                     >
