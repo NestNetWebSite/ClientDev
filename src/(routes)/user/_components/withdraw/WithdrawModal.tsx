@@ -86,7 +86,7 @@ export default function WithdrawModal({ isModalOpen, closeModal }: Props) {
                             />
                             <button
                                 className={
-                                    'flex cursor-pointer items-center justify-center rounded-xl border border-rose-700 px-5 py-1 font-semibold text-rose-700 shadow transition-all hover:bg-gray-50'
+                                    'flex cursor-pointer items-center justify-center rounded-xl border border-secondary px-5 py-1 font-semibold text-secondary shadow transition-all hover:bg-gray-50'
                                 }
                                 type={'button'}
                                 onClick={handleAuthenticationButtonClick}
@@ -114,7 +114,7 @@ export default function WithdrawModal({ isModalOpen, closeModal }: Props) {
                 <div className={'flex w-full items-center justify-end gap-x-3'}>
                     <button
                         className={
-                            'rounded-lg border border-rose-700 bg-white px-5 py-2 font-semibold text-rose-700 transition-all hover:bg-rose-50'
+                            'rounded-lg border border-secondary bg-white px-5 py-2 font-semibold text-secondary transition-all hover:bg-rose-50'
                         }
                         type={'button'}
                         onClick={() => {
@@ -125,7 +125,7 @@ export default function WithdrawModal({ isModalOpen, closeModal }: Props) {
                     </button>
                     <button
                         className={
-                            'rounded-lg border border-rose-700 bg-rose-700 px-5 py-2 font-semibold text-white transition-all enabled:hover:bg-rose-900 disabled:opacity-75'
+                            'rounded-lg border border-secondary bg-secondary px-5 py-2 font-semibold text-white transition-all enabled:hover:bg-rose-900 disabled:opacity-75'
                         }
                         type={'button'}
                         disabled={!isAuthenticated}

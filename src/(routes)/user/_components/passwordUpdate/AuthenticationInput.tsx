@@ -55,7 +55,7 @@ export default function AuthenticationInput({ isAuthenticated, checkAuthenticati
                     />
                     <button
                         className={
-                            'flex cursor-pointer items-center justify-center rounded-xl border border-rose-700 px-5 py-1 font-bold text-rose-700 shadow transition-all hover:bg-gray-50'
+                            'flex cursor-pointer items-center justify-center rounded-xl border border-secondary px-5 py-1 font-bold text-secondary shadow transition-all hover:bg-gray-50'
                         }
                         type={'button'}
                         onClick={handleButtonClick}
