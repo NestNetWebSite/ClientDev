@@ -120,7 +120,7 @@ export default function PasswordUpdateForm({ closeModal }: { closeModal(): void 
                 <div className={'flex w-full items-center justify-end gap-x-3'}>
                     <button
                         className={
-                            'rounded-lg border border-rose-700 bg-white px-5 py-2 font-semibold text-rose-700 transition-all hover:bg-rose-50 '
+                            'rounded-lg border border-secondary bg-white px-5 py-2 font-semibold text-secondary transition-all hover:bg-rose-50 '
                         }
                         type={'button'}
                         onClick={() => {
@@ -131,7 +131,7 @@ export default function PasswordUpdateForm({ closeModal }: { closeModal(): void 
                     </button>
                     <button
                         className={
-                            'rounded-lg bg-rose-700 px-5 py-2 font-semibold text-white transition-all enabled:hover:bg-rose-900 disabled:opacity-50 '
+                            'rounded-lg bg-secondary px-5 py-2 font-semibold text-white transition-all enabled:hover:bg-rose-900 disabled:opacity-50 '
                         }
                         type={'submit'}
                         disabled={!isAuthenticated}

@@ -57,7 +57,7 @@ export default function Profile({ name, memberAuthority, emailAddress, grade, gr
                     {(memberAuthority === 'ADMIN' || memberAuthority === 'MANAGER') && (
                         <Link
                             className={
-                                'mr-4 text-sm font-bold text-rose-700 transition-all hover:decoration-rose-700 hover:decoration-2 hover:underline-offset-4'
+                                'mr-4 text-sm font-bold text-secondary transition-all hover:decoration-secondary hover:decoration-2 hover:underline-offset-4'
                             }
                             to={'/admin'}
                             target={'_blank'}

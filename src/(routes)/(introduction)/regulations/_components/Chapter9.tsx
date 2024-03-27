@@ -1,7 +1,7 @@
 export default function Chapter9() {
     return (
         <div className={'flex flex-col gap-y-4'}>
-            <h1 className={'text-2xl font-semibold text-rose-700'}>제 9장 부칙</h1>
+            <h1 className={'text-2xl font-semibold text-secondary'}>제 9장 부칙</h1>
             <hr />
             <div className={'flex flex-col gap-y-16'}>
                 <div>

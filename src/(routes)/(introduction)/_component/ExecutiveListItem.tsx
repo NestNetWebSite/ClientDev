@@ -20,7 +20,7 @@ export default function ExecutiveListItem({ studentId, name, role }: Props) {
                     학번 : <span className={'font-bold text-gray-500'}>{studentId}</span>
                 </span>
                 <span className={'text-[1.05rem]'}>
-                    직책 : <span className={'font-bold text-rose-700'}>{role}</span>
+                    직책 : <span className={'font-bold text-secondary'}>{role}</span>
                 </span>
             </div>
         </li>

@@ -105,7 +105,7 @@ export default function GlobalNavbar() {
                         return (
                             <li
                                 key={itemInfo.label}
-                                className={'cursor-pointer font-semibold transition-all hover:text-rose-700'}
+                                className={'cursor-pointer font-semibold transition-all hover:text-secondary'}
                             >
                                 <Link to={itemInfo.pathname}>{itemInfo.label}</Link>
                             </li>

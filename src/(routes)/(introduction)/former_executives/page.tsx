@@ -22,8 +22,8 @@ export default function Page() {
 
     return (
         <main className={'mx-auto flex w-[55rem] flex-col p-5'}>
-            <div className={'mb-6 border-b-2 border-rose-700 pb-2'}>
-                <h1 className={'text-3xl font-bold text-rose-700'}>네스트넷 전 임원 소개</h1>
+            <div className={'mb-6 border-b-2 border-secondary pb-2'}>
+                <h1 className={'text-3xl font-bold text-secondary'}>네스트넷 전 임원 소개</h1>
             </div>
             <FormerExecutiveListWithFilter
                 yearList={Array.from(new Set(data.dtoList.map(executive => executive.year)))}

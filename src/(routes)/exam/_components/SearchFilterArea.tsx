@@ -71,7 +71,7 @@ export default function SearchFilterArea({ currentSearchFilter, updateCurrentSea
                     setIsModalOpen(true);
                 }}
                 className={
-                    'mr-5 box-content rounded-xl border border-rose-800 bg-rose-800 px-4 py-3 text-sm text-white transition-all  hover:bg-rose-900'
+                    'mr-5 box-content rounded-xl border border-secondary bg-secondary px-4 py-3 text-sm text-white transition-all  hover:bg-primary'
                 }
             >
                 검색 필터
@@ -80,7 +80,7 @@ export default function SearchFilterArea({ currentSearchFilter, updateCurrentSea
                 type={'button'}
                 onClick={handleSearchFilterResetButtonClick}
                 className={
-                    'cursor-pointer rounded-xl border border-rose-800 px-4 py-3 text-sm font-bold text-rose-800 transition-all hover:bg-rose-50'
+                    'cursor-pointer rounded-xl border border-secondary px-4 py-3 text-sm font-bold text-secondary transition-all hover:bg-rose-50'
                 }
             >
                 검색 필터 초기화
