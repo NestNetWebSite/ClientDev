@@ -167,7 +167,7 @@ export default function SearchFilterForm({ updateCurrentSearchFilter, closeModal
             <div className={'my-2 flex w-full items-center justify-end gap-x-3'}>
                 <button
                     className={
-                        'rounded-lg border border-rose-800 bg-white px-5 py-2 font-semibold text-rose-800 transition-all hover:bg-rose-50'
+                        'rounded-lg border border-secondary bg-white px-5 py-2 font-semibold text-secondary transition-all hover:bg-rose-50'
                     }
                     type={'button'}
                     onClick={() => {
@@ -178,7 +178,7 @@ export default function SearchFilterForm({ updateCurrentSearchFilter, closeModal
                 </button>
                 <button
                     className={
-                        'rounded-lg border border-rose-800 bg-rose-800 px-5 py-2 font-semibold text-white transition-all hover:bg-rose-900'
+                        'rounded-lg border border-secondary bg-secondary px-5 py-2 font-semibold text-white transition-all hover:bg-primary'
                     }
                     type={'submit'}
                 >
