@@ -177,7 +177,6 @@ function useGetUsers() {
             const allMembersURL = `/api/manager/member-info`;
             return await axios.get(allMembersURL).then(res => {
                 const members: IMember[] = res.data.response.dtoList;
-                console.log(members);
 
                 return members.map(member => ({
                     ...member,
