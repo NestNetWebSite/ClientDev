@@ -19,7 +19,7 @@ export const PAGE_ROUTE = Object.freeze({
 });
 
 // 권한
-const AVAIL_AUTHORITY = ['회장', '부회장', '관리자', '재학생', '휴학생', '졸업생'];
+export const AVAIL_AUTHORITY = ['회장', '부회장', '관리자', '재학생', '휴학생', '졸업생'];
 // 권한 영->한 전환
 export const AUTHORITY_ENG_TO_KOR = Object.freeze({
     PRESIDENT: '회장',
@@ -47,7 +47,7 @@ export const AUTHORITY_KOR_TO_ENG = Object.freeze({
 
 // 동아리원 목록, 회원가입 요청 목록 테이블 컬럼
 export const TABLE_COL_NAME = Object.freeze({
-    member: (validationErrors: Record<string, string | undefined>) => [
+    member: [
         {
             accessorKey: 'name',
             header: '성명',
@@ -99,8 +99,8 @@ export const TABLE_COL_NAME = Object.freeze({
             maxSize: 50,
             muiEditTextFieldProps: {
                 select: true,
-                error: !!validationErrors?.state,
-                helperText: validationErrors?.state,
+                // error: !!validationErrors?.state,
+                // helperText: validationErrors?.state,
             },
         },
     ],

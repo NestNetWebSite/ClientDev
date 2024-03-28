@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { MaterialReactTable, useMaterialReactTable, type MRT_Row } from 'material-react-table';
+import { MaterialReactTable, useMaterialReactTable } from 'material-react-table';
 import { Box, IconButton, Tooltip } from '@mui/material';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { FaHandshakeSimple, FaHandshakeSimpleSlash } from 'react-icons/fa6';
