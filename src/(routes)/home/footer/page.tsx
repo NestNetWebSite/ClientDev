@@ -27,7 +27,7 @@ export default function Footer() {
     const boards = [
         new Content('통합 게시판', PAGE_ROUTE.COMMUINTY),
         new Content('사진 게시판', PAGE_ROUTE.PHOTOALBUMS),
-        new Content('자료 게시판', PAGE_ROUTE.EXAM),
+        new Content('족보 게시판', PAGE_ROUTE.EXAM),
     ];
 
     const lifes = [new Content('공지사항', PAGE_ROUTE.NOTICE), new Content('자기 소개', PAGE_ROUTE.ABOUT_ME)];
