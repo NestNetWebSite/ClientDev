@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { MaterialReactTable, useMaterialReactTable, type MRT_Row, type MRT_ColumnDef } from 'material-react-table';
 import { Box, IconButton, Tooltip } from '@mui/material';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -8,17 +8,72 @@ import axios from 'axios';
 import {
     AUTHORITY_ENG_TO_KOR,
     AUTHORITY_KOR_TO_ENG,
-    TABLE_COL_NAME,
+    AVAIL_AUTHORITY,
     WINDOW_ALERT_MESSAGE,
 } from '../../../../_constants/constants';
-import { IMember } from '../../type';
+import { IEditProps, IMember } from '../../type';
 
 // 동아리원 목록
 export default function MemberList() {
-    const [validationErrors, setValidationErrors] = useState<Record<string, string | undefined>>({});
     const columns = useMemo<MRT_ColumnDef<IMember>[]>(
-        validationErrors => TABLE_COL_NAME.member(validationErrors),
-        [validationErrors],
+        () => [
+            {
+                accessorKey: 'name',
+                header: '성명',
+                enableEditing: false,
+                size: 50,
+                maxSize: 50,
+            },
+            {
+                accessorKey: 'loginId',
+                header: '아이디',
+                enableEditing: false,
+                size: 50,
+                maxSize: 50,
+            },
+            {
+                accessorKey: 'emailAddress',
+                header: '이메일',
+                enableEditing: false,
+                size: 50,
+                maxSize: 50,
+            },
+            {
+                accessorKey: 'studentId',
+                header: '학번',
+                enableEditing: false,
+                size: 50,
+                maxSize: 50,
+            },
+            {
+                accessorKey: 'grade',
+                header: '학년',
+                enableEditing: false,
+                size: 50,
+                maxSize: 50,
+            },
+            {
+                accessorKey: 'graduateYear',
+                header: '졸업년도',
+                enableEditing: false,
+                size: 50,
+                maxSize: 50,
+            },
+            {
+                accessorKey: 'memberAuthority',
+                header: '권한',
+                editVariant: 'select',
+                editSelectOptions: AVAIL_AUTHORITY,
+                size: 50,
+                maxSize: 50,
+                muiEditTextFieldProps: {
+                    select: true,
+                    // error: !!validationErrors?.state,
+                    // helperText: validationErrors?.state,
+                },
+            },
+        ],
+        [],
     );
 
     // call READ hook
@@ -34,9 +89,9 @@ export default function MemberList() {
     const { mutateAsync: deleteUser, isPending: isDeletingUser } = useDeleteUser();
 
     // 권한 수정 핸들러
-    const handleMemberEditSave = async ({ row, values, table }) => {
-        if (window.confirm(WINDOW_ALERT_MESSAGE.authorityChange(row, values))) {
-            const updatedMemberId = row.id;
+    const handleMemberEditSave = async ({ row, values }: IEditProps) => {
+        if (confirm(WINDOW_ALERT_MESSAGE.authorityChange(row, values))) {
+            const updatedMemberId = row.original.id;
             await updateUser({ updatedMemberId, updatedValues: values });
             table.setEditingRow(null);
         }
@@ -72,8 +127,8 @@ export default function MemberList() {
         data: fetchedUsers,
         editDisplayMode: 'row',
         enableEditing: true,
-        getRowId: row => row.id,
-        onEditingRowCancel: () => setValidationErrors({}),
+        // getRowId: row => row.id,
+        // onEditingRowCancel: () => setValidationErrors({}),
         onEditingRowSave: handleMemberEditSave,
         initialState: { density: 'compact' },
         // enableHiding: false,
