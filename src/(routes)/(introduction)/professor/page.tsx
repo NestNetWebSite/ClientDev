@@ -8,8 +8,8 @@ import {
 export default function Page() {
     return (
         <main className={'mx-auto flex w-[55rem] flex-col p-5'}>
-            <div className={'mb-6 border-b-2 border-rose-700 pb-2'}>
-                <h1 className={'text-3xl font-bold text-rose-700'}>지도교수님 소개</h1>
+            <div className={'mb-6 border-b-2 border-secondary pb-2'}>
+                <h1 className={'text-3xl font-bold text-secondary'}>지도교수님 소개</h1>
             </div>
             <div className={'flex flex-col gap-y-20'}>
                 <div className={'flex gap-x-9'}>
@@ -42,7 +42,7 @@ export default function Page() {
                                 return (
                                     <li key={professionalExperience.experience} className={'flex gap-x-3.5'}>
                                         <div className={'w-32 text-right'}>
-                                            <span className={'font-bold text-rose-700'}>
+                                            <span className={'font-bold text-secondary'}>
                                                 {professionalExperience.period}
                                             </span>
                                         </div>
@@ -93,7 +93,7 @@ export default function Page() {
                                 return (
                                     <li key={professionalExperience.experience} className={'flex gap-x-3.5'}>
                                         <div className={'w-32 text-right'}>
-                                            <span className={'font-bold text-rose-700'}>
+                                            <span className={'font-bold text-secondary'}>
                                                 {professionalExperience.period}
                                             </span>
                                         </div>

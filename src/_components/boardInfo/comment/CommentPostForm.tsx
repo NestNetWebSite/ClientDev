@@ -40,7 +40,7 @@ export default function CommentPostForm({ boardId }: { boardId: string }) {
             />
             <div className='mt-5 text-right'>
                 <button
-                    className='rounded-2xl bg-rose-700 px-4 py-2 text-base font-semibold text-white transition-all enabled:opacity-100 enabled:hover:scale-105 disabled:cursor-default disabled:opacity-75'
+                    className='rounded-2xl bg-secondary px-4 py-2 text-base font-semibold text-white transition-all enabled:opacity-100 enabled:hover:scale-105 disabled:cursor-default disabled:opacity-75'
                     type={'submit'}
                     disabled={commentContent.trim().length === 0}
                 >

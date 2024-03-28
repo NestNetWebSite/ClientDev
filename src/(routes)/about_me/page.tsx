@@ -49,7 +49,7 @@ export default function Page() {
                                 'absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 text-center text-[0.9rem] font-bold'
                             }
                         >
-                            게시글이 존재하지 않습니다. <br />위 <span className={'text-red-700'}>자기소개 작성</span>{' '}
+                            게시글이 존재하지 않습니다. <br />위 <span className={'text-secondary'}>자기소개 작성</span>{' '}
                             버튼을 눌러 게시글을 추가해 보세요.
                         </span>
                     </div>

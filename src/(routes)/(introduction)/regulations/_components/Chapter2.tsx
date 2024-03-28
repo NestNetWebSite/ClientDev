@@ -1,7 +1,7 @@
 export default function Chapter2() {
     return (
         <div className={'flex flex-col gap-y-4'}>
-            <h1 className={'text-2xl font-semibold text-rose-700'}>제 2장 회원</h1>
+            <h1 className={'text-2xl font-semibold text-secondary'}>제 2장 회원</h1>
             <hr />
             <div className={'flex flex-col gap-y-16'}>
                 <div>
@@ -40,14 +40,14 @@ export default function Chapter2() {
                                 <li>
                                     상기 사항에 관하여 모든 동아리 회원들은{' '}
                                     <a
-                                        className={'text-rose-700'}
+                                        className={'text-secondary'}
                                         href={'https://github.com/CBNU-Nnet'}
                                         target={'_blank'}
                                     >
                                         Nest.Net Github 페이지
                                     </a>
                                     와{' '}
-                                    <a className={'text-rose-700'} href={'http://nnet.cbnu.ac.kr/'} target={'_blank'}>
+                                    <a className={'text-secondary'} href={'http://nnet.cbnu.ac.kr/'} target={'_blank'}>
                                         Nest.Net 홈페이지
                                     </a>
                                     에 필히 가입할 의무를 갖는다.

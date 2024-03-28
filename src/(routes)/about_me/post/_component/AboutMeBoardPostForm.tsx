@@ -99,7 +99,7 @@ export default function AboutMeBoardPostForm() {
                 <div className={'flex justify-end gap-x-4'}>
                     <button
                         className={
-                            'rounded-xl border border-rose-800 p-3 text-rose-800 transition-all hover:bg-rose-50'
+                            'rounded-xl border border-secondary p-3 text-secondary transition-all hover:bg-rose-50'
                         }
                         type={'button'}
                         onClick={() => {
@@ -109,7 +109,7 @@ export default function AboutMeBoardPostForm() {
                         <span className={'font-semibold '}>취소하기</span>
                     </button>
                     <button
-                        className={'rounded-xl bg-rose-800 p-3 text-white transition-all hover:bg-rose-900'}
+                        className={'rounded-xl bg-secondary p-3 text-white transition-all hover:bg-primary'}
                         type={'submit'}
                     >
                         <span className={'font-semibold '}>게시하기</span>

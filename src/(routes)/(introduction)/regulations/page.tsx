@@ -27,8 +27,8 @@ export default function Page() {
 
     return (
         <main className={'mx-auto flex w-[55rem] flex-col p-5'}>
-            <div className={'mb-6 border-b-2 border-rose-700 pb-2'}>
-                <h1 className={'text-3xl font-bold text-rose-700'}>동아리 회칙 (2019년 2월 28일 개정)</h1>
+            <div className={'mb-6 border-b-2 border-secondary pb-2'}>
+                <h1 className={'text-3xl font-bold text-secondary'}>동아리 회칙 (2019년 2월 28일 개정)</h1>
             </div>
             <div className={'flex justify-end'}>
                 <Select

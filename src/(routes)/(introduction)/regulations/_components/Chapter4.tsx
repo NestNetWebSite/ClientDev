@@ -1,7 +1,7 @@
 export default function Chapter4() {
     return (
         <div className={'flex flex-col gap-y-4'}>
-            <h1 className={'text-2xl font-semibold text-rose-700'}>제 4장 동아리 방 내 준수 사항</h1>
+            <h1 className={'text-2xl font-semibold text-secondary'}>제 4장 동아리 방 내 준수 사항</h1>
             <hr />
             <div className={'flex flex-col gap-y-16'}>
                 <div>
