@@ -9,7 +9,7 @@ export default function Page() {
     const [alignment, setAlignment] = useState('members');
 
     // 토글버튼 핸들러
-    const handleChange = (event: React.MouseEvent<HTMLElement>, newAlignment: string) => {
+    const handleChange = (newAlignment: string) => {
         if (newAlignment !== null) {
             setAlignment(newAlignment);
         }
@@ -25,7 +25,7 @@ export default function Page() {
                             size='small'
                             value={alignment}
                             exclusive
-                            onChange={handleChange}
+                            onChange={(_, newAlignment) => handleChange(newAlignment)}
                             aria-label='Platform'
                         >
                             <ToggleButton value='members'>전체 회원</ToggleButton>

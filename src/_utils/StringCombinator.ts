@@ -14,7 +14,7 @@ export const StringCombinator = {
     },
 
     // 최근 글 url 경로 조합
-    getRecentPostPath(category, postId) {
+    getRecentPostPath(category: string, postId: number) {
         return `${category}/${postId}`;
     },
 };
