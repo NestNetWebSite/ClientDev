@@ -101,13 +101,9 @@ const useGetAlbum = () => {
     return useQuery<PhotoAlbumData>({
         queryKey: ['album', boardId],
         queryFn: async () => {
-            // TEST
-            // const albumURL = `/api/album/${boardId}`;
             const albumURL = `/api/photo-post/${boardId}`;
 
             return await axios.get(albumURL, { withCredentials: true }).then(res => {
-                // TEST
-                // return res.data;
                 return res.data.response;
             });
         },

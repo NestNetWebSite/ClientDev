@@ -93,7 +93,7 @@ export default function PhotoPostForm() {
 function usePostPhoto() {
     const queryClient = useQueryClient();
 
-    return useMutation<AxiosResponse<IPhotoPostResponse>, AxiosError<IPhotoPostResponse>, FormData>({
+    return useMutation<AxiosResponse<IPhotoPostResponse>, AxiosError, FormData>({
         mutationFn: async fileFormData => {
             const photoZoneURL = `/api/life4cut/save`;
             return await axios.post<IPhotoPostResponse>(photoZoneURL, fileFormData, {

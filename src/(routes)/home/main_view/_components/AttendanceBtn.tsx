@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { FaCalendar } from 'react-icons/fa';
 
 export default function AttendanceBtn() {
@@ -22,7 +22,7 @@ export default function AttendanceBtn() {
 function usePostMyAttendance() {
     const queryClient = useQueryClient();
 
-    return useMutation<AxiosResponse>({
+    return useMutation<AxiosResponse, AxiosError>({
         mutationFn: async () => {
             const myAttdURL = `/api/attendance`;
             return await axios.post(myAttdURL);
@@ -33,9 +33,17 @@ function usePostMyAttendance() {
             queryClient.invalidateQueries({ queryKey: ['attendance-statistics'] });
         },
         onError: async error => {
-            // @ts-ignore
-            // 타입 지정 필요
-            alert(error?.response.data.error.message);
+            let errorMessage = '';
+            if (error.response.status === 403) {
+                errorMessage = '권한이 없는 사용자입니다';
+                alert(errorMessage);
+            } else if (error.response.status === 401) {
+                errorMessage = '다시 로그인 해주세요.';
+                alert(errorMessage);
+            } else if (error.response.status === 500) {
+                errorMessage = '출석 등록에 실패하였습니다. 관리자에게 문의해주세요.';
+                alert(errorMessage);
+            }
         },
         retry: 0,
     });
