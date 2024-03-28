@@ -101,13 +101,9 @@ export default function Page() {
 
 // REST: 스크롤시 다음 페이지의 앨범데이터를 가져옴
 const getMorePhotoAlbums = async ({ pageParam }) => {
-    // TEST
-    // const photoAlbumPagesURL = `/api/photo-post?_page=${pageParam}`;
     const photoAlbumPagesURL = `/api/photo-post?page=${pageParam}`;
 
     return await axios.get(photoAlbumPagesURL, { withCredentials: true }).then(res => {
-        // TEST
-        // return res.data;
         return res.data.response.dtoList;
     });
 };

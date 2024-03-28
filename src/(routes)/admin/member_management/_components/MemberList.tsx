@@ -163,7 +163,6 @@ function useDeleteUser() {
 
     return useMutation({
         mutationFn: async ({ id }: IMember) => {
-            console.log(id);
             const deleteMemberURL = `/api/manager/member-withdraw?member-id=${id}`;
             return await axios.delete(deleteMemberURL);
         },

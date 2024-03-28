@@ -31,14 +31,12 @@ export default function SignupReqList() {
 
     // 회원가입 요청 승인 핸들러
     const handleReqApprove = async ({ original }) => {
-        console.log(original);
         if (window.confirm(WINDOW_ALERT_MESSAGE.signupApproval(original))) {
             approveReq({ signupReq: original });
         }
     };
     // 회원가입 요청 거절 핸들러
     const handleReqReject = ({ original }) => {
-        console.log(original);
         if (window.confirm(WINDOW_ALERT_MESSAGE.signupReject(original))) {
             rejectReq({ signupReq: original });
         }
