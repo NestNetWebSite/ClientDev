@@ -41,6 +41,7 @@ export default function Page() {
         // lastPage: 마지막에 불러온 한 페이지 내 배열, allPages: 현재까지 불러온 총페이지 배열
         getNextPageParam: (lastPage, allPages) => (lastPage.length ? allPages.length + 1 : undefined),
         throwOnError: true,
+        retry: 0,
     });
 
     // ref가 inView 영역에 도달하면 다음 페이지를 불러옴
