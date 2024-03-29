@@ -62,7 +62,6 @@ export default memo(function FileInput({ files, setFiles, existingFileIds, setEx
         <div className='flex h-full w-full flex-col items-center'>
             {/* <label className={'h-full w-full'} htmlFor='uploadfiles'> */}
             <input
-                required
                 id='uploadfiles'
                 type='file'
                 ref={fileInputRef}
