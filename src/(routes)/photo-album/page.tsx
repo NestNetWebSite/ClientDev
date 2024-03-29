@@ -40,8 +40,10 @@ export default function Page() {
         initialPageParam: 1,
         // lastPage: 마지막에 불러온 한 페이지 내 배열, allPages: 현재까지 불러온 총페이지 배열
         getNextPageParam: (lastPage, allPages) => (lastPage.length ? allPages.length + 1 : undefined),
+        retry: false,
+        refetchOnWindowFocus: false,
+        gcTime: 0,
         throwOnError: true,
-        retry: 0,
     });
 
     // ref가 inView 영역에 도달하면 다음 페이지를 불러옴
@@ -104,7 +106,7 @@ export default function Page() {
 const getMorePhotoAlbums = async ({ pageParam }) => {
     const photoAlbumPagesURL = `/api/photo-post?page=${pageParam}`;
 
-    return await axios.get(photoAlbumPagesURL, { withCredentials: true }).then(res => {
+    return await axios.get(photoAlbumPagesURL).then(res => {
         return res.data.response.dtoList;
     });
 };
