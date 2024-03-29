@@ -14,6 +14,10 @@ export default function Page() {
     const navigate = useNavigate();
     // 폼 제출 핸들러
     const handlePostFormSubmit: SubmitHandler<IPhotoAlbumDescriptionValues> = async data => {
+        if (files.length === 0) {
+            alert('사진 첨부는 필수입니다!');
+            return;
+        }
         const formData = new FormData();
 
         // Blob로 변환 후 폼데이터에 삽입
@@ -34,15 +38,15 @@ export default function Page() {
                 let errorMessage = '';
                 if (error.response.status === 403) {
                     errorMessage = '권한이 없는 사용자입니다';
-                    window.alert(errorMessage);
+                    alert(errorMessage);
                     navigate(`/${PAGE_ROUTE.PHOTOALBUMS}`);
                 } else if (error.response.status === 401) {
                     errorMessage = '다시 로그인 해주세요.';
-                    window.alert(errorMessage);
+                    alert(errorMessage);
                     navigate(`/signin`);
                 } else if (error.response.status === 500) {
                     errorMessage = '게시물 등록에 실패하였습니다. 관리자에게 문의해주세요.';
-                    window.alert(errorMessage);
+                    alert(errorMessage);
                     navigate(`/${PAGE_ROUTE.PHOTOALBUMS}`);
                 }
             });

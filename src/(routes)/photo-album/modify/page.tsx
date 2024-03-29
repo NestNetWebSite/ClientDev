@@ -33,7 +33,8 @@ export default function Page() {
     // 수정 폼 제출 핸들러
     const handleModifiedFormSubmit: SubmitHandler<IPhotoAlbumDescriptionValues> = data => {
         if (files.length === 0) {
-            window.alert('사진 첨부는 필수입니다!');
+            alert('사진 첨부는 필수입니다!');
+            return;
         } else {
             const formData = new FormData();
 
@@ -64,9 +65,21 @@ export default function Page() {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 })
                 .then(() => navigate(`/${PAGE_ROUTE.PHOTOALBUMS}`))
-                .catch(() => {
-                    alert('게시물 수정에 실패하였습니다.');
-                    navigate(`/${PAGE_ROUTE.PHOTOALBUMS}`);
+                .catch(error => {
+                    let errorMessage = '';
+                    if (error.response.status === 403) {
+                        errorMessage = '권한이 없는 사용자입니다';
+                        alert(errorMessage);
+                        navigate(`/${PAGE_ROUTE.PHOTOALBUMS}`);
+                    } else if (error.response.status === 401) {
+                        errorMessage = '다시 로그인 해주세요.';
+                        alert(errorMessage);
+                        navigate(`/signin`);
+                    } else if (error.response.status === 500) {
+                        errorMessage = '게시물 등록에 실패하였습니다. 관리자에게 문의해주세요.';
+                        alert(errorMessage);
+                        navigate(`/${PAGE_ROUTE.PHOTOALBUMS}`);
+                    }
                 });
         }
     };
