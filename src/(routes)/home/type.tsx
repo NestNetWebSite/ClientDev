@@ -28,12 +28,3 @@ export interface ISlidingPhoto {
     saveFilePath: string;
     saveFileName: string;
 }
-
-export interface IPhotoPostResponse {
-    success: boolean;
-    response: object;
-    error: {
-        status: string;
-        message: string;
-    };
-}

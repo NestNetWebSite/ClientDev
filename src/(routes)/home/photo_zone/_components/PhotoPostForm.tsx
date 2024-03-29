@@ -5,7 +5,7 @@ import { MdOutlineCancel } from 'react-icons/md';
 import { TbCameraSelfie } from 'react-icons/tb';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import LoadingSpinner from '../../../../_components/loadingSpinner/LoadingSpinner';
-import { IPhotoPostResponse } from '../../type';
+import isServerError from '../../../../_errors/isServerError';
 
 export default function PhotoPostForm() {
     const [file, setFile] = useState<File>(null);
@@ -93,10 +93,10 @@ export default function PhotoPostForm() {
 function usePostPhoto() {
     const queryClient = useQueryClient();
 
-    return useMutation<AxiosResponse<IPhotoPostResponse>, AxiosError, FormData>({
+    return useMutation<AxiosResponse, AxiosError, FormData>({
         mutationFn: async fileFormData => {
             const photoZoneURL = `/api/life4cut/save`;
-            return await axios.post<IPhotoPostResponse>(photoZoneURL, fileFormData, {
+            return await axios.post(photoZoneURL, fileFormData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
         },
@@ -104,18 +104,24 @@ function usePostPhoto() {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['photo-zone'] });
         },
-        onError: error => {
+        onError: e => {
             let errorMessage = '';
-            if (error.response.status === 403) {
-                errorMessage = '권한이 없는 사용자입니다';
+            if (isServerError(e) && e?.response?.data?.error.message) {
+                errorMessage = e.response.data.error.message;
                 alert(errorMessage);
-            } else if (error.response.status === 401) {
-                errorMessage = '다시 로그인 해주세요.';
-                alert(errorMessage);
-            } else if (error.response.status === 500) {
-                errorMessage = '게시물 등록에 실패하였습니다. 관리자에게 문의해주세요.';
-                alert(errorMessage);
+
+                return;
             }
+            if (e.response.status === 403) {
+                errorMessage = '권한이 없는 사용자입니다';
+            } else if (e.response.status === 401) {
+                errorMessage = '다시 로그인 해주세요.';
+            } else if (e.response.status === 404) {
+                errorMessage = '게시물 등록에 실패하였습니다.';
+            } else if (e.response.status === 500) {
+                errorMessage = '게시물 등록에 실패하였습니다. 관리자에게 문의해주세요.';
+            }
+            alert(errorMessage);
         },
     });
 }

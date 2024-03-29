@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { FaCalendar } from 'react-icons/fa';
+import isServerError from '../../../../_errors/isServerError';
 
 export default function AttendanceBtn() {
     const { mutate: createMyAttd, isPending: isMyAttdPending } = usePostMyAttendance();
@@ -32,18 +33,24 @@ function usePostMyAttendance() {
             alert('출석 완료!');
             queryClient.invalidateQueries({ queryKey: ['attendance-statistics'] });
         },
-        onError: async error => {
+        onError: async e => {
             let errorMessage = '';
-            if (error.response.status === 403) {
-                errorMessage = '권한이 없는 사용자입니다';
+            if (isServerError(e) && e?.response?.data?.error.message) {
+                errorMessage = e.response.data.error.message;
                 alert(errorMessage);
-            } else if (error.response.status === 401) {
-                errorMessage = '다시 로그인 해주세요.';
-                alert(errorMessage);
-            } else if (error.response.status === 500) {
-                errorMessage = '출석 등록에 실패하였습니다. 관리자에게 문의해주세요.';
-                alert(errorMessage);
+
+                return;
             }
+            if (e.response.status === 403) {
+                errorMessage = '권한이 없는 사용자입니다';
+            } else if (e.response.status === 401) {
+                errorMessage = '다시 로그인 해주세요.';
+            } else if (e.response.status === 404) {
+                errorMessage = '이미 출석하셨습니다.';
+            } else if (e.response.status === 500) {
+                errorMessage = '출석 등록에 실패하였습니다. 관리자에게 문의해주세요.';
+            }
+            alert(errorMessage);
         },
         retry: 0,
     });
