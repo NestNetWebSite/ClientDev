@@ -46,7 +46,7 @@ function usePostMyAttendance() {
             } else if (e.response.status === 401) {
                 errorMessage = '다시 로그인 해주세요.';
             } else if (e.response.status === 404) {
-                errorMessage = '이미 출석하셨습니다.';
+                errorMessage = '오늘은 이미 출석하셨습니다! 내일도 방문해주세요!';
             } else if (e.response.status === 500) {
                 errorMessage = '출석 등록에 실패하였습니다. 관리자에게 문의해주세요.';
             }
