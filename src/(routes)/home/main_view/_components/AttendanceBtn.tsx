@@ -35,7 +35,7 @@ function usePostMyAttendance() {
         },
         onError: async e => {
             let errorMessage = '';
-            if (isServerError(e) && e?.response?.data?.error.message) {
+            if (isServerError(e) && e.response.data && e?.response?.data?.error.message) {
                 errorMessage = e.response.data.error.message;
                 alert(errorMessage);
 
@@ -44,7 +44,7 @@ function usePostMyAttendance() {
             if (e.response.status === 403) {
                 errorMessage = '권한이 없는 사용자입니다';
             } else if (e.response.status === 401) {
-                errorMessage = '다시 로그인 해주세요.';
+                errorMessage = '로그인 후 다시 시도해주세요.';
             } else if (e.response.status === 404) {
                 errorMessage = '오늘은 이미 출석하셨습니다! 내일도 방문해주세요!';
             } else if (e.response.status === 500) {
