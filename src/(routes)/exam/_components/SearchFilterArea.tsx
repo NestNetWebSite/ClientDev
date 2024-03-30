@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { debounce, isEqual } from 'lodash';
+import { isEqual } from 'lodash';
 import useExamSearchFilterStore from '../../../_stores/useExamSearchFilterStore';
 import SearchFilterModal from './SearchFilterModal';
 
@@ -24,36 +24,32 @@ export default function SearchFilterArea({ currentSearchFilter, updateCurrentSea
 
     const [_1, setSearchParams] = useSearchParams();
 
-    const handleSearchFilterResetButtonClick = useCallback(
-        debounce(event => {
-            console.log('a');
-            event.stopPropagation();
-            if (
-                isEqual(
-                    {
-                        examType: '',
-                        year: '0',
-                        semester: '0',
-                        subject: '',
-                        professor: '',
-                    },
-                    currentSearchFilter,
-                )
-            ) {
-                return;
-            }
-            setSearchParams({ page: '1' });
-            filterReset();
-            updateCurrentSearchFilter({
-                examType: '',
-                year: '0',
-                semester: '0',
-                subject: '',
-                professor: '',
-            });
-        }, 500),
-        [],
-    );
+    const handleSearchFilterResetButtonClick = event => {
+        event.stopPropagation();
+        if (
+            isEqual(
+                {
+                    examType: '',
+                    year: '0',
+                    semester: '0',
+                    subject: '',
+                    professor: '',
+                },
+                currentSearchFilter,
+            )
+        ) {
+            return;
+        }
+        setSearchParams({ page: '1' });
+        filterReset();
+        updateCurrentSearchFilter({
+            examType: '',
+            year: '0',
+            semester: '0',
+            subject: '',
+            professor: '',
+        });
+    };
 
     useEffect(() => {
         if (isModalOpen) {
