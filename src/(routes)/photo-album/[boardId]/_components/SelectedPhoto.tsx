@@ -1,25 +1,25 @@
 import { useRef, memo } from 'react';
 import toggleFullScreen from '../../../../_hooks/useFullScreen';
+import { StringCombinator } from '../../../../_utils/StringCombinator';
+import { IExistingFileDto } from '../../types';
 
-interface IProps {
-    selectedPhoto: string;
-}
-
-export default memo(function SelectedPhoto({ selectedPhoto }: IProps) {
+export default memo(function SelectedPhoto({ selectedPhoto }: { selectedPhoto: IExistingFileDto }) {
     const selectedPhotoRef = useRef<HTMLImageElement>();
     // LOADING: 스켈레톤
-    if (selectedPhoto === '') {
+    if (!selectedPhoto) {
         return <div className='h-full w-full animate-pulse bg-skeleton' />;
     }
 
-    if (selectedPhoto !== '')
+    if (selectedPhoto) {
+        const selectedPhotoURL = StringCombinator.getImageURL(selectedPhoto?.saveFilePath, selectedPhoto?.saveFileName);
         return (
             <img
                 className='m-auto'
-                src={selectedPhoto}
+                src={selectedPhotoURL}
                 alt='thumbnail'
                 ref={selectedPhotoRef}
                 onDoubleClick={() => toggleFullScreen(selectedPhotoRef.current)}
             />
         );
+    }
 });

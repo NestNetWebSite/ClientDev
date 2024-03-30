@@ -1,19 +1,15 @@
 import { FiDownload } from 'react-icons/fi';
 import { CircleActivationButton as Button } from '../../../../_components/button/CircleActivationButton';
 import { StringExtractor } from '../../../../_utils/StringExtractor';
+import { IExistingFileDto } from '../../types';
 import axios from 'axios';
 
-interface IProps {
-    selectedPhoto: string;
-}
-
-export default function DownloadBtn({ selectedPhoto }: IProps) {
+export default function DownloadBtn({ selectedPhoto }: { selectedPhoto: IExistingFileDto }) {
     // 사진 다운로드 버튼 핸들러
     const handleDownloadBtnClick = async () => {
-        const boardId = window.location.pathname.split('/')[2];
-        const fileName = StringExtractor.extractFileName(selectedPhoto);
+        const fileName = StringExtractor.extractFileName(selectedPhoto.originalFileName);
         const downloadFile = await axios
-            .get(`/api/file?postId=${boardId}&fileName=${fileName}`, {
+            .get(`/api/file?fileId=${selectedPhoto.id}`, {
                 responseType: 'blob',
             })
             .then(response => response.data)
