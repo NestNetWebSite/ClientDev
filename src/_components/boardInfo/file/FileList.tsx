@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { useCallback } from 'react';
 import File from './File';
 
 interface FileData {
@@ -9,10 +8,9 @@ interface FileData {
 }
 
 export default function FileList({ files }: { files: FileData[] }) {
-    const handleFileDownloadButtonClick = useCallback(async (originalFileName: string, saveFileName: string) => {
-        const boardId = window.location.pathname.split('/')[2];
+    const handleFileDownloadButtonClick = async (originalFileName: string, fileId: number) => {
         const result = await axios
-            .get(`/api/file?postId=${boardId}&fileName=${saveFileName}`, {
+            .get(`/api/file?fileId=${fileId}`, {
                 responseType: 'blob',
             })
             .then(response => response.data);
@@ -30,7 +28,7 @@ export default function FileList({ files }: { files: FileData[] }) {
         $aElement.remove();
 
         URL.revokeObjectURL(objectUrl);
-    }, []);
+    };
 
     return (
         files.length !== 0 && (
@@ -42,7 +40,7 @@ export default function FileList({ files }: { files: FileData[] }) {
                             <File
                                 key={file.id}
                                 originalFileName={file.originalFileName}
-                                saveFileName={file.saveFileName}
+                                fileId={file.id}
                                 onFileDownloadButtonClick={handleFileDownloadButtonClick}
                             />
                         );
