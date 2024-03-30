@@ -45,6 +45,10 @@ export default function Comment({ comment }: IProps) {
 
     // 수정 완료
     const handleUpdateComplete = () => {
+        if (updateValue === '') {
+            alert('내용을 입력해주세요!');
+            return;
+        }
         updateComment({ commentId, updateValue });
         setIsUpdateTarget(false);
     };

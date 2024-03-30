@@ -5,13 +5,13 @@ import { IExistingFileDto } from '../../types';
 
 interface IProps {
     photos: IExistingFileDto[];
-    setSelectedPhoto: Dispatch<SetStateAction<string>>;
+    setSelectedPhoto: Dispatch<SetStateAction<IExistingFileDto>>;
 }
 
 export default memo(function UnselectedPhotos({ photos, setSelectedPhoto }: IProps) {
     // 클릭된 사진으로 선택된 사진 변경하는 핸들러
-    const handleUnselectedPhotoClick = (photoPath: string) => {
-        setSelectedPhoto(photoPath);
+    const handleUnselectedPhotoClick = (clickedPhoto: IExistingFileDto) => {
+        setSelectedPhoto(clickedPhoto);
     };
 
     // LOADING: 스켈레톤 효과 표시
@@ -40,11 +40,7 @@ export default memo(function UnselectedPhotos({ photos, setSelectedPhoto }: IPro
                         />
                         <div
                             className='ImageCover absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center bg-black text-center text-sm text-white opacity-0 duration-300 ease-in-out hover:cursor-pointer hover:opacity-75'
-                            onClick={() =>
-                                handleUnselectedPhotoClick(
-                                    StringCombinator.getImageURL(photo.saveFilePath, photo.saveFileName),
-                                )
-                            }
+                            onClick={() => handleUnselectedPhotoClick(photo)}
                         >
                             <FaMagnifyingGlass className={'text-4xl'} />
                         </div>

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
-import { StringCombinator } from '../../../_utils/StringCombinator';
 import SelectedPhoto from './_components/SelectedPhoto';
 import UnselectedPhotos from './_components/UnselectedPhotos';
 import PhotoAlbumMetadata from './_components/PhotoAlbumMetadata';
@@ -23,7 +22,8 @@ interface PhotoAlbumData {
 
 export default function Page() {
     // 선택된 사진의 url
-    const [selectedPhoto, setSelectedPhoto] = useState('');
+    const [selectedPhoto, setSelectedPhoto] = useState<IExistingFileDto>(null);
+    const [photos, setPhotos] = useState<IExistingFileDto[]>([]);
     // 메타데이터(댓글 정보 포함) 표시 여부
     const [isMetadataVisible, setIsMetadataVisible] = useState(false);
     const { data, isLoading: isAlbumLoading, status } = useGetAlbum();
@@ -31,9 +31,8 @@ export default function Page() {
     // 요청 성공시 사진 배열 첫번째 요소를 선택된 사진(현재 보고 있는 사진)으로 지정
     useEffect(() => {
         if (status === 'success') {
-            setSelectedPhoto(
-                StringCombinator.getImageURL(data.fileDtoList[0].saveFilePath, data.fileDtoList[0].saveFileName),
-            );
+            setPhotos(data.fileDtoList);
+            setSelectedPhoto(data.fileDtoList[0]);
         }
     }, [status, data]);
 
@@ -46,7 +45,7 @@ export default function Page() {
                     <div className='flex flex-row'>
                         <div className='relative m-auto flex w-[38rem] flex-col items-center'>
                             <div
-                                className={`SelectedPhotoContainer mt-4 ${selectedPhoto !== '' ? 'h-max w-fit' : 'h-[28rem] w-full'} ${
+                                className={`SelectedPhotoContainer mt-4 ${selectedPhoto ? 'h-max w-fit' : 'h-[28rem] w-full'} ${
                                     isMetadataVisible ? 'rounded-t-2xl' : 'rounded-2xl'
                                 } overflow-hidden shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]`}
                             >
@@ -86,7 +85,7 @@ export default function Page() {
                 {/* 선택되지 않은 사진 목록 */}
                 <div className='RightMainView relative w-1/4'>
                     <div className='ml-auto h-full w-[20rem] min-w-[20rem] max-w-[20rem] overflow-y-scroll px-12 pr-14 pt-5'>
-                        <UnselectedPhotos photos={data?.fileDtoList} setSelectedPhoto={setSelectedPhoto} />
+                        <UnselectedPhotos photos={photos} setSelectedPhoto={setSelectedPhoto} />
                     </div>
                 </div>
             </div>
