@@ -25,10 +25,11 @@ export default memo(function FileInput({ files, setFiles, existingFileIds, setEx
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const targetFiles = event.currentTarget.files;
         const filteredTargetFiles = Array.from(targetFiles).filter(targetFile => {
-            if (targetFile.size >= FILE_SIZE_MAX_LIMIT) {
-                window.alert('크기가 5MB 이상인 파일의 경우 제외됩니다.');
+            const sizeLimit = FILE_SIZE_MAX_LIMIT * 1024 * 1024;
+            if (targetFile.size >= sizeLimit) {
+                alert(`크기가 ${FILE_SIZE_MAX_LIMIT}MB 이상인 파일의 경우 제외됩니다.`);
             }
-            return targetFile.size < FILE_SIZE_MAX_LIMIT;
+            return targetFile.size < sizeLimit;
         });
 
         // 업로드된 파일들의 id 매핑 수행

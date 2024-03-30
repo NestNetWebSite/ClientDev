@@ -1,8 +1,8 @@
 // 기존 등록 사진 여부
 export const ORIGINAL_FILE_FLAG: string = 'originalFileName';
 
-// 사진게시판 사진 파일 제한 용량
-export const FILE_SIZE_MAX_LIMIT = 5 * 1024 * 1024;
+// 사진게시판 사진 파일 제한 용량 (메가바이트)
+export const FILE_SIZE_MAX_LIMIT = 10;
 
 // 페이지 라우팅
 export const PAGE_ROUTE = Object.freeze({
