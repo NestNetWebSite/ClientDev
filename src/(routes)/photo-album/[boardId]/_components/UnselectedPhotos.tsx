@@ -15,11 +15,14 @@ export default memo(function UnselectedPhotos({ photos, setSelectedPhoto }: IPro
     };
 
     // LOADING: 스켈레톤 효과 표시
-    if (!photos) {
+    if (photos.length === 0) {
         return (
             <div className='flex h-screen w-full flex-col items-center justify-between'>
                 {Array.from(new Array(4)).map((_, idx) => (
-                    <div key={idx} className='mb-4 h-[12rem] w-full animate-pulse rounded-lg bg-skeleton'></div>
+                    <div
+                        key={idx}
+                        className='mb-4 h-[12rem] w-full animate-pulse rounded-lg bg-skeleton shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]'
+                    />
                 ))}
             </div>
         );
