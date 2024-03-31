@@ -45,7 +45,7 @@ export default function Page() {
         if ((event.target as HTMLInputElement).value === 'yes') {
             methods.resetField('grade');
             methods.resetField('studentId');
-            methods.setValue('memberAuthority', 'GENERAL_MEMBER');
+            methods.setValue('memberAuthority', 'GRADUATED_MEMBER');
             methods.unregister(['grade', 'studentId']);
             setGraduates(true);
         } else {
