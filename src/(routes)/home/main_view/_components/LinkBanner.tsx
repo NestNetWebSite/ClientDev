@@ -4,6 +4,7 @@ import SliderArrowBtn from '../../_components/SliderArrowBtn';
 import Dot from '../../_components/Dot';
 import { PAGE_ROUTE } from '../../../../_constants/constants';
 import { ILinkBannerItem } from '../../type';
+import useInterval from '../../../../_hooks/useInterval';
 
 // 배너 내 각 슬라이드 아이템
 const sliderItems: ILinkBannerItem[] = [
@@ -46,6 +47,10 @@ export default memo(function LinkBanner() {
         setSlideIdx(idx + 1);
     };
 
+    useInterval(() => {
+        setSlideIdx(prevIdx => (prevIdx % sliderItems?.length) + 1);
+    }, 5000);
+
     return (
         <div className='relative h-full w-full select-none'>
             <>
@@ -57,7 +62,7 @@ export default memo(function LinkBanner() {
                                     slideIdx === idx + 1 ? 'animate-fadein opacity-100' : 'opacity-0'
                                 }`}
                             >
-                                <img className='brightness-[110%]' src={item.src} alt='' />
+                                <img className='brightness-[105%]' src={item.src} alt='' />
                             </div>
                             <div
                                 className={`SlideTitle absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2  
