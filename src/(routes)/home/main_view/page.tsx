@@ -26,7 +26,7 @@ export default function Page() {
         <>
             <div className='pointer-events-none fixed inset-0 overflow-hidden' />
             {/* 출석체크 버튼 */}
-            <div className='fixed bottom-10 right-7 z-50'>
+            <div className='fixed bottom-10 right-10 z-50'>
                 <AttendanceBtn />
             </div>
             <div className='w-full pb-[10rem]'>
