@@ -104,22 +104,23 @@ function usePostPhoto() {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['photo-zone'] });
         },
-        onError: e => {
+        // 에러 처리
+        onError: async e => {
             let errorMessage = '';
-            if (isServerError(e) && e?.response?.data?.error.message) {
+            if (isServerError(e) && e.response.data && e?.response?.data?.error.message) {
                 errorMessage = e.response.data.error.message;
                 alert(errorMessage);
 
                 return;
             }
             if (e.response.status === 403) {
-                errorMessage = '권한이 없는 사용자입니다';
+                errorMessage = '권한이 없는 사용자입니다.';
             } else if (e.response.status === 401) {
-                errorMessage = '다시 로그인 해주세요.';
+                errorMessage = '사진은 로그인 후 올릴 수 있습니다!';
             } else if (e.response.status === 404) {
-                errorMessage = '게시물 등록에 실패하였습니다.';
+                errorMessage = '사진 등록에 실패하였습니다.';
             } else if (e.response.status === 500) {
-                errorMessage = '게시물 등록에 실패하였습니다. 관리자에게 문의해주세요.';
+                errorMessage = '사지 등록에 실패하였습니다. 관리자에게 문의해주세요.';
             }
             alert(errorMessage);
         },

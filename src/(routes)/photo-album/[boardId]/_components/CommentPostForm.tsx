@@ -14,11 +14,14 @@ export default function CommentPostForm({ isMetadataVisible }: IProps) {
     const methods = useForm({
         mode: 'onBlur',
     });
-    const { mutate: createComment, isPending: isCommentPending } = useCreateComment();
+    const { mutate: createComment, isPending: isCommentPending, isSuccess } = useCreateComment();
 
     // 댓글 작성
-    const handleCommentSubmit: SubmitHandler<INewCommentValues> = ({comment})=> {
+    const handleCommentSubmit: SubmitHandler<INewCommentValues> = ({ comment }) => {
         createComment(comment);
+        if (isSuccess) {
+            methods.reset();
+        }
     };
 
     return (
