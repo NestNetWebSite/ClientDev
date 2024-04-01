@@ -18,6 +18,10 @@ export interface IAttdRanks {
     monthlyStatisticsDtoList: IMonthlyAttdRank[];
 }
 
+export interface IMainPhotoBannerItem {
+    src: string;
+    link: string;
+}
 export interface ILinkBannerItem {
     title: string;
     src: string;
