@@ -106,5 +106,8 @@ const useGetAlbum = () => {
                 return res.data.response;
             });
         },
+        retry: false,
+        refetchOnWindowFocus: false,
+        throwOnError: true,
     });
 };
