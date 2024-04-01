@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import AttendanceBtn from './_components/AttendanceBtn';
+import MainPhotoBanner from './_components/MainPhotoBanner';
 import RecentPostsBanner from './_components/RecentPostsBanner';
 import LinkBanner from './_components/LinkBanner';
 import AttendanceBanner from './_components/AttendanceBanner';
@@ -26,21 +27,15 @@ export default function Page() {
         <>
             <div className='pointer-events-none fixed inset-0 overflow-hidden' />
             {/* 출석체크 버튼 */}
-            <div className='fixed bottom-10 right-7 z-50'>
+            <div className='fixed bottom-10 right-10 z-50'>
                 <AttendanceBtn />
             </div>
             <div className='w-full pb-[10rem]'>
                 <div className='relative top-10 mx-auto max-w-screen-xl px-16 xl:px-20'>
-                    <div className='relative top-3 z-10 grid w-full grid-cols-1 gap-20 lg:grid-cols-[auto_14rem] xl:gap-8'>
+                    <div className='relative top-3 grid w-full grid-cols-1 gap-10 lg:grid-cols-[auto_14rem] xl:gap-8'>
                         {/* 메인 사진 */}
-                        <div className='hidden w-full sm:flex'>
-                            <div className='h-fit max-h-[36rem] overflow-hidden rounded-md shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] brightness-95'>
-                                <img
-                                    className='MainImage select-none'
-                                    src='_assets/images/main-view-bg.jpg'
-                                    alt='mainViewImg'
-                                />
-                            </div>
+                        <div className='relative hidden min-h-[30rem] w-full sm:flex'>
+                            <MainPhotoBanner />
                         </div>
                         {/* 배너 */}
                         <div className='px-auto	mx-auto flex select-none flex-col gap-4 sm:flex-row sm:gap-12 md:gap-24 lg:flex-col lg:gap-4'>
