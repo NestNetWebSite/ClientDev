@@ -64,6 +64,7 @@ export default function AttendanceBanner({ bannerItems: attendanceRanks, isLoadi
                 {Array.from({ length: attendanceRanks?.length }).map((_, idx) => (
                     <Dot
                         key={idx}
+                        dotSize={0}
                         isActive={slideIdx === idx + 1 ? true : false}
                         idx={idx}
                         setSlideIdx={handleDotClick}
