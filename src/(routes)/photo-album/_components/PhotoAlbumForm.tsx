@@ -4,11 +4,13 @@ import OvalButton from '../../../_components/button/OvalButton';
 import { Dispatch, SetStateAction } from 'react';
 import { IUploadedFileDto, IExistingFileDto, IPhotoAlbumDescriptionValues } from '../types';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import LoadingSpinner from '../../../_components/loadingSpinner/LoadingSpinner';
 
 interface IProps {
     files: (IExistingFileDto | IUploadedFileDto)[];
     setFiles: Dispatch<SetStateAction<(IExistingFileDto | IUploadedFileDto)[]>>;
     onSubmit: SubmitHandler<IPhotoAlbumDescriptionValues>;
+    isPending: boolean;
     existingPostData?: IPhotoAlbumDescriptionValues;
     existingFileIds?: number[];
     setExistingFileIds?: Dispatch<SetStateAction<number[]>>;
@@ -19,6 +21,7 @@ export default function PhotoAlbumForm({
     files,
     setFiles,
     onSubmit,
+    isPending,
     existingPostData,
     existingFileIds,
     setExistingFileIds,
@@ -48,7 +51,11 @@ export default function PhotoAlbumForm({
                             <div className='mb-2 ml-4 font-semibold'>사진 총 {files?.length} 장</div>
                             <DescriptionInputs />
                             <div className={'flex justify-end'}>
-                                <OvalButton content={existingPostData ? '수정' : '게시'} />
+                                <OvalButton
+                                    content={
+                                        isPending ? <LoadingSpinner size={24} /> : existingPostData ? '수정' : '게시'
+                                    }
+                                />
                             </div>
                         </div>
                     </div>
