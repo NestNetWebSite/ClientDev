@@ -49,7 +49,7 @@ export default memo(function LinkBanner() {
 
     useInterval(() => {
         setSlideIdx(prevIdx => (prevIdx % sliderItems?.length) + 1);
-    }, 5000);
+    }, 12000);
 
     return (
         <div className='relative h-full w-full select-none'>
@@ -93,6 +93,7 @@ export default memo(function LinkBanner() {
                     <Dot
                         key={idx}
                         isActive={slideIdx === idx + 1 ? true : false}
+                        dotSize={0}
                         idx={idx}
                         setSlideIdx={handleDotClick}
                     />
