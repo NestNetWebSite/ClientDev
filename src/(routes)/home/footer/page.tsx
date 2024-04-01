@@ -6,6 +6,7 @@ export default function Footer() {
         constructor(
             readonly title: string,
             readonly link: string,
+            readonly imgSrc?: string,
         ) {}
     }
 
@@ -30,11 +31,13 @@ export default function Footer() {
         new Content('족보 게시판', PAGE_ROUTE.EXAM),
     ];
 
+    const sns = [new Content('인스타그램', 'https://www.instagram.com/nestnet_/', '_assets/images/instagram.png')];
+
     const lifes = [new Content('공지사항', PAGE_ROUTE.NOTICE), new Content('자기 소개', PAGE_ROUTE.ABOUT_ME)];
 
     return (
         <footer className='mt-20 border-t-2 border-gray-300 bg-white dark:bg-gray-800'>
-            <div className='mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8 lg:py-12'>
+            <div className='mx-auto max-w-screen-xl px-4 pb-6 pt-12 sm:px-6 lg:px-8 lg:pb-6 lg:pt-12 xl:py-6'>
                 <div className='xl:grid xl:grid-cols-3 xl:gap-8'>
                     <div className='mb-2 grid gap-14 lg:grid-cols-2 xl:col-span-2'>
                         <div className='md:grid md:grid-cols-2 md:gap-8'>
@@ -100,8 +103,8 @@ export default function Footer() {
                         <span className='mx-auto pr-3 text-[0.9rem] text-gray-500'>소프트웨어학부 1등 학술동아리</span>
                     </div>
                 </div>
+                {/* 홈페이지 제작자 */}
                 <div className='text-slate-600'>
-                    {/* 홈페이지 제작자 */}
                     <div className='mb-1 text-xs'>제작자</div>
                     <div className='text-xs'>
                         <ul className='text-[0.7rem]'>
@@ -116,6 +119,17 @@ export default function Footer() {
                             </li>
                         </ul>
                     </div>
+                </div>
+                {/* sns */}
+                <div className='mt-8 flex w-full flex-col items-center justify-center border-t-2 border-slate-200 text-slate-600 '>
+                    {/* <div className='my-2'>sns</div> */}
+                    {sns.map((item, idx) => (
+                        <span key={idx}>
+                            <Link to={item.link} target='_blank'>
+                                <img className='mt-5 h-7 w-7' src={item.imgSrc} alt='instagram' />
+                            </Link>
+                        </span>
+                    ))}
                 </div>
             </div>
         </footer>
