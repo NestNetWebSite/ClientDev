@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { PAGE_ROUTE } from '../src/_constants/constants.ts';
 
 import PublicLayout from './(routes)/publicLayout.tsx';
 import PrivateLayout from './(routes)/privateLayout.tsx';
@@ -88,23 +89,23 @@ const router = createBrowserRouter([
                         ],
                     },
                     {
-                        path: '/history',
+                        path: `/${PAGE_ROUTE.HISTORY}`,
                         element: <HistoryPage />,
                     },
                     {
-                        path: '/professor',
+                        path: `/${PAGE_ROUTE.PROFESSOR}`,
                         element: <ProfessorPage />,
                     },
                     {
-                        path: '/regulations',
+                        path: `/${PAGE_ROUTE.REGULATIONS}`,
                         element: <RegulationsPage />,
                     },
                     {
-                        path: '/executives',
+                        path: `/${PAGE_ROUTE.EXECUTIVES}`,
                         element: <ExecutivesPage />,
                     },
                     {
-                        path: '/former_executives',
+                        path: `/${PAGE_ROUTE.FORMER_EXECUTIVES}`,
                         element: <FormerExecutives />,
                     },
                 ],
@@ -113,83 +114,83 @@ const router = createBrowserRouter([
                 element: <PrivateLayout />,
                 children: [
                     {
-                        path: '/photo-album',
+                        path: `/${PAGE_ROUTE.PHOTOALBUMS}`,
                         element: <PhotoAlbumListPage />,
                     },
                     {
-                        path: '/photo-album/:boardId',
+                        path: `/${PAGE_ROUTE.PHOTOALBUMS}/:boardId`,
                         element: <PhotoAlbumPage />,
                     },
                     {
-                        path: '/photo-album/post',
+                        path: `/${PAGE_ROUTE.PHOTOALBUMS}/post`,
                         element: <PhotoAlbumPostPage />,
                     },
                     {
-                        path: '/photo-album/modify/:boardId',
+                        path: `/${PAGE_ROUTE.PHOTOALBUMS}/modify/:boardId`,
                         element: <PhotoAlbumModifyPage />,
                     },
                     {
-                        path: '/community',
+                        path: `/${PAGE_ROUTE.COMMUINTY}`,
                         element: <UnifiedBoardListPage />,
                     },
                     {
-                        path: '/community/:boardId',
+                        path: `/${PAGE_ROUTE.COMMUINTY}/:boardId`,
                         element: <UnifiedBoardPage />,
                     },
                     {
-                        path: '/community/post',
+                        path: `/${PAGE_ROUTE.COMMUINTY}/post`,
                         element: <UnifiedBoardPostPage />,
                     },
                     {
-                        path: '/community/modify/:boardId',
+                        path: `/${PAGE_ROUTE.COMMUINTY}/modify/:boardId`,
                         element: <UnifiedBoardModifyPage />,
                     },
                     {
-                        path: '/exam',
+                        path: `/${PAGE_ROUTE.EXAM}`,
                         element: <ExamBoardListPage />,
                     },
                     {
-                        path: '/exam/:boardId',
+                        path: `${PAGE_ROUTE.EXAM}/:boardId`,
                         element: <ExamBoardPage />,
                     },
                     {
-                        path: '/exam/post',
+                        path: `/${PAGE_ROUTE.EXAM}/post`,
                         element: <ExamBoardPostPage />,
                     },
                     {
-                        path: '/exam/modify/:boardId',
+                        path: `/${PAGE_ROUTE.EXAM}/modify/:boardId`,
                         element: <ExamBoardModifyPage />,
                     },
                     {
-                        path: '/notice',
+                        path: `/${PAGE_ROUTE.NOTICE}`,
                         element: <NoticeBoardListPage />,
                     },
                     {
-                        path: '/notice/:boardId',
+                        path: `/${PAGE_ROUTE.NOTICE}/:boardId`,
                         element: <NoticeBoardPage />,
                     },
                     {
-                        path: '/notice/post',
+                        path: `/${PAGE_ROUTE.NOTICE}/post`,
                         element: <NoticeBoardPostPage />,
                     },
                     {
-                        path: '/notice/modify/:boardId',
+                        path: `/${PAGE_ROUTE.NOTICE}/modify/:boardId`,
                         element: <NoticeBoardModifyPage />,
                     },
                     {
-                        path: '/about_me',
+                        path: `/${PAGE_ROUTE.ABOUT_ME}`,
                         element: <AboutMeBoardListPage />,
                     },
                     {
-                        path: '/about_me/:boardId',
+                        path: `/${PAGE_ROUTE.ABOUT_ME}/:boardId`,
                         element: <AboutMeBoardPage />,
                     },
                     {
-                        path: '/about_me/post',
+                        path: `/${PAGE_ROUTE.ABOUT_ME}/post`,
                         element: <AboutMeBoardPostPage />,
                     },
                     {
-                        path: '/about_me/modify/:boardId',
+                        path: `/${PAGE_ROUTE.ABOUT_ME}/modify/:boardId`,
                         element: <AboutMeBoardModifyPage />,
                     },
                     {

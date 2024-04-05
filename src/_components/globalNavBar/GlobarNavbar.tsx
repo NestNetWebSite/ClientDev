@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Dropdown from './Dropdown';
 import AuthStatusArea from './authStatusArea/AuthStatusArea.tsx';
+import { PAGE_ROUTE } from '../../_constants/constants.ts';
 
 interface NavItem {
     label: string;
@@ -15,17 +16,17 @@ const navItemsInformation: { label: string; pathname?: string; navItems?: NavIte
         navItems: [
             {
                 label: '동아리 연혁',
-                pathname: '/history',
+                pathname: `/${PAGE_ROUTE.HISTORY}`,
             },
-            { label: '교수님 소개', pathname: '/professor' },
-            { label: '동아리 회칙', pathname: '/regulations' },
+            { label: '교수님 소개', pathname: `/${PAGE_ROUTE.PROFESSOR}` },
+            { label: '동아리 회칙', pathname: `/${PAGE_ROUTE.REGULATIONS}` },
             {
                 label: '현 임원 소개',
-                pathname: '/executives',
+                pathname: `/${PAGE_ROUTE.EXECUTIVES}`,
             },
             {
                 label: '전 임원 소개',
-                pathname: '/former_executives',
+                pathname: `/${PAGE_ROUTE.FORMER_EXECUTIVES}`,
             },
         ],
     },
@@ -35,21 +36,21 @@ const navItemsInformation: { label: string; pathname?: string; navItems?: NavIte
         navItems: [
             {
                 label: '사진 게시판',
-                pathname: '/photo-album',
+                pathname: `/${PAGE_ROUTE.PHOTOALBUMS}`,
             },
             {
                 label: '통합 게시판',
-                pathname: '/community',
+                pathname: `/${PAGE_ROUTE.COMMUINTY}`,
             },
-            { label: '족보 게시판', pathname: '/exam' },
+            { label: '족보 게시판', pathname: `/${PAGE_ROUTE.EXAM}` },
         ],
     },
 
     {
         label: '생활',
         navItems: [
-            { label: '공지사항', pathname: '/notice' },
-            { label: '자기 소개', pathname: '/about_me' },
+            { label: '공지사항', pathname: `/${PAGE_ROUTE.NOTICE}` },
+            { label: '자기 소개', pathname: `/${PAGE_ROUTE.ABOUT_ME}` },
             // { label: '출석부', pathname: '/attendance' },
         ],
     },
