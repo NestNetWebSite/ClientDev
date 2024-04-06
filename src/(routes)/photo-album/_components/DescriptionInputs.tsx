@@ -41,13 +41,13 @@ export default memo(function DescriptionInputs() {
                     <span className={'m-1 text-sm text-secondary'}>※ {errors.bodyContent.message}</span>
                 )}
                 {errors.bodyContent?.message && errors?.bodyContent?.type === 'maxLength' && (
-                    <span className={'m-1 text-sm text-secondary'}>※ {errors.title.message}</span>
+                    <span className={'m-1 text-sm text-secondary'}>※ {errors.bodyContent.message}</span>
                 )}
                 <textarea
                     id='bodyContent'
                     placeholder={'상세 설명을 작성'}
-                    className={`BodyContent mb-2 h-[6rem] w-full rounded-3xl bg-slate-100 px-6 py-3 font-medium text-black outline-secondary 
-                placeholder:font-medium placeholder:text-stone-500 resize-none focus:font-medium focus:placeholder:text-slate-400`}
+                    className={`BodyContent mb-2 h-[6rem] w-full resize-none rounded-3xl bg-slate-100 px-6 py-3 font-medium text-black 
+                outline-secondary placeholder:font-medium placeholder:text-stone-500 focus:font-medium focus:placeholder:text-slate-400`}
                     autoComplete={'off'}
                     {...register('bodyContent', {
                         required: { value: true, message: '게시글 본문을 입력해주세요.' },
