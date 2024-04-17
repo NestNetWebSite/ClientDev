@@ -33,6 +33,10 @@ export default function AboutMeBoardPostForm() {
 
     const onSubmit: SubmitHandler<FormData> = async data => {
         try {
+            if (imageFile === null) {
+                window.alert('프로필 사진을 추가해주세요.');
+                return;
+            }
             const formData = new FormData();
             const blob = new Blob(
                 [
@@ -44,9 +48,7 @@ export default function AboutMeBoardPostForm() {
                 { type: 'application/json' },
             );
             formData.append('data', blob);
-            if (imageFile) {
-                formData.append('file', imageFile);
-            }
+            formData.append('file', imageFile);
 
             await axios.post(`/api/introduction-post/post`, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
