@@ -5,7 +5,7 @@ import RecentPostsBanner from './_components/RecentPostsBanner';
 import LinkBanner from './_components/LinkBanner';
 import AttendanceBanner from './_components/AttendanceBanner';
 import { IWeeklyAttdRank, IMonthlyAttdRank } from '../type';
-import { useGetAttendance, useGetNewPosts } from '../../../api/home-banner-api';
+import { useGetAttendance, useGetNewPosts } from '../../../api/home-api';
 
 // 메인 페이지
 export default function Page() {
