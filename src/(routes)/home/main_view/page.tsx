@@ -9,7 +9,7 @@ import { useGetAttendance, useGetNewPosts } from '../../../api/home-banner-api';
 
 // 메인 페이지
 export default function Page() {
-    const { data: recentPosts, isLoading: isNewPostsLoading, isSuccess, isError: isNewPostsError } = useGetNewPosts();
+    const { data: recentPosts, isLoading: isNewPostsLoading, isError: isNewPostsError } = useGetNewPosts();
     const {
         data: { weeklyStatisticsDtoList: weeklyAttdRank = [], monthlyStatisticsDtoList: monthlyAttdRank = [] } = {},
         isLoading: isAttdRanksLoading,
@@ -19,10 +19,10 @@ export default function Page() {
     const [attdRankSlides, setAttdRankSlides] = useState<[IWeeklyAttdRank[], IMonthlyAttdRank[]]>([[], []]);
 
     useEffect(() => {
-        if (isSuccess) {
+        if (isAttdRanksSuccess) {
             setAttdRankSlides([[...weeklyAttdRank], [...monthlyAttdRank]]);
         }
-    }, [isSuccess, weeklyAttdRank, monthlyAttdRank]);
+    }, [isAttdRanksSuccess, weeklyAttdRank, monthlyAttdRank]);
 
     return (
         <>
