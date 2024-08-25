@@ -3,16 +3,18 @@ import Dot from '../../_components/Dot';
 import LoadingSpinner from '../../../../_components/loadingSpinner/LoadingSpinner';
 import { IWeeklyAttdRank, IMonthlyAttdRank } from '../../type';
 
-interface IProps {
-    bannerItems: [IWeeklyAttdRank[], IMonthlyAttdRank[]];
-    isLoading: boolean;
-}
 // 배너 제목
 const BannerTitle = ['주간순위', '월간순위'];
 
-export default function AttendanceBanner({ bannerItems: attendanceRanks, isLoading }: IProps) {
+// 출석 순위 배너
+interface IAttdBannerProps {
+    bannerItems: [IWeeklyAttdRank[], IMonthlyAttdRank[]];
+    isLoading: boolean;
+}
+export default function AttendanceBanner({ bannerItems: attendanceRanks, isLoading }: IAttdBannerProps) {
     const [slideIdx, setSlideIdx] = useState(1);
 
+    // 배너 내 인덱스 닷 핸들러
     const handleDotClick = (idx: number) => {
         setSlideIdx(idx + 1);
     };
@@ -62,13 +64,7 @@ export default function AttendanceBanner({ bannerItems: attendanceRanks, isLoadi
             {/* 인덱스 닷 */}
             <div className='absolute bottom-0 left-1/2 mb-1 flex -translate-x-1/2 flex-row'>
                 {Array.from({ length: attendanceRanks?.length }).map((_, idx) => (
-                    <Dot
-                        key={idx}
-                        dotSize={0}
-                        isActive={slideIdx === idx + 1 ? true : false}
-                        idx={idx}
-                        setSlideIdx={handleDotClick}
-                    />
+                    <Dot key={idx} dotSize={0} isActive={slideIdx === idx + 1} idx={idx} setSlideIdx={handleDotClick} />
                 ))}
             </div>
         </div>
