@@ -12,7 +12,7 @@ const sliderItems: IMainPhotoBannerItem[] = [
     },
 ];
 
-// 메인 사진 슬라이딩 배너
+// COMPONENT: 메인 사진 슬라이딩 배너
 export default memo(function MainPhotoBanner() {
     const [slideIdx, setSlideIdx] = useState(1);
 
@@ -51,7 +51,7 @@ export default memo(function MainPhotoBanner() {
                 ) : null;
             })}
             <div className='absolute bottom-2 left-1/2 mb-1 flex -translate-x-1/2 flex-row'>
-                {Array.from({ length: sliderItems?.length }).map((_, idx) => (
+                {sliderItems?.map((_, idx) => (
                     <Dot
                         key={idx}
                         isActive={slideIdx === idx + 1 ? true : false}

@@ -6,7 +6,7 @@ import { IWeeklyAttdRank, IMonthlyAttdRank } from '../../type';
 // 배너 제목
 const BannerTitle = ['주간순위', '월간순위'];
 
-// 출석 순위 배너
+// COMPONENT: 출석 순위 배너
 interface IAttdBannerProps {
     bannerItems: [IWeeklyAttdRank[], IMonthlyAttdRank[]];
     isLoading: boolean;
@@ -63,7 +63,7 @@ export default function AttendanceBanner({ bannerItems: attendanceRanks, isLoadi
             ))}
             {/* 인덱스 닷 */}
             <div className='absolute bottom-0 left-1/2 mb-1 flex -translate-x-1/2 flex-row'>
-                {Array.from({ length: attendanceRanks?.length }).map((_, idx) => (
+                {attendanceRanks?.map((_, idx) => (
                     <Dot
                         key={idx}
                         shape={'circle'}

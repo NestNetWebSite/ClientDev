@@ -30,7 +30,7 @@ const sliderItems: ILinkBannerItem[] = [
     },
 ];
 
-// 링크 슬라이딩 배너
+// COMPONENT: 링크 슬라이딩 배너 (연혁, 회칙 등의 페이지로 넘어갈 수 있는 링크를 담은 배너)
 export default memo(function LinkBanner() {
     const [slideIdx, setSlideIdx] = useState(1);
 
@@ -89,7 +89,7 @@ export default memo(function LinkBanner() {
                 <SliderArrowBtn moveSlide={nextSlide} direction={'next'} />
             </span>
             <div className='absolute bottom-0 left-1/2 mb-1 flex -translate-x-1/2 flex-row'>
-                {Array.from({ length: sliderItems?.length }).map((_, idx) => (
+                {sliderItems?.map((_, idx) => (
                     <Dot
                         key={idx}
                         isActive={slideIdx === idx + 1 ? true : false}
