@@ -93,7 +93,7 @@ export default memo(function LinkBanner() {
                     <Dot
                         key={idx}
                         isActive={slideIdx === idx + 1 ? true : false}
-                        dotSize={0}
+                        shape={'circle'}
                         idx={idx}
                         setSlideIdx={handleDotClick}
                     />

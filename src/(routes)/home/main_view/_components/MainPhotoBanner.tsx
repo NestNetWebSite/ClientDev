@@ -55,7 +55,7 @@ export default memo(function MainPhotoBanner() {
                     <Dot
                         key={idx}
                         isActive={slideIdx === idx + 1 ? true : false}
-                        dotSize={1}
+                        shape={'pill'}
                         idx={idx}
                         setSlideIdx={handleDotClick}
                     />

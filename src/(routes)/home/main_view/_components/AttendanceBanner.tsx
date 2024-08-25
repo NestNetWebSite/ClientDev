@@ -64,7 +64,13 @@ export default function AttendanceBanner({ bannerItems: attendanceRanks, isLoadi
             {/* 인덱스 닷 */}
             <div className='absolute bottom-0 left-1/2 mb-1 flex -translate-x-1/2 flex-row'>
                 {Array.from({ length: attendanceRanks?.length }).map((_, idx) => (
-                    <Dot key={idx} dotSize={0} isActive={slideIdx === idx + 1} idx={idx} setSlideIdx={handleDotClick} />
+                    <Dot
+                        key={idx}
+                        shape={'circle'}
+                        isActive={slideIdx === idx + 1}
+                        idx={idx}
+                        setSlideIdx={handleDotClick}
+                    />
                 ))}
             </div>
         </div>
