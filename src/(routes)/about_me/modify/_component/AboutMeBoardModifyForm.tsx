@@ -53,6 +53,13 @@ export default function AboutMeBoardModifyForm() {
 
     const onSubmit: SubmitHandler<FormData> = async data => {
         try {
+            if (existingFileIdList.length === 0) {
+                if (imageFile === null) {
+                    window.alert('프로필 사진을 추가해주세요.');
+                    return;
+                }
+            }
+
             const formData = new FormData();
             const blob = new Blob(
                 [
@@ -64,10 +71,9 @@ export default function AboutMeBoardModifyForm() {
                 ],
                 { type: 'application/json' },
             );
+
+            formData.append('file', imageFile);
             formData.append('data', blob);
-            if (imageFile) {
-                formData.append('file', imageFile);
-            }
 
             const fileIdListBlob = new Blob([JSON.stringify(existingFileIdList)], { type: 'application/json' });
             formData.append('file-id', fileIdListBlob);
