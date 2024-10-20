@@ -1,3 +1,4 @@
+// COMPONENT: 댓글 작성하는 입력칸(폼)
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -6,11 +7,10 @@ import LoadingSpinner from '../../../../_components/loadingSpinner/LoadingSpinne
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { INewCommentValues } from '../../types';
 
-interface IProps {
+interface ICommentPostFormProps {
     isMetadataVisible: boolean;
 }
-
-export default function CommentPostForm({ isMetadataVisible }: IProps) {
+export default function CommentPostForm({ isMetadataVisible }: ICommentPostFormProps) {
     const methods = useForm({
         mode: 'onBlur',
     });

@@ -59,7 +59,7 @@ export default function LikeBtn({ isMemberLiked, likeCount }: IProps) {
 function useGetIsMemberLiked(isMemberLiked: boolean) {
     return useQuery<boolean, Error>({
         queryKey: ['likeState'],
-        queryFn() {
+        queryFn: () => {
             return Promise.resolve(isMemberLiked);
         },
         retry: false,
@@ -69,7 +69,7 @@ function useGetIsMemberLiked(isMemberLiked: boolean) {
     });
 }
 
-// REST: 좋아요 요청
+// POST: 좋아요 요청
 function usePostAlbumLike(oldLikeState: boolean, oldLikeCount: number) {
     const queryClient = useQueryClient();
     const { boardId } = useParams();

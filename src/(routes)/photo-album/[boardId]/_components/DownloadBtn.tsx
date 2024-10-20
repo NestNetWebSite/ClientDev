@@ -1,3 +1,4 @@
+// COMPONENT: 사진 다운로드 버튼
 import { FiDownload } from 'react-icons/fi';
 import { CircleActivationButton as Button } from '../../../../_components/button/CircleActivationButton';
 import { StringExtractor } from '../../../../_utils/StringExtractor';
@@ -8,15 +9,15 @@ export default function DownloadBtn({ selectedPhoto }: { selectedPhoto: IExistin
     // 사진 다운로드 버튼 핸들러
     const handleDownloadBtnClick = async () => {
         const fileName = StringExtractor.extractFileName(selectedPhoto.originalFileName);
-        const downloadFile = await axios
+        const downloadedFile = await axios
             .get(`/api/file?fileId=${selectedPhoto.id}`, {
                 responseType: 'blob',
             })
             .then(response => response.data)
             .catch(() => window.alert('사진 저장에 실패하였습니다.'));
 
-        if (downloadFile) {
-            const fileBlob = new Blob([downloadFile], {
+        if (downloadedFile) {
+            const fileBlob = new Blob([downloadedFile], {
                 type: 'application/octet-stream',
             });
             const tempFileURL = URL.createObjectURL(fileBlob);
