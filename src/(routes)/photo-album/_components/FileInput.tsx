@@ -1,3 +1,4 @@
+// COMPONENT: 파일(사진 게시물) input
 import { useRef, memo } from 'react';
 import { MdUpload } from 'react-icons/md';
 import { FaTrash } from 'react-icons/fa';
@@ -8,14 +9,13 @@ import { nanoid } from 'nanoid';
 import { IExistingFileDto, IUploadedFileDto } from '../types';
 import { FILE_SIZE_MAX_LIMIT } from '../../../_constants/constants';
 
-interface FileInputProps {
+interface IFileInputProps {
     files: (IExistingFileDto | IUploadedFileDto)[];
     setFiles: React.Dispatch<React.SetStateAction<(IExistingFileDto | IUploadedFileDto)[]>>;
     existingFileIds?: number[];
     setExistingFileIds?: React.Dispatch<React.SetStateAction<number[]>>;
 }
-
-export default memo(function FileInput({ files, setFiles, existingFileIds, setExistingFileIds }: FileInputProps) {
+export default memo(function FileInput({ files, setFiles, existingFileIds, setExistingFileIds }: IFileInputProps) {
     // 파일 인풋 ref
     const fileInputRef = useRef<HTMLInputElement>(null);
     // 스크롤 이벤트 위한 가짜 ref
@@ -61,7 +61,6 @@ export default memo(function FileInput({ files, setFiles, existingFileIds, setEx
 
     return (
         <div className='flex h-full w-full flex-col items-center'>
-            {/* <label className={'h-full w-full'} htmlFor='uploadfiles'> */}
             <input
                 id='uploadfiles'
                 type='file'
@@ -127,7 +126,6 @@ export default memo(function FileInput({ files, setFiles, existingFileIds, setEx
                 )}
                 <div className='h-[1px] w-full opacity-0' ref={lastFileRef}></div>
             </div>
-            {/* </label> */}
             {/* 파일 업로드 버튼 */}
             <button
                 type={'button'}

@@ -14,7 +14,7 @@ import LikeBtn from './_components/LikeBtn';
 import MetadataBtn from './_components/MetadataBtn';
 import { IPhotoPostDto, IExistingFileDto, ICommentDto } from '../types';
 
-interface PhotoAlbumData {
+interface IPhotoAlbumData {
     photoPostDto: IPhotoPostDto;
     fileDtoList: IExistingFileDto[];
     commentDtoList: ICommentDto[];
@@ -101,7 +101,7 @@ export default function Page() {
 const useGetAlbum = () => {
     const { boardId } = useParams<{ boardId: string }>();
 
-    return useQuery<PhotoAlbumData>({
+    return useQuery<IPhotoAlbumData>({
         queryKey: ['album', boardId],
         queryFn: async () => {
             const albumURL = `/api/photo-post/${boardId}`;

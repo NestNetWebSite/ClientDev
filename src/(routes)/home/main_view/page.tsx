@@ -1,3 +1,4 @@
+// PAGE: 메인 페이지
 import { useEffect, useState } from 'react';
 import AttendanceBtn from './_components/AttendanceBtn';
 import MainPhotoBanner from './_components/MainPhotoBanner';
@@ -7,7 +8,6 @@ import AttendanceBanner from './_components/AttendanceBanner';
 import { IWeeklyAttdRank, IMonthlyAttdRank } from '../type';
 import { useGetAttendance, useGetNewPosts } from '../../../api/home-api';
 
-// 메인 페이지
 export default function Page() {
     const { data: recentPosts, isLoading: isNewPostsLoading, isError: isNewPostsError } = useGetNewPosts();
     const {

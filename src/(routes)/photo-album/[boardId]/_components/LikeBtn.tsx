@@ -1,3 +1,4 @@
+// COMPONENT: 사진 게시판 게시물 좋아요 버튼
 import { FaHeart } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import { CircleActivationButton as Button } from '../../../../_components/button/CircleActivationButton';
@@ -19,7 +20,7 @@ export default function LikeBtn({ isMemberLiked, likeCount }: IProps) {
     const queryClient = useQueryClient();
     const debouncedMutate = debounce(updateAlbumLike, 500);
 
-    // 좋아요 버튼 클릭 핸들러
+    // HANDLER: 버튼 클릭 핸들러
     const handleButtonClick = useCallback(async (): Promise<void> => {
         // 쿼리 차단
         await queryClient.cancelQueries({ queryKey: ['likeState'] });

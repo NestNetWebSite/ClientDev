@@ -1,3 +1,4 @@
+// COMPONENT: 출석 순위 배너
 import { useState } from 'react';
 import Dot from '../../_components/Dot';
 import LoadingSpinner from '../../../../_components/loadingSpinner/LoadingSpinner';
@@ -6,7 +7,6 @@ import { IWeeklyAttdRank, IMonthlyAttdRank } from '../../type';
 // 배너 제목
 const BannerTitle = ['주간순위', '월간순위'];
 
-// COMPONENT: 출석 순위 배너
 interface IAttdBannerProps {
     bannerItems: [IWeeklyAttdRank[], IMonthlyAttdRank[]];
     isLoading: boolean;
@@ -14,7 +14,7 @@ interface IAttdBannerProps {
 export default function AttendanceBanner({ bannerItems: attendanceRanks, isLoading }: IAttdBannerProps) {
     const [slideIdx, setSlideIdx] = useState(1);
 
-    // 배너 내 인덱스 닷 핸들러
+    // HANDLER: 배너 내 인덱스 표시하는 Dot 핸들러
     const handleDotClick = (idx: number) => {
         setSlideIdx(idx + 1);
     };
@@ -61,7 +61,7 @@ export default function AttendanceBanner({ bannerItems: attendanceRanks, isLoadi
                     )}
                 </div>
             ))}
-            {/* 인덱스 닷 */}
+            {/* 인덱스 Dot */}
             <div className='absolute bottom-0 left-1/2 mb-1 flex -translate-x-1/2 flex-row'>
                 {attendanceRanks?.map((_, idx) => (
                     <Dot

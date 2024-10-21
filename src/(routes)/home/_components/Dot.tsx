@@ -1,3 +1,4 @@
+// COMPONENT: 인덱스 닷 버튼 (슬라이딩 배너를 조작하는 버튼)
 import { Dispatch, SetStateAction } from 'react';
 
 type dotSizeType = {
@@ -8,7 +9,6 @@ const dotShape: dotSizeType = {
     pill: 'h-2 w-4', // 알약형
 };
 
-// 인덱스 닷 버튼 (슬라이딩 배너를 조작하는 버튼)
 interface IDotProps {
     isActive: boolean;
     shape: keyof typeof dotShape;

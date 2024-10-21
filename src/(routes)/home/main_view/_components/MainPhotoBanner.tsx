@@ -1,10 +1,11 @@
+// COMPONENT: 메인 사진 슬라이딩 배너
 import { useState, memo } from 'react';
 import { Link } from 'react-router-dom';
 import Dot from '../../_components/Dot';
 import { IMainPhotoBannerItem } from '../../type';
 import useInterval from '../../../../_hooks/useInterval';
 
-// 배너 내 각 슬라이드 아이템
+// 배너 사진 요소
 const sliderItems: IMainPhotoBannerItem[] = [
     {
         src: '_assets/images/main-promotion-1.png',
@@ -12,7 +13,6 @@ const sliderItems: IMainPhotoBannerItem[] = [
     },
 ];
 
-// COMPONENT: 메인 사진 슬라이딩 배너
 export default memo(function MainPhotoBanner() {
     const [slideIdx, setSlideIdx] = useState(1);
 

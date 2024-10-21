@@ -1,7 +1,7 @@
+// COMPONENT: 출석체크 버튼
 import { FaCalendar } from 'react-icons/fa';
 import { usePostMyAttendance } from '../../../../api/home-api';
 
-// COMPONENT: 출석체크 버튼
 export default function AttendanceBtn() {
     const { mutate: createMyAttd, isPending: isMyAttdPending } = usePostMyAttendance();
 

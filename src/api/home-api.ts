@@ -3,7 +3,7 @@ import { IAttdRanks, INewPost } from '../(routes)/home/type';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import isServerError from '../_errors/isServerError';
 
-// REST: 최근글 조회
+// GET: 최근글 조회
 export const useGetNewPosts = () => {
     return useQuery<INewPost[]>({
         queryKey: ['recent-posts'],
@@ -17,7 +17,7 @@ export const useGetNewPosts = () => {
     });
 };
 
-// REST: 출석 순위 조회
+// GET: 출석 순위 조회
 export const useGetAttendance = () => {
     return useQuery<IAttdRanks>({
         queryKey: ['attendance-statistics'],
@@ -32,7 +32,7 @@ export const useGetAttendance = () => {
     });
 };
 
-// REST: 출석 등록
+// POST: 출석 등록
 export function usePostMyAttendance() {
     const queryClient = useQueryClient();
 

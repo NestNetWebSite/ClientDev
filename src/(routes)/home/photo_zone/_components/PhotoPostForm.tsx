@@ -120,7 +120,7 @@ function usePostPhoto() {
             } else if (e.response.status === 404) {
                 errorMessage = '사진 등록에 실패하였습니다.';
             } else if (e.response.status === 500) {
-                errorMessage = '사지 등록에 실패하였습니다. 관리자에게 문의해주세요.';
+                errorMessage = '사진 등록에 실패하였습니다. 관리자에게 문의해주세요.';
             }
             alert(errorMessage);
         },

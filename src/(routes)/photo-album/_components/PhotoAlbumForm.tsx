@@ -52,6 +52,7 @@ export default function PhotoAlbumForm({
                             <div className='mb-2 ml-4 font-semibold'>사진 총 {files?.length} 장</div>
                             <DescriptionInputs />
                             <div className={'flex justify-end'}>
+                                {/* 게시/수정 버튼 */}
                                 <OvalButton
                                     content={
                                         isPending ? <LoadingSpinner size={24} /> : existingPostData ? '수정' : '게시'
