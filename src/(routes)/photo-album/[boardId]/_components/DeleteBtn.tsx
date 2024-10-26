@@ -1,3 +1,4 @@
+// COMPONENT: 사진 게시판 게시물 단건 삭제 버튼
 import { CircleActivationButton as Button } from '../../../../_components/button/CircleActivationButton';
 import { MdDelete } from 'react-icons/md';
 import { useNavigate, useParams } from 'react-router-dom';

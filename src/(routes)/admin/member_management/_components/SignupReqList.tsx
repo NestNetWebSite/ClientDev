@@ -1,3 +1,4 @@
+// COMPONENT: 회원가입 요청 목록
 import { useMemo } from 'react';
 import { MaterialReactTable, useMaterialReactTable } from 'material-react-table';
 import { Box, IconButton, Tooltip } from '@mui/material';
@@ -12,11 +13,10 @@ import {
 } from '../../../../_constants/constants';
 import { ISignupReq } from '../../type';
 
-// 회원가입 요청 목록
 export default function SignupReqList() {
     const columns = useMemo(() => TABLE_COL_NAME.signup, []);
 
-    // 회원가입요청 조회
+    // GET: 회원가입요청 조회
     const {
         data: fetchedSignupReqs = [],
         isError: isLoadingSignupReqsError,
@@ -24,18 +24,18 @@ export default function SignupReqList() {
         isLoading: isLoadingSignupReqs,
     } = useGetSignupReqs();
 
-    // 회원가입요청 승인
+    // POST: 회원가입요청 승인
     const { mutateAsync: approveReq, isPending: isApprovingReq } = useApproveReq();
-    // 회원가입요청 거절
-    const { mutateAsync: rejectReq, isPending: isDeletingReq } = useRejectReq();
-
-    // 회원가입 요청 승인 핸들러
+    // HANDLER: 회원가입 요청 승인 핸들러
     const handleReqApprove = async ({ original }) => {
         if (window.confirm(WINDOW_ALERT_MESSAGE.signupApproval(original))) {
             approveReq({ signupReq: original });
         }
     };
-    // 회원가입 요청 거절 핸들러
+
+    // POST: 회원가입요청 거절
+    const { mutateAsync: rejectReq, isPending: isDeletingReq } = useRejectReq();
+    // HANDLER: 회원가입 요청 거절 핸들러
     const handleReqReject = ({ original }) => {
         if (window.confirm(WINDOW_ALERT_MESSAGE.signupReject(original))) {
             rejectReq({ signupReq: original });
@@ -88,16 +88,16 @@ export default function SignupReqList() {
     return <MaterialReactTable table={table} />;
 }
 
-// REST: 회원가입 요청 목록 조회
+// GET: 회원가입 요청 목록 조회
 function useGetSignupReqs() {
     return useQuery<ISignupReq[]>({
         queryKey: ['signups'],
         queryFn: async () => {
             const signupReqsURL = `/api/manager/signup-request`;
             return await axios.get(signupReqsURL).then(res => {
-                const reqs: ISignupReq[] = res.data.response.dtoList;
+                const signupRequests: ISignupReq[] = res.data.response.dtoList;
 
-                return reqs.map(req => ({
+                return signupRequests.map(req => ({
                     ...req,
                     memberAuthority: AUTHORITY_ENG_TO_KOR[req.memberAuthority] ?? '-',
                 }));
@@ -110,7 +110,7 @@ function useGetSignupReqs() {
 interface ISignupProps {
     signupReq: ISignupReq;
 }
-// REST: 회원가입 요청 승인
+// POST: 회원가입 요청 승인
 function useApproveReq() {
     const queryClient = useQueryClient();
 
@@ -129,7 +129,7 @@ function useApproveReq() {
     });
 }
 
-// REST: 회원가입 요청 거절
+// POST: 회원가입 요청 거절
 function useRejectReq() {
     const queryClient = useQueryClient();
 

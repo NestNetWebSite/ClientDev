@@ -1,3 +1,4 @@
+// COMPONENT: 회원 목록
 import { useMemo } from 'react';
 import { MaterialReactTable, useMaterialReactTable, type MRT_Row, type MRT_ColumnDef } from 'material-react-table';
 import { Box, IconButton, Tooltip } from '@mui/material';
@@ -13,7 +14,6 @@ import {
 } from '../../../../_constants/constants';
 import { IEditProps, IMember } from '../../type';
 
-// 동아리원 목록
 export default function MemberList() {
     const columns = useMemo<MRT_ColumnDef<IMember>[]>(
         () => [
@@ -76,19 +76,19 @@ export default function MemberList() {
         [],
     );
 
-    // call READ hook
+    // GET: 회원 계정 목록 조회
     const {
         data: fetchedUsers = [],
         isError: isLoadingUsersError,
         isFetching: isFetchingUsers,
         isLoading: isLoadingUsers,
-    } = useGetUsers();
-    // call UPDATE hook
-    const { mutateAsync: updateUser, isPending: isUpdatingUser } = useUpdateUser();
-    // call DELETE hook
-    const { mutateAsync: deleteUser, isPending: isDeletingUser } = useDeleteUser();
+    } = useGetMembers();
+    // POST: 회원 정보 수정
+    const { mutateAsync: updateUser, isPending: isUpdatingUser } = useUpdateMember();
+    // DELETE: 회원 계정 삭제
+    const { mutateAsync: deleteUser, isPending: isDeletingUser } = useDeleteMember();
 
-    // 권한 수정 핸들러
+    // HANDLER: 권한 수정 핸들러
     const handleMemberEditSave = async ({ row, values }: IEditProps) => {
         if (confirm(WINDOW_ALERT_MESSAGE.authorityChange(row, values))) {
             const updatedMemberId = row.original.id;
@@ -110,8 +110,7 @@ export default function MemberList() {
             window.alert('회원 탈퇴에 실패했습니다.');
         }
     };
-
-    // 회원 탈퇴 핸들러
+    // HANDLER: 회원 탈퇴
     const handleMemberDelete = (row: MRT_Row<IMember>) => {
         if (window.confirm(WINDOW_ALERT_MESSAGE.memberDeletion(row))) {
             const inputValue = window.prompt(
@@ -122,6 +121,7 @@ export default function MemberList() {
         }
     };
 
+    // 회원목록 테이블 정의
     const table = useMaterialReactTable({
         columns,
         data: fetchedUsers,
@@ -169,8 +169,8 @@ export default function MemberList() {
     return <MaterialReactTable table={table} />;
 }
 
-// REST: 동아리원 목록 조회
-function useGetUsers() {
+// GET: 회원 목록 조회
+const useGetMembers = () => {
     return useQuery<IMember[]>({
         queryKey: ['members'],
         queryFn: async () => {
@@ -186,15 +186,14 @@ function useGetUsers() {
         },
         refetchOnWindowFocus: false,
     });
-}
+};
 
 interface IUpdatedMemberProps {
     updatedMemberId: number;
     updatedValues: IMember;
 }
-
-// REST: 동아리원 권한 수정
-function useUpdateUser() {
+// POST: 회원 권한 수정
+const useUpdateMember = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
@@ -210,10 +209,10 @@ function useUpdateUser() {
             queryClient.invalidateQueries({ queryKey: ['members'] });
         },
     });
-}
+};
 
-// REST: 동아리원 탈퇴
-function useDeleteUser() {
+// DELETE: 회원 탈퇴
+const useDeleteMember = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
@@ -226,4 +225,4 @@ function useDeleteUser() {
             queryClient.invalidateQueries({ queryKey: ['members'] });
         },
     });
-}
+};

@@ -1,3 +1,4 @@
+// COMPONENT: 사진 목록
 import { SetStateAction, memo, Dispatch } from 'react';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { StringCombinator } from '../../../../_utils/StringCombinator';

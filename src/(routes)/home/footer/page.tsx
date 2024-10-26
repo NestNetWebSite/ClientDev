@@ -1,3 +1,4 @@
+// COMPONENT: 메인페이지 푸터
 import { Link } from 'react-router-dom';
 import { PAGE_ROUTE } from '../../../_constants/constants';
 

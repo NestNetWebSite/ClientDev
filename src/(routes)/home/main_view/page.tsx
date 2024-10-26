@@ -1,27 +1,28 @@
+// PAGE: 메인 페이지
 import { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import AttendanceBtn from './_components/AttendanceBtn';
 import MainPhotoBanner from './_components/MainPhotoBanner';
 import RecentPostsBanner from './_components/RecentPostsBanner';
 import LinkBanner from './_components/LinkBanner';
 import AttendanceBanner from './_components/AttendanceBanner';
-import { INewPost, IWeeklyAttdRank, IMonthlyAttdRank, IAttdRanks } from '../type';
+import { IWeeklyAttdRank, IMonthlyAttdRank } from '../type';
+import { useGetAttendance, useGetNewPosts } from '../../../api/home-api';
 
 export default function Page() {
-    const { data: recentPosts, isLoading: isNewPostsLoading, isSuccess, isError: isNewPostsError } = useGetNewPosts();
+    const { data: recentPosts, isLoading: isNewPostsLoading, isError: isNewPostsError } = useGetNewPosts();
     const {
         data: { weeklyStatisticsDtoList: weeklyAttdRank = [], monthlyStatisticsDtoList: monthlyAttdRank = [] } = {},
         isLoading: isAttdRanksLoading,
+        isSuccess: isAttdRanksSuccess,
         isError: isAttdRankError,
     } = useGetAttendance();
     const [attdRankSlides, setAttdRankSlides] = useState<[IWeeklyAttdRank[], IMonthlyAttdRank[]]>([[], []]);
 
     useEffect(() => {
-        if (isSuccess) {
+        if (isAttdRanksSuccess) {
             setAttdRankSlides([[...weeklyAttdRank], [...monthlyAttdRank]]);
         }
-    }, [isSuccess, weeklyAttdRank, monthlyAttdRank]);
+    }, [isAttdRanksSuccess, weeklyAttdRank, monthlyAttdRank]);
 
     return (
         <>
@@ -83,32 +84,3 @@ export default function Page() {
         </>
     );
 }
-
-// REST: 최근글 조회
-const useGetNewPosts = () => {
-    return useQuery<INewPost[]>({
-        queryKey: ['recent-posts'],
-        queryFn: async () => {
-            const recentPostsURL = `/api/post/recent-posts`;
-            return await axios.get(recentPostsURL).then(res => {
-                return res.data.response.dtoList;
-            });
-        },
-        retry: 0,
-    });
-};
-
-// REST: 출석 순위 조회
-const useGetAttendance = () => {
-    return useQuery<IAttdRanks>({
-        queryKey: ['attendance-statistics'],
-        queryFn: async () => {
-            const attendanceURL = `/api/attendance/statistics`;
-
-            return await axios.get(attendanceURL).then(res => {
-                return res.data.response;
-            });
-        },
-        retry: 0,
-    });
-};

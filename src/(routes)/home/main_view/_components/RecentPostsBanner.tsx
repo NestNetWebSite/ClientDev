@@ -1,3 +1,4 @@
+// COMPONENT: 최신 글 배너
 import { Link } from 'react-router-dom';
 import { StringCombinator } from '../../../../_utils/StringCombinator';
 import { StringTranslator } from '../../../../_utils/StringTranslator';

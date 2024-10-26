@@ -1,3 +1,4 @@
+// COMPONENT: 선택된 사진 (사용자가 보려고 클릭한 사진)
 import { useRef, memo } from 'react';
 import toggleFullScreen from '../../../../_hooks/useFullScreen';
 import { StringCombinator } from '../../../../_utils/StringCombinator';

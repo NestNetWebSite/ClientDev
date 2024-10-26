@@ -1,8 +1,10 @@
+// COMPONENT: 인생네컷 배너
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import SlidingPhotos from './_components/SlidingPhotos.jsx';
 import PhotoPostForm from './_components/PhotoPostForm.tsx';
 import { ISlidingPhoto } from '../type.tsx';
+import { LIFE4CUT_SIZE } from '../../../_constants/constants.ts';
 
 interface IProps {
     inView: boolean;
@@ -39,12 +41,12 @@ export default function Page({ inView }: IProps) {
     );
 }
 
-// REST: 포토존 사진 조회
+// GET: 인생네컷 사진 조회
 const useGetPhotos = (inView: boolean) => {
     return useQuery<ISlidingPhoto[]>({
         queryKey: ['photo-zone'],
         queryFn: async () => {
-            const photoZoneURL = `/api/life4cut?size=20`;
+            const photoZoneURL = `/api/life4cut?size=${LIFE4CUT_SIZE}`;
             return await axios.get(photoZoneURL).then(res => {
                 return res.data.response.dtoList;
             });

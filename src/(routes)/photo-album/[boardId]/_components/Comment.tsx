@@ -1,3 +1,4 @@
+// COMPONENT: 댓글
 import { useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
@@ -8,15 +9,15 @@ import LoadingSpinner from '../../../../_components/loadingSpinner/LoadingSpinne
 import { ICommentDto } from '../../types';
 import { AxiosResponse } from 'axios';
 
-interface IProps {
-    comment: ICommentDto;
-}
 interface IModifiedCommentProps {
     commentId: number;
     updateValue: string;
 }
 
-export default function Comment({ comment }: IProps) {
+interface ICommentProps {
+    comment: ICommentDto;
+}
+export default function Comment({ comment }: ICommentProps) {
     const {
         commentId,
         username,

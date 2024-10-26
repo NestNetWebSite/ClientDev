@@ -1,3 +1,4 @@
+// PAGE: 앨범 수정 페이지
 import PhotoAlbumForm from '../_components/PhotoAlbumForm';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
@@ -14,7 +15,6 @@ interface IExistingData {
     fileDtoList: IExistingFileDto[];
 }
 
-// 앨범 수정 페이지
 export default function Page() {
     const { boardId } = useParams<string>();
     const [isPending, setIsPending] = useState<boolean>(false);
@@ -25,7 +25,7 @@ export default function Page() {
 
     // 수정시 게시물 boardId, Id List(기존 파일들의 아이디만 포함) 필요
     const [existingFileIds, setExistingFileIds] = useState<number[]>([]);
-    // ON-MOUNT: 수정시 기존 앨범 정보 주입
+    // ON MOUNT: 수정시 기존 앨범 정보 주입
     const { data: existingData, isFetching: isExistingDataFetching } = useGetAlbum(boardId);
     // const { photoPostDto: existingPostData, fileDtoList: existingFileData } = existingData;
     useEffect(() => {
@@ -33,7 +33,7 @@ export default function Page() {
         setExistingFileIds(existingData?.fileDtoList.map(file => file.id));
     }, [existingData]);
 
-    // 수정 폼 제출 핸들러
+    // HANDLER: 수정 제출 핸들러
     const handleModifiedFormSubmit: SubmitHandler<IPhotoAlbumDescriptionValues> = data => {
         if (files.length === 0) {
             alert('사진 첨부는 필수입니다!');
@@ -59,7 +59,7 @@ export default function Page() {
             }
         });
 
-        // REST
+        // POST: 사진 게시판 게시물 수정
         axios
             .post(`/api/photo-post/modify`, formData, {
                 withCredentials: true,

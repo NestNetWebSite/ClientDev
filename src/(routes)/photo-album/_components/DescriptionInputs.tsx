@@ -1,7 +1,8 @@
+// COMPONENT: 게시물 제목/설명 input
 import { memo } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-interface DescriptionData {
+interface IDescriptionData {
     title: string;
     bodyContent: string;
 }
@@ -10,7 +11,7 @@ export default memo(function DescriptionInputs() {
     const {
         register,
         formState: { errors },
-    } = useFormContext<DescriptionData>();
+    } = useFormContext<IDescriptionData>();
 
     return (
         <>

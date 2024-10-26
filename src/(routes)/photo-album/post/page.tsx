@@ -1,3 +1,4 @@
+// PAGE: 앨범 작성 페이지
 import PhotoAlbumForm from '../_components/PhotoAlbumForm';
 import axios from 'axios';
 import { useState } from 'react';
@@ -8,7 +9,6 @@ import { IPhotoAlbumDescriptionValues } from '../types';
 import { SubmitHandler } from 'react-hook-form';
 import isServerError from '../../../_errors/isServerError';
 
-// 앨범 작성 페이지
 export default function Page() {
     const [files, setFiles] = useState<IUploadedFileDto[]>([]);
     const [isPending, setIsPending] = useState<boolean>(false);

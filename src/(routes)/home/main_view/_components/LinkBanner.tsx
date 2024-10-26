@@ -1,3 +1,4 @@
+// COMPONENT: 링크 슬라이딩 배너 (연혁, 회칙 등의 페이지로 넘어갈 수 있는 링크를 담은 배너)
 import { useState, memo } from 'react';
 import { Link } from 'react-router-dom';
 import SliderArrowBtn from '../../_components/SliderArrowBtn';
@@ -30,7 +31,6 @@ const sliderItems: ILinkBannerItem[] = [
     },
 ];
 
-// 링크 슬라이딩 배너
 export default memo(function LinkBanner() {
     const [slideIdx, setSlideIdx] = useState(1);
 
@@ -42,7 +42,7 @@ export default memo(function LinkBanner() {
         setSlideIdx(prevIdx => (prevIdx === 1 ? sliderItems?.length : prevIdx - 1));
     };
 
-    // 닷 클릭시 해당 슬라이드 이동
+    // HANDLER: Dot 클릭시 해당 슬라이드 이동
     const handleDotClick = (idx: number) => {
         setSlideIdx(idx + 1);
     };
@@ -89,11 +89,11 @@ export default memo(function LinkBanner() {
                 <SliderArrowBtn moveSlide={nextSlide} direction={'next'} />
             </span>
             <div className='absolute bottom-0 left-1/2 mb-1 flex -translate-x-1/2 flex-row'>
-                {Array.from({ length: sliderItems?.length }).map((_, idx) => (
+                {sliderItems?.map((_, idx) => (
                     <Dot
                         key={idx}
                         isActive={slideIdx === idx + 1 ? true : false}
-                        dotSize={0}
+                        shape={'circle'}
                         idx={idx}
                         setSlideIdx={handleDotClick}
                     />

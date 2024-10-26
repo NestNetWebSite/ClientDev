@@ -1,3 +1,4 @@
+// PAGE: 사진게시판 게시물 상세
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -13,7 +14,7 @@ import LikeBtn from './_components/LikeBtn';
 import MetadataBtn from './_components/MetadataBtn';
 import { IPhotoPostDto, IExistingFileDto, ICommentDto } from '../types';
 
-interface PhotoAlbumData {
+interface IPhotoAlbumData {
     photoPostDto: IPhotoPostDto;
     fileDtoList: IExistingFileDto[];
     commentDtoList: ICommentDto[];
@@ -26,15 +27,15 @@ export default function Page() {
     const [photos, setPhotos] = useState<IExistingFileDto[]>([]);
     // 메타데이터(댓글 정보 포함) 표시 여부
     const [isMetadataVisible, setIsMetadataVisible] = useState(false);
-    const { data, isLoading: isAlbumLoading, status } = useGetAlbum();
+    const { data: albumData, isLoading: isAlbumLoading, status } = useGetAlbum();
 
     // 요청 성공시 사진 배열 첫번째 요소를 선택된 사진(현재 보고 있는 사진)으로 지정
     useEffect(() => {
         if (status === 'success') {
-            setPhotos(data.fileDtoList);
-            setSelectedPhoto(data.fileDtoList[0]);
+            setPhotos(albumData.fileDtoList);
+            setSelectedPhoto(albumData.fileDtoList[0]);
         }
-    }, [status, data]);
+    }, [status, albumData]);
 
     return (
         <div className='AlbumWrapper max-w-screen h-[calc(100vh-4.68rem)]'>
@@ -56,8 +57,8 @@ export default function Page() {
                                     <div className='flex h-fit w-full flex-col bg-white shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]'>
                                         <PhotoAlbumMetadata
                                             isMetadataVisible={isMetadataVisible}
-                                            postMetaData={data.photoPostDto}
-                                            comments={data.commentDtoList}
+                                            postMetaData={albumData.photoPostDto}
+                                            comments={albumData.commentDtoList}
                                         />
                                     </div>
                                     <CommentPostForm isMetadataVisible={isMetadataVisible} />
@@ -69,9 +70,12 @@ export default function Page() {
                                 <div className='flex-start mt-8 flex h-full flex-col items-center gap-3 pr-3'>
                                     <DownloadBtn selectedPhoto={selectedPhoto} />
                                     <MetadataBtn setIsMetadataVisible={setIsMetadataVisible} />
-                                    <LikeBtn isMemberLiked={data.memberLiked} likeCount={data.photoPostDto.likeCount} />
+                                    <LikeBtn
+                                        isMemberLiked={albumData.memberLiked}
+                                        likeCount={albumData.photoPostDto.likeCount}
+                                    />
                                     {/* 권한자에게만 보이는 버튼 */}
-                                    {data.photoPostDto.memberWritten ? (
+                                    {albumData.photoPostDto.memberWritten ? (
                                         <>
                                             <ModifyBtn />
                                             <DeleteBtn />
@@ -97,7 +101,7 @@ export default function Page() {
 const useGetAlbum = () => {
     const { boardId } = useParams<{ boardId: string }>();
 
-    return useQuery<PhotoAlbumData>({
+    return useQuery<IPhotoAlbumData>({
         queryKey: ['album', boardId],
         queryFn: async () => {
             const albumURL = `/api/photo-post/${boardId}`;

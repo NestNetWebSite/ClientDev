@@ -1,16 +1,13 @@
+// COMPONENT: 사진 게시판 썸네일
 import { memo } from 'react';
 import { FaHeart, FaEye } from 'react-icons/fa';
 import { StringCombinator } from '../../../_utils/StringCombinator';
 import { IPhotoAlbumMetaData } from '../types';
 
-interface ThumbnailProps {
+interface PhotoAlbumThumbnailProps {
     thumbnailData: IPhotoAlbumMetaData;
 }
-
-/**
- * 사진 게시판 썸네일
- */
-export default memo(function PhotoAlbumThumbnail({ thumbnailData }: ThumbnailProps) {
+export default memo(function PhotoAlbumThumbnail({ thumbnailData }: PhotoAlbumThumbnailProps) {
     return (
         <div className='ThumbnailWrapper relative flex h-min w-full flex-col overflow-hidden rounded-md shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] hover:shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]'>
             {/* 썸네일 이미지 */}
