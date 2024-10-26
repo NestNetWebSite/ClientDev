@@ -7,6 +7,9 @@ export const FILE_SIZE_MAX_LIMIT = 10;
 // 요청 타임아웃
 export const TIME_OUT = 5000;
 
+// 인생네컷 사진 개수
+export const LIFE4CUT_SIZE = 20;
+
 // 페이지 라우팅
 export const PAGE_ROUTE = Object.freeze({
     PHOTOALBUMS: 'photo-album',

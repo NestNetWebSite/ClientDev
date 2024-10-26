@@ -1,3 +1,4 @@
+// COMPONENT: 사진 앨범 상세 (제목, 본문, 댓글 등)
 import { memo } from 'react';
 import Comment from './Comment';
 import { IPhotoPostDto, ICommentDto } from '../../types';
